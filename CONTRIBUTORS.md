@@ -21,8 +21,8 @@ Atom IDE enables package installation that can assist the development such as th
 
 ### 4. Other notes
 
-All pages must reference link in root-relative level. For example, on the project directory level, if the target file is in the folder `js`, then the anchor tag must be written as follows:
+All pages must reference link in page-relative level. For example, on the project directory level, if the html page is in `/` directory and the target file is in the folder `/js/`, then the anchor tag must be written as follows:
 
 ```html
-<a href="/js/<filename>"> Link </a>
+<a href="js/<filename>"> Link </a>
 ```
