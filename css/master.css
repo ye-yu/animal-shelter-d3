@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Nanum+Gothic&display=swap');
+
+.vis-title {
+    font-family: 'Merriweather', 'Times New Roman';
+}
+
+.vis-body {
+    font-family: 'Nanum Gothic', 'Calibri';
+}
