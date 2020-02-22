@@ -1,0 +1,208 @@
+{
+  "0": {
+    "Total": 7288,
+    "Adoption": {
+      "Total": 3226,
+      "Cat": 1673,
+      "Dog": 1244,
+      "House Rabbit": 96,
+      "Rat": 63,
+      "Bird": 23,
+      "Others": 52,
+      "Guinea Pig": 75
+    },
+    "Foster": {
+      "Total": 1963,
+      "Cat": 1579,
+      "Dog": 334,
+      "House Rabbit": 25,
+      "Bird": 2,
+      "Guinea Pig": 9,
+      "Others": 14
+    },
+    "Adoption*": {
+      "Total": 396,
+      "Dog": 242,
+      "Cat": 131,
+      "House Rabbit": 12,
+      "Rat": 8,
+      "Others": 1,
+      "Bird": 2
+    },
+    "Transfer": {
+      "Total": 471,
+      "House Rabbit": 36,
+      "Dog": 55,
+      "Cat": 276,
+      "Rat": 51,
+      "Others": 51,
+      "Bird": 2
+    },
+    "Reclaimed": {
+      "Total": 1222,
+      "Dog": 993,
+      "Cat": 204,
+      "Others": 21,
+      "House Rabbit": 1,
+      "Bird": 3
+    },
+    "Released To Wild": {
+      "Total": 7,
+      "Others": 2,
+      "Bird": 1,
+      "Cat": 4
+    },
+    "Stolen": {
+      "Total": 2,
+      "Cat": 2
+    },
+    "Escaped": {
+      "Total": 1,
+      "Cat": 1
+    }
+  },
+  "1": {
+    "Total": 2259,
+    "Adoption": {
+      "Total": 1525,
+      "Cat": 1076,
+      "Dog": 399,
+      "House Rabbit": 21,
+      "Bird": 1,
+      "Guinea Pig": 7,
+      "Others": 13,
+      "Rat": 8
+    },
+    "Foster": {
+      "Total": 417,
+      "Dog": 116,
+      "House Rabbit": 5,
+      "Cat": 296
+    },
+    "Reclaimed": {
+      "Total": 133,
+      "Dog": 103,
+      "Cat": 28,
+      "Bird": 2
+    },
+    "Adoption*": {
+      "Total": 132,
+      "Dog": 71,
+      "House Rabbit": 6,
+      "Cat": 54,
+      "Others": 1
+    },
+    "Transfer": {
+      "Total": 47,
+      "Cat": 22,
+      "Dog": 14,
+      "House Rabbit": 3,
+      "Bird": 2,
+      "Guinea Pig": 2,
+      "Others": 4
+    },
+    "Stolen": {
+      "Total": 3,
+      "Cat": 3
+    },
+    "Escaped": {
+      "Total": 2,
+      "Others": 1,
+      "Dog": 1
+    }
+  },
+  "2": {
+    "Total": 546,
+    "Adoption": {
+      "Total": 366,
+      "Dog": 121,
+      "House Rabbit": 8,
+      "Cat": 237
+    },
+    "Foster": {
+      "Total": 92,
+      "Cat": 53,
+      "Dog": 36,
+      "House Rabbit": 2,
+      "Others": 1
+    },
+    "Reclaimed": {
+      "Total": 45,
+      "Dog": 35,
+      "Cat": 10
+    },
+    "Adoption*": {
+      "Total": 34,
+      "Dog": 20,
+      "Cat": 14
+    },
+    "Transfer": {
+      "Total": 8,
+      "Cat": 5,
+      "Dog": 2,
+      "House Rabbit": 1
+    },
+    "Stolen": {
+      "Total": 1,
+      "Cat": 1
+    }
+  },
+  "3": {
+    "Total": 137,
+    "Adoption*": {
+      "Total": 10,
+      "Dog": 8,
+      "Cat": 2
+    },
+    "Adoption": {
+      "Total": 91,
+      "Cat": 45,
+      "Dog": 44,
+      "House Rabbit": 1,
+      "Others": 1
+    },
+    "Foster": {
+      "Total": 17,
+      "Dog": 10,
+      "Cat": 7
+    },
+    "Reclaimed": {
+      "Total": 16,
+      "Dog": 8,
+      "Cat": 8
+    },
+    "Transfer": {
+      "Total": 3,
+      "Cat": 1,
+      "Dog": 1,
+      "House Rabbit": 1
+    }
+  },
+  ">3": {
+    "Total": 60,
+    "Adoption*": {
+      "Total": 6,
+      "Dog": 4,
+      "Cat": 2
+    },
+    "Adoption": {
+      "Total": 24,
+      "Dog": 17,
+      "Cat": 7
+    },
+    "Foster": {
+      "Total": 20,
+      "Dog": 16,
+      "Cat": 4
+    },
+    "Reclaimed": {
+      "Total": 7,
+      "Dog": 3,
+      "Cat": 4
+    },
+    "Transfer": {
+      "Total": 3,
+      "Dog": 3
+    }
+  }
+}

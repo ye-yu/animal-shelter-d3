@@ -1,0 +1,544 @@
+{
+  "2017Q1": {
+    "Total": 164,
+    "Stray": {
+      "Total": 19,
+      "Animal": {
+        "Cat": 11,
+        "Dog": 8
+      }
+    },
+    "Other Reason": {
+      "Total": 120,
+      "Animal": {
+        "Dog": 54,
+        "Cat": 55,
+        "Rat": 2,
+        "House Rabbit": 9
+      }
+    },
+    "Incompatible with owner lifestyle": {
+      "Total": 24,
+      "Animal": {
+        "Dog": 1,
+        "Rat": 23
+      }
+    },
+    "Moving": {
+      "Total": 1,
+      "Animal": {
+        "Dog": 1
+      }
+    }
+  },
+  "2017Q2": {
+    "Total": 813,
+    "Moving": {
+      "Total": 25,
+      "Animal": {
+        "Cat": 6,
+        "Dog": 14,
+        "House Rabbit": 4,
+        "Guinea Pig": 1
+      }
+    },
+    "Other Reason": {
+      "Total": 170,
+      "Animal": {
+        "Dog": 68,
+        "Others": 8,
+        "Cat": 78,
+        "Guinea Pig": 6,
+        "Rat": 4,
+        "Bird": 2,
+        "House Rabbit": 4
+      }
+    },
+    "Incompatible with owner lifestyle": {
+      "Total": 195,
+      "Animal": {
+        "Others": 13,
+        "Dog": 46,
+        "Guinea Pig": 5,
+        "Cat": 110,
+        "House Rabbit": 3,
+        "Rat": 18
+      }
+    },
+    "Stray": {
+      "Total": 388,
+      "Animal": {
+        "Others": 9,
+        "Bird": 4,
+        "Dog": 171,
+        "House Rabbit": 1,
+        "Cat": 203
+      }
+    },
+    "Litter relinquishment": {
+      "Total": 35,
+      "Animal": {
+        "Dog": 4,
+        "Cat": 31
+      }
+    }
+  },
+  "2017Q3": {
+    "Total": 891,
+    "Moving": {
+      "Total": 55,
+      "Animal": {
+        "Dog": 15,
+        "Cat": 29,
+        "Rat": 6,
+        "House Rabbit": 4,
+        "Others": 1
+      }
+    },
+    "Litter relinquishment": {
+      "Total": 95,
+      "Animal": {
+        "Dog": 16,
+        "Rat": 10,
+        "Cat": 69
+      }
+    },
+    "Stray": {
+      "Total": 436,
+      "Animal": {
+        "Cat": 267,
+        "Bird": 5,
+        "House Rabbit": 4,
+        "Rat": 4,
+        "Others": 4,
+        "Dog": 152
+      }
+    },
+    "Incompatible with owner lifestyle": {
+      "Total": 112,
+      "Animal": {
+        "Rat": 5,
+        "Guinea Pig": 1,
+        "House Rabbit": 1,
+        "Dog": 41,
+        "Cat": 64
+      }
+    },
+    "Other Reason": {
+      "Total": 193,
+      "Animal": {
+        "Others": 5,
+        "Guinea Pig": 1,
+        "House Rabbit": 7,
+        "Cat": 88,
+        "Dog": 92
+      }
+    }
+  },
+  "2017Q4": {
+    "Total": 637,
+    "Other Reason": {
+      "Total": 109,
+      "Animal": {
+        "Dog": 54,
+        "Rat": 2,
+        "Guinea Pig": 1,
+        "House Rabbit": 12,
+        "Bird": 1,
+        "Others": 4,
+        "Cat": 35
+      }
+    },
+    "Moving": {
+      "Total": 41,
+      "Animal": {
+        "Cat": 17,
+        "Dog": 22,
+        "Others": 1,
+        "House Rabbit": 1
+      }
+    },
+    "Stray": {
+      "Total": 322,
+      "Animal": {
+        "Dog": 142,
+        "Others": 3,
+        "Guinea Pig": 3,
+        "Cat": 174
+      }
+    },
+    "Incompatible with owner lifestyle": {
+      "Total": 116,
+      "Animal": {
+        "Dog": 44,
+        "Cat": 49,
+        "House Rabbit": 9,
+        "Others": 1,
+        "Bird": 1,
+        "Rat": 5,
+        "Guinea Pig": 7
+      }
+    },
+    "Litter relinquishment": {
+      "Total": 49,
+      "Animal": {
+        "Dog": 11,
+        "Cat": 38
+      }
+    }
+  },
+  "2018Q1": {
+    "Total": 495,
+    "Stray": {
+      "Total": 249,
+      "Animal": {
+        "Cat": 106,
+        "Dog": 139,
+        "Guinea Pig": 2,
+        "House Rabbit": 1,
+        "Others": 1
+      }
+    },
+    "Moving": {
+      "Total": 41,
+      "Animal": {
+        "House Rabbit": 1,
+        "Others": 2,
+        "Cat": 14,
+        "Dog": 21,
+        "Guinea Pig": 3
+      }
+    },
+    "Other Reason": {
+      "Total": 100,
+      "Animal": {
+        "Others": 1,
+        "Cat": 40,
+        "House Rabbit": 3,
+        "Guinea Pig": 3,
+        "Dog": 53
+      }
+    },
+    "Incompatible with owner lifestyle": {
+      "Total": 98,
+      "Animal": {
+        "Dog": 41,
+        "Cat": 50,
+        "Guinea Pig": 3,
+        "House Rabbit": 4
+      }
+    },
+    "Litter relinquishment": {
+      "Total": 7,
+      "Animal": {
+        "House Rabbit": 7
+      }
+    }
+  },
+  "2018Q2": {
+    "Total": 823,
+    "Incompatible with owner lifestyle": {
+      "Total": 76,
+      "Animal": {
+        "Guinea Pig": 3,
+        "Bird": 2,
+        "Rat": 2,
+        "House Rabbit": 5,
+        "Others": 3,
+        "Cat": 31,
+        "Dog": 30
+      }
+    },
+    "Litter relinquishment": {
+      "Total": 108,
+      "Animal": {
+        "Dog": 6,
+        "Cat": 102
+      }
+    },
+    "Moving": {
+      "Total": 60,
+      "Animal": {
+        "Others": 5,
+        "Guinea Pig": 3,
+        "House Rabbit": 4,
+        "Rat": 1,
+        "Cat": 28,
+        "Dog": 19
+      }
+    },
+    "Stray": {
+      "Total": 393,
+      "Animal": {
+        "Dog": 159,
+        "Guinea Pig": 2,
+        "Bird": 3,
+        "Others": 4,
+        "House Rabbit": 3,
+        "Cat": 222
+      }
+    },
+    "Other Reason": {
+      "Total": 186,
+      "Animal": {
+        "Dog": 92,
+        "Cat": 68,
+        "Others": 7,
+        "Bird": 1,
+        "Rat": 18
+      }
+    }
+  },
+  "2018Q3": {
+    "Total": 853,
+    "Incompatible with owner lifestyle": {
+      "Total": 85,
+      "Animal": {
+        "Dog": 26,
+        "Others": 1,
+        "House Rabbit": 4,
+        "Rat": 11,
+        "Guinea Pig": 5,
+        "Cat": 38
+      }
+    },
+    "Other Reason": {
+      "Total": 212,
+      "Animal": {
+        "Others": 2,
+        "House Rabbit": 2,
+        "Guinea Pig": 3,
+        "Bird": 2,
+        "Cat": 121,
+        "Dog": 82
+      }
+    },
+    "Litter relinquishment": {
+      "Total": 96,
+      "Animal": {
+        "Dog": 10,
+        "Cat": 86
+      }
+    },
+    "Moving": {
+      "Total": 28,
+      "Animal": {
+        "Guinea Pig": 4,
+        "Dog": 11,
+        "Cat": 10,
+        "Others": 2,
+        "House Rabbit": 1
+      }
+    },
+    "Stray": {
+      "Total": 432,
+      "Animal": {
+        "Cat": 251,
+        "Others": 5,
+        "House Rabbit": 5,
+        "Dog": 171
+      }
+    }
+  },
+  "2018Q4": {
+    "Total": 715,
+    "Incompatible with owner lifestyle": {
+      "Total": 77,
+      "Animal": {
+        "Bird": 3,
+        "Rat": 2,
+        "House Rabbit": 3,
+        "Others": 5,
+        "Dog": 39,
+        "Cat": 25
+      }
+    },
+    "Moving": {
+      "Total": 36,
+      "Animal": {
+        "House Rabbit": 2,
+        "Cat": 18,
+        "Guinea Pig": 2,
+        "Others": 3,
+        "Dog": 11
+      }
+    },
+    "Litter relinquishment": {
+      "Total": 49,
+      "Animal": {
+        "Dog": 18,
+        "Cat": 31
+      }
+    },
+    "Stray": {
+      "Total": 360,
+      "Animal": {
+        "Others": 6,
+        "House Rabbit": 6,
+        "Cat": 202,
+        "Dog": 146
+      }
+    },
+    "Other Reason": {
+      "Total": 193,
+      "Animal": {
+        "House Rabbit": 9,
+        "Cat": 79,
+        "Dog": 89,
+        "Others": 8,
+        "Guinea Pig": 5,
+        "Bird": 3
+      }
+    }
+  },
+  "2019Q1": {
+    "Total": 488,
+    "Incompatible with owner lifestyle": {
+      "Total": 68,
+      "Animal": {
+        "Cat": 21,
+        "Dog": 40,
+        "House Rabbit": 4,
+        "Guinea Pig": 2,
+        "Others": 1
+      }
+    },
+    "Litter relinquishment": {
+      "Total": 25,
+      "Animal": {
+        "Cat": 7,
+        "Dog": 18
+      }
+    },
+    "Stray": {
+      "Total": 238,
+      "Animal": {
+        "Others": 8,
+        "Cat": 110,
+        "Dog": 120
+      }
+    },
+    "Moving": {
+      "Total": 12,
+      "Animal": {
+        "Dog": 8,
+        "Cat": 4
+      }
+    },
+    "Other Reason": {
+      "Total": 145,
+      "Animal": {
+        "Dog": 72,
+        "House Rabbit": 11,
+        "Guinea Pig": 2,
+        "Cat": 56,
+        "Others": 4
+      }
+    }
+  },
+  "2019Q2": {
+    "Total": 866,
+    "Incompatible with owner lifestyle": {
+      "Total": 99,
+      "Animal": {
+        "Bird": 1,
+        "Rat": 2,
+        "Cat": 41,
+        "Guinea Pig": 4,
+        "Others": 3,
+        "Dog": 45,
+        "House Rabbit": 3
+      }
+    },
+    "Stray": {
+      "Total": 399,
+      "Animal": {
+        "Others": 1,
+        "Cat": 245,
+        "Guinea Pig": 2,
+        "Dog": 142,
+        "House Rabbit": 9
+      }
+    },
+    "Moving": {
+      "Total": 44,
+      "Animal": {
+        "Bird": 1,
+        "Dog": 14,
+        "Cat": 22,
+        "House Rabbit": 2,
+        "Others": 2,
+        "Guinea Pig": 3
+      }
+    },
+    "Other Reason": {
+      "Total": 231,
+      "Animal": {
+        "Cat": 119,
+        "Rat": 7,
+        "Dog": 92,
+        "House Rabbit": 5,
+        "Guinea Pig": 2,
+        "Bird": 3,
+        "Others": 3
+      }
+    },
+    "Litter relinquishment": {
+      "Total": 93,
+      "Animal": {
+        "Dog": 13,
+        "Cat": 80
+      }
+    }
+  },
+  "2019Q3": {
+    "Total": 531,
+    "Litter relinquishment": {
+      "Total": 68,
+      "Animal": {
+        "Cat": 54,
+        "Dog": 12,
+        "House Rabbit": 2
+      }
+    },
+    "Incompatible with owner lifestyle": {
+      "Total": 45,
+      "Animal": {
+        "Dog": 17,
+        "Cat": 21,
+        "Guinea Pig": 2,
+        "House Rabbit": 4,
+        "Others": 1
+      }
+    },
+    "Other Reason": {
+      "Total": 132,
+      "Animal": {
+        "Dog": 49,
+        "Others": 6,
+        "Bird": 1,
+        "House Rabbit": 3,
+        "Guinea Pig": 3,
+        "Cat": 70
+      }
+    },
+    "Moving": {
+      "Total": 37,
+      "Animal": {
+        "Dog": 12,
+        "Cat": 12,
+        "House Rabbit": 5,
+        "Others": 7,
+        "Guinea Pig": 1
+      }
+    },
+    "Stray": {
+      "Total": 249,
+      "Animal": {
+        "Dog": 90,
+        "Cat": 158,
+        "Others": 1
+      }
+    }
+  }
+}
