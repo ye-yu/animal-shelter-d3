@@ -48,11 +48,11 @@
   </div>
   <div class="container mt-3">
     <div class="row">
-      <div class="col-9" id="wdtcm-container">
+      <div class="col-lg-9" id="wdtcm-container">
         <svg id="wdtcm-graph">
         </svg>
       </div>
-      <div class="col-3">
+      <div class="col-lg-3">
         <div class="text-center bg-light border border-rounded py-2 mb-2 vis-body align-middle mt-3" style="font-size:0.75em">
           <b>View by:</b>
           <div class="btn-group ml-1 btn-group-toggle" data-toggle="buttons">
@@ -92,7 +92,7 @@
 "use strict";
 window.onload=() => {
   let containerWidth=$('#wdtcm-container').width();
-  let containerHeight=$(window).height() - $("#where-do-they-come-from").height();
+  let containerHeight=containerWidth*0.5;
   containerHeight=0.75*containerHeight;
 
   let svg = d3.select('svg#wdtcm-graph');
@@ -191,7 +191,7 @@ window.onload=() => {
 
       /* draw stacked line char */
       svg.attr('width', containerWidth + 'px')
-         .attr('height', (graphDimension.offsetTop + containerHeight) + 'px')
+         .attr('height', (1.1 * (graphDimension.offsetTop + containerHeight)) + 'px')
          .selectAll('path')
          .data(stacked)
          .enter()
