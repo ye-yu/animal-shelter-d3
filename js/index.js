@@ -14,3 +14,11 @@ function isinarray(obj, value) {
 function isinkey(obj, key) {
   return isinarray(Object.keys(obj), key);
 }
+
+function tuplize(obj) {
+  let tuple=[];
+  for(let i in obj) {
+    tuple.push([i, obj[i]]);
+  }
+  return tuple;
+}
