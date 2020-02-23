@@ -29,10 +29,19 @@
     background-color: #eee;
     border: solid #666 1px;
   }
+
+  .border-top-thick {
+    border-top: solid gray 2px;
+  }
+
+  .border-bottom-thick {
+    border-bottom: solid gray 2px;
+  }
+
 </style>
 <!-- body -->
-<body>
-  <div class="container-fluid mt-5" id="where-do-they-come-from">
+<body class="my-5 vis-body">
+  <div class="container-fluid" id="where-do-they-come-from">
     <div class="mx-auto px-2 py-2 h2 vis-title text-center text-capitalize text-dark title-border"
          style="width:60%">
       Where do they come from?
@@ -47,7 +56,7 @@
     </div>
   </div>
   <div class="container mt-3">
-    <div class="row">
+    <div class="row flex-lg-row flex-column-reverse">
       <div class="col-lg-9" id="wdtcm-container">
         <svg id="wdtcm-graph">
         </svg>
@@ -76,6 +85,10 @@
         </div>
       </div>
     </div>
+    <div class="row mt-2 py-3 border-top-thick border-bottom-thick">
+      <div class="col text-center" id="wdtcm-description">
+      </div>
+    </div>
   </div>
 </body>
 
@@ -90,6 +103,14 @@
 <script src="../js/index.js"></script>
 <script type="text/javascript">
 "use strict";
+
+function updateDescription(text, focus=true) {
+  $("#wdtcm-description").html(text);
+  if (focus) {
+    window.location.hash = "where-do-they-come-from";
+  }
+}
+
 window.onload=() => {
   let containerWidth=$('#wdtcm-container').width();
   let containerHeight=containerWidth*0.5;
@@ -250,6 +271,24 @@ window.onload=() => {
          .attr('y', `${graphDimension.offsetTop + 10}px`)
          .text('Animal Intakes Over the Quarter of the Year');
 
+      /* add visualisation description */
+      let visualisationDescription = {count:{},percentage:{}};
+      visualisationDescription['count']['default'] = `The sum of the animal intakes
+      showed mountain-shaped line graph over the years. This behaviour is
+      seemingly seasonal &ndash; meaning the mountain-shape repeats on every year as shown in the graph. This
+      indicates that the season of the year affects the number of intakes of the quarter;
+      The animal intake activity increases on every period from the end of the spring
+      until mid-summer.`;
+
+      visualisationDescription['percentage']['default'] = `From the second quarter
+      of 2017 onwards, the almost 50% of the intakes are purely stray animals while
+      20% consist of multiple reasons aggregated as one category. The intake reason
+      of owner incompatibility and litter relinquishment behave almost reciprocately
+      where the percentage of one increases as the other decreases. Intakes due to
+      movement grow and drop occasionally while remaining as the 4th top intake reasons.
+      `;
+
+      updateDescription(visualisationDescription['count']['default'], false);
 
       /* add action on button click */
       $('#wdtcm-count').click(e => {
@@ -267,6 +306,7 @@ window.onload=() => {
           .transition()
           .attr('d', s => drawCountArea(s));
 
+        updateDescription(visualisationDescription['count']['default']);
       });
 
       $('#wdtcm-percentage').click(e => {
@@ -283,6 +323,8 @@ window.onload=() => {
         d3.selectAll('path.wdtcm-plot')
           .transition()
           .attr('d', s => drawPercentageArea(s));
+
+        updateDescription(visualisationDescription['percentage']['default']);
       });
     });
 }
