@@ -137,7 +137,7 @@ window.onload=() => {
       // sort descendingly and only take out
       // types
       types=tuplize(types);
-      types=types.sort((a, b) => b[1]-a[1]);
+      types=types.sort((a, b) => a[1]-b[1]);
       types=types.map(e => e[0]);
 
       /* stack entries dataset */
