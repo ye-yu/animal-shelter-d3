@@ -37,18 +37,6 @@
          style="width:60%">
       Where do they come from?
     </div>
-    <div class="text-center vis-body align-middle mt-3" style="font-size:0.75em">
-      <b>View by:</b>
-      <div class="btn-group ml-1 btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-compact btn-xs active">
-          <input type="radio" name="view-by" id="wdtcm-count" autocomplete="off" checked>
-          Count
-        </label>
-        <label class="btn btn-compact btn-xs">
-          <input type="radio" name="view-by" id="wdtcm-percentage" autocomplete="off">
-          Percentage
-        </label>
-      </div>
     </div>
   </div>
   <div class="container mt-3">
@@ -58,6 +46,19 @@
         </svg>
       </div>
       <div class="col-3">
+        <div class="text-center bg-light border border-rounded py-2 mb-2 vis-body align-middle mt-3" style="font-size:0.75em">
+          <b>View by:</b>
+          <div class="btn-group ml-1 btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-compact btn-xs active">
+              <input type="radio" name="view-by" id="wdtcm-count" autocomplete="off" checked>
+              Count
+            </label>
+            <label class="btn btn-compact btn-xs">
+              <input type="radio" name="view-by" id="wdtcm-percentage" autocomplete="off">
+              Percentage
+            </label>
+          </div>
+        </div>
         <ul class="list-group vis-body" id="wdtcm-legend-container">
           <li class="list-group-item text-center py-2 font-weight-bold border-0">Legend</li>
         </ul>
