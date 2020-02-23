@@ -84,12 +84,13 @@ window.onload=() => {
 
   let svg = d3.select('svg#wdtcm-graph');
 
-  let graphCoveragePercentage=0.8;
+  let xCoverage=0.8;
+  let yCoverage=0.7;
   let graphDimension={
-    width:containerWidth*graphCoveragePercentage,
-    height:containerHeight*graphCoveragePercentage,
-    marginX:0.5*(containerWidth-containerWidth*graphCoveragePercentage),
-    marginY:0.5*(containerHeight-containerHeight*graphCoveragePercentage),
+    width:containerWidth*xCoverage,
+    height:containerHeight*yCoverage,
+    marginX:0.5*(containerWidth-containerWidth*xCoverage),
+    marginY:0.5*(containerHeight-containerHeight*yCoverage),
   };
 
   println(graphDimension);
@@ -113,9 +114,9 @@ window.onload=() => {
 
       /* calculate x-axis scale */
       xScale=xScale.domain([0,
-                            Object.keys(data).length])
+                            Object.keys(data).length - 1])
                     .range([graphDimension.marginX,
-                            graphDimension.width + 2 * graphDimension.marginX]);
+                            graphDimension.width + 1.5 * graphDimension.marginX]);
 
       /* extract the types of intake */
       let types={};
@@ -192,6 +193,28 @@ window.onload=() => {
         legends.push(template);
       });
       legends.reverse().forEach(e => $('#wdtcm-legend-container').append(e));
+
+      svg.append("g")
+         .attr('transform', `translate(${graphDimension.marginX}, 0)`)
+         .call(d3.axisLeft(yScale));
+
+      svg.append("g")
+         .attr('transform', `translate(0, ${graphDimension.marginY + graphDimension.height})`)
+         .call(d3.axisBottom(xScale).tickFormat((d) => Object.keys(data)[d]));
+
+      svg.append("text")
+         .attr('class', 'vis-body small')
+         .attr('text-anchor', 'middle')
+         .attr('x', `${graphDimension.marginX}px`)
+         .attr('y', '30px')
+         .text('Count');
+
+      svg.append("text")
+         .attr('class', 'vis-body small')
+         .attr('text-anchor', 'middle')
+         .attr('x', `${containerWidth/2}px`)
+         .attr('y', `${containerHeight}px`)
+         .text('Quarter of the Year');
     });
 }
 </script>
