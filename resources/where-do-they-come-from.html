@@ -32,7 +32,7 @@
 </style>
 <!-- body -->
 <body>
-  <div class="container-fluid mt-5">
+  <div class="container-fluid mt-5" id="where-do-they-come-from">
     <div class="mx-auto px-2 py-2 h3 vis-title text-center text-capitalize text-dark title-border"
          style="width:60%">
       Where do they come from?
@@ -51,6 +51,19 @@
       </div>
     </div>
   </div>
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-9" id="wdtcm-container">
+        <svg id="wdtcm-graph">
+        </svg>
+      </div>
+      <div class="col-3">
+        <ul class="list-group vis-body" id="wdtcm-legend-container">
+          <li class="list-group-item text-center font-weight-bold border-top-0 border-left-0 border-right-0 border-bottom"> Legend </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </body>
 
 <!-- javascript -->
@@ -62,3 +75,121 @@
         crossorigin="anonymous"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="../js/index.js"></script>
+<script type="text/javascript">
+"use strict";
+window.onload=() => {
+  let containerWidth=$('#wdtcm-container').width();
+  let containerHeight=$(window).height() - $("#where-do-they-come-from").height();
+  containerHeight=0.8*containerHeight;
+
+  let svg = d3.select('svg#wdtcm-graph');
+
+  let graphCoveragePercentage=0.8;
+  let graphDimension={
+    width:containerWidth*graphCoveragePercentage,
+    height:containerHeight*graphCoveragePercentage,
+    marginX:0.5*(containerWidth-containerWidth*graphCoveragePercentage),
+    marginY:0.5*(containerHeight-containerHeight*graphCoveragePercentage),
+  };
+
+  println(graphDimension);
+  let yScale = d3.scaleLinear();
+  let xScale = d3.scaleLinear();
+  d3.json("intakes.json")
+    .then(data => {
+
+      /* calculate y-axis scale */
+      // get max over all quarters
+      // convert to tuples
+      let totalOverQuarter=[];
+      for(let i in data) {
+        totalOverQuarter.push(data[i]['Total']);
+      }
+      let maxOverQuarter=d3.max(totalOverQuarter);
+
+      yScale=yScale.domain([1, maxOverQuarter])
+                   .range([graphDimension.height + graphDimension.marginY,
+                           graphDimension.marginY]);
+
+      /* calculate x-axis scale */
+      xScale=xScale.domain([0,
+                            Object.keys(data).length])
+                    .range([graphDimension.marginX,
+                            graphDimension.width + 2 * graphDimension.marginX]);
+
+      /* extract the types of intake */
+      let types={};
+      for(let i in data) {
+        let keys = Object.keys(data[i]).filter(e => e !== 'Total');
+
+        for(let j of keys) {
+          if (!isinkey(types, j)) {
+            types[j] = 0;
+          }
+          types[j] += data[i][j]['Total'];
+        }
+      }
+
+      // convert dictionary to tuple and
+      // sort descendingly and only take out
+      // types
+      types=tuplize(types);
+      types=types.sort((a, b) => b[1]-a[1]);
+      types=types.map(e => e[0]);
+
+      /* stack entries dataset */
+      let rows=[];
+      let todate = d3.timeParse("%YQ%q");
+      for(let i in data) {
+        let datum={};
+        datum.Time = todate(i);
+        for(let reason of types) {
+          datum[reason] = 0;
+        }
+
+        let reasons = Object.keys(data[i]).filter(e => e !== 'Total');
+        for(let reason of reasons) {
+          datum[reason] = data[i][reason]['Total'];
+        }
+        rows.push(datum);
+      }
+
+      let stacker = d3.stack()
+                      .keys(types);
+      let stacked = stacker(rows);
+
+      /* prepare drawing utils */
+      let colourScale = d3.scaleLinear()
+                         .domain([0, types.length-1])
+                         .range([0.25, 0.7]);
+      let drawArea = d3.area()
+                       .x((d, i) => xScale(i))
+                       .y0(d => yScale(d[0]))
+                       .y1(d => yScale(d[1]));
+
+      /* draw stacked line char */
+      svg.attr('width', containerWidth + 'px')
+         .attr('height', containerHeight + 'px')
+         .selectAll('path')
+         .data(stacked)
+         .enter()
+         .append('path')
+         .attr('d', s => drawArea(s))
+         .style('fill', (d, i) => d3.interpolateRdYlBu(colourScale(i)));
+
+      /* add legend information*/
+      types.forEach((e, i) => {
+        let colour = d3.interpolateRdYlBu(colourScale(i));
+        let template = `          <li class="list-group-item small border-0">
+                    <svg height="10px" width="10px">
+                      <rect height="100%" width="100%" fill="${colour}">
+                    </svg>
+                    <div class="d-inline-block pl-1">
+                      ${e}
+                    </div>
+                  </li>`;
+        $('#wdtcm-legend-container').append(template);
+      });
+    });
+}
+</script>
