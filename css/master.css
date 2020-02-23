@@ -7,3 +7,7 @@
 .vis-body {
     font-family: 'Nanum Gothic', 'Calibri';
 }
+
+html {
+ scroll-behavior: smooth;
+}
