@@ -104,6 +104,7 @@ window.onload=() => {
     height:containerHeight*yCoverage,
     marginX:0.5*(containerWidth-containerWidth*xCoverage),
     marginY:0.5*(containerHeight-containerHeight*yCoverage),
+    offsetTop:40
   };
 
   println(graphDimension);
@@ -122,8 +123,8 @@ window.onload=() => {
       let maxOverQuarter=d3.max(totalOverQuarter);
 
       yScale=yScale.domain([1, maxOverQuarter])
-                   .range([graphDimension.height + graphDimension.marginY,
-                           graphDimension.marginY])
+                   .range([graphDimension.offsetTop + graphDimension.height + graphDimension.marginY,
+                           graphDimension.offsetTop + graphDimension.marginY])
                    .nice();
 
       /* calculate x-axis scale */
@@ -190,7 +191,7 @@ window.onload=() => {
 
       /* draw stacked line char */
       svg.attr('width', containerWidth + 'px')
-         .attr('height', containerHeight + 'px')
+         .attr('height', (graphDimension.offsetTop + containerHeight) + 'px')
          .selectAll('path')
          .data(stacked)
          .enter()
@@ -215,6 +216,7 @@ window.onload=() => {
       });
       legends.reverse().forEach(e => $('#wdtcm-legend-container').append(e));
 
+      /* add axis */
       svg.append("g")
          .attr('id', 'wdtcm-yaxis')
          .attr('transform', `translate(${graphDimension.marginX}, 0)`)
@@ -222,7 +224,7 @@ window.onload=() => {
 
       svg.append("g")
          .attr('id', 'wdtcm-xaxis')
-         .attr('transform', `translate(0, ${graphDimension.marginY + graphDimension.height})`)
+         .attr('transform', `translate(0, ${graphDimension.offsetTop + graphDimension.marginY + graphDimension.height})`)
          .call(d3.axisBottom(xScale).tickFormat((d) => Object.keys(data)[d]));
 
       svg.append("text")
@@ -230,15 +232,23 @@ window.onload=() => {
          .attr('id', 'wdtcm-xaxis-label')
          .attr('text-anchor', 'middle')
          .attr('x', `${graphDimension.marginX}px`)
-         .attr('y', `${graphDimension.marginY - 20}px`)
+         .attr('y', `${graphDimension.offsetTop + graphDimension.marginY - 20}px`)
          .text('Count');
 
       svg.append("text")
          .attr('class', 'vis-body small')
          .attr('text-anchor', 'middle')
          .attr('x', `${containerWidth/2}px`)
-         .attr('y', `${graphDimension.height + graphDimension.marginY + 40}px`)
+         .attr('y', `${graphDimension.offsetTop + graphDimension.height + graphDimension.marginY + 40}px`)
          .text('Quarter of the Year');
+
+      /* add chart label */
+      svg.append("text")
+         .attr('class', 'vis-title h5')
+         .attr('text-anchor', 'middle')
+         .attr('x', `${containerWidth/2}px`)
+         .attr('y', `${graphDimension.offsetTop + 10}px`)
+         .text('Animal Intakes Over the Quarter of the Year');
 
       $('#wdtcm-count').click(e => {
         d3.select("#wdtcm-xaxis-label")
