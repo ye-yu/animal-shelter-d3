@@ -206,14 +206,14 @@ window.onload=() => {
          .attr('class', 'vis-body small')
          .attr('text-anchor', 'middle')
          .attr('x', `${graphDimension.marginX}px`)
-         .attr('y', '30px')
+         .attr('y', `${graphDimension.marginY - 10}px`)
          .text('Count');
 
       svg.append("text")
          .attr('class', 'vis-body small')
          .attr('text-anchor', 'middle')
          .attr('x', `${containerWidth/2}px`)
-         .attr('y', `${containerHeight}px`)
+         .attr('y', `${graphDimension.height + graphDimension.marginY + 40}px`)
          .text('Quarter of the Year');
     });
 }
