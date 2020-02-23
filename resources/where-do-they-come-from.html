@@ -41,11 +41,11 @@
       <b>View by:</b>
       <div class="btn-group ml-1 btn-group-toggle" data-toggle="buttons">
         <label class="btn btn-compact btn-xs active">
-          <input type="radio" name="view-by" id="view-count" autocomplete="off" checked>
+          <input type="radio" name="view-by" id="wdtcm-count" autocomplete="off" checked>
           Log10 Count
         </label>
         <label class="btn btn-compact btn-xs">
-          <input type="radio" name="view-by" id="view-percentage" autocomplete="off">
+          <input type="radio" name="view-by" id="wdtcm-percentage" autocomplete="off">
           Percentage
         </label>
       </div>
@@ -165,10 +165,15 @@ window.onload=() => {
       let colourScale = d3.scaleLinear()
                          .domain([0, types.length-1])
                          .range([0.25, 0.7]);
-      let drawArea = d3.area()
+      let drawCountArea = d3.area()
                        .x((d, i) => xScale(i))
                        .y0(d => yScale(d[0]))
                        .y1(d => yScale(d[1]));
+
+      let drawPercentageArea = d3.area()
+                            .x((d, i) => xScale(i))
+                            .y0((d, i) => yScale(d[0]/totalOverQuarter[i] * 100))
+                            .y1((d, i) => yScale(d[1]/totalOverQuarter[i] * 100));
 
       /* draw stacked line char */
       svg.attr('width', containerWidth + 'px')
@@ -177,7 +182,8 @@ window.onload=() => {
          .data(stacked)
          .enter()
          .append('path')
-         .attr('d', s => drawArea(s))
+         .attr('class', 'wdtcm-plot')
+         .attr('d', s => drawCountArea(s))
          .style('fill', (d, i) => d3.interpolateRdYlBu(colourScale(i)));
 
       /* add legend information*/
@@ -197,15 +203,18 @@ window.onload=() => {
       legends.reverse().forEach(e => $('#wdtcm-legend-container').append(e));
 
       svg.append("g")
+         .attr('id', 'wdtcm-yaxis')
          .attr('transform', `translate(${graphDimension.marginX}, 0)`)
          .call(d3.axisLeft(yScale));
 
       svg.append("g")
+         .attr('id', 'wdtcm-xaxis')
          .attr('transform', `translate(0, ${graphDimension.marginY + graphDimension.height})`)
          .call(d3.axisBottom(xScale).tickFormat((d) => Object.keys(data)[d]));
 
       svg.append("text")
          .attr('class', 'vis-body small')
+         .attr('id', 'wdtcm-xaxis-label')
          .attr('text-anchor', 'middle')
          .attr('x', `${graphDimension.marginX}px`)
          .attr('y', `${graphDimension.marginY - 20}px`)
@@ -217,6 +226,39 @@ window.onload=() => {
          .attr('x', `${containerWidth/2}px`)
          .attr('y', `${graphDimension.height + graphDimension.marginY + 40}px`)
          .text('Quarter of the Year');
+
+      $('#wdtcm-count').click(e => {
+        d3.select("#wdtcm-xaxis-label")
+          .text("Count");
+
+        yScale=yScale.domain([1, maxOverQuarter])
+                     .nice();
+
+        svg.select("g#wdtcm-yaxis")
+           .transition()
+           .call(d3.axisLeft(yScale));
+
+        d3.selectAll('path.wdtcm-plot')
+          .transition()
+          .attr('d', s => drawCountArea(s));
+
+      });
+
+      $('#wdtcm-percentage').click(e => {
+        d3.select("#wdtcm-xaxis-label")
+          .text("Percentage (%)");
+
+        yScale=yScale.domain([0, 100])
+                     .nice();
+
+        svg.select("g#wdtcm-yaxis")
+           .transition()
+           .call(d3.axisLeft(yScale));
+
+        d3.selectAll('path.wdtcm-plot')
+          .transition()
+          .attr('d', s => drawPercentageArea(s));
+      });
     });
 }
 </script>
