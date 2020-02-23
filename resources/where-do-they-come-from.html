@@ -178,6 +178,7 @@ window.onload=() => {
          .style('fill', (d, i) => d3.interpolateRdYlBu(colourScale(i)));
 
       /* add legend information*/
+      let legends = [];
       types.forEach((e, i) => {
         let colour = d3.interpolateRdYlBu(colourScale(i));
         let template = `          <li class="list-group-item small border-0">
@@ -188,8 +189,9 @@ window.onload=() => {
                       ${e}
                     </div>
                   </li>`;
-        $('#wdtcm-legend-container').append(template);
+        legends.push(template);
       });
+      legends.reverse().forEach(e => $('#wdtcm-legend-container').append(e));
     });
 }
 </script>
