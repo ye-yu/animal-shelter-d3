@@ -110,13 +110,15 @@ window.onload=() => {
 
       yScale=yScale.domain([1, maxOverQuarter])
                    .range([graphDimension.height + graphDimension.marginY,
-                           graphDimension.marginY]);
+                           graphDimension.marginY])
+                   .nice();
 
       /* calculate x-axis scale */
       xScale=xScale.domain([0,
                             Object.keys(data).length - 1])
                     .range([graphDimension.marginX,
-                            graphDimension.width + 1.5 * graphDimension.marginX]);
+                            graphDimension.width + 1.5 * graphDimension.marginX])
+                    .nice();
 
       /* extract the types of intake */
       let types={};
