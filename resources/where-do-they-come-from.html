@@ -59,7 +59,7 @@
       </div>
       <div class="col-3">
         <ul class="list-group vis-body" id="wdtcm-legend-container">
-          <li class="list-group-item text-center font-weight-bold border-top-0 border-left-0 border-right-0 border-bottom"> Legend </li>
+          <li class="list-group-item text-center py-2 font-weight-bold border-0">Legend</li>
         </ul>
       </div>
     </div>
@@ -190,7 +190,7 @@ window.onload=() => {
       let legends = [];
       types.forEach((e, i) => {
         let colour = d3.interpolateRdYlBu(colourScale(i));
-        let template = `          <li class="list-group-item small border-0">
+        let template = `          <li class="list-group-item py-1 small border-0">
                     <svg height="10px" width="10px">
                       <rect height="100%" width="100%" fill="${colour}">
                     </svg>
