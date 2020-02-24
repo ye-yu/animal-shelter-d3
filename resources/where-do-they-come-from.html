@@ -128,6 +128,10 @@ window.onload=() => {
     offsetTop:40
   };
 
+  let wdtcmEvents = {
+    viewBy: 'count'
+  };
+
   println(graphDimension);
   let yScale = d3.scaleLinear();
   let xScale = d3.scaleLinear();
@@ -219,7 +223,20 @@ window.onload=() => {
          .append('path')
          .attr('class', 'wdtcm-plot')
          .attr('d', s => drawCountArea(s))
-         .style('fill', (d, i) => d3.interpolateRdYlBu(colourScale(i)));
+         .style('fill', (d, i) => d3.interpolateRdYlBu(colourScale(i)))
+         .style("pointer-events", "all")
+         .on("mouseover", function(d, i) {
+           d3.select(this)
+             .style('stroke-width', '2px')
+             .style('stroke', 'gray');
+           updateDescription(visualisationDescription[wdtcmEvents.viewBy][types[i]], false);
+         })
+         .on("mouseout", function(d, i) {
+           updateDescription(visualisationDescription[wdtcmEvents.viewBy]['default'], false);
+           d3.select(this)
+             .style('stroke-width', 'none')
+             .style('stroke', 'none');
+         });
 
       /* add legend information*/
       let legends = [];
@@ -273,6 +290,7 @@ window.onload=() => {
 
       /* add visualisation description */
       let visualisationDescription = {count:{},percentage:{}};
+       // description when view by count
       visualisationDescription['count']['default'] = `The sum of the animal intakes
       showed mountain-shaped line graph over the years. This behaviour is
       seemingly seasonal &ndash; meaning the mountain-shape repeats on every year as shown in the graph. This
@@ -280,6 +298,22 @@ window.onload=() => {
       The animal intake activity increases on every period from the end of the spring
       until mid-summer.`;
 
+      visualisationDescription['count']['Stray'] = `Description of Stray when
+      view by count`;
+
+      visualisationDescription['count']['Other Reason'] = `Description of Other Reason when
+      view by count`;
+
+      visualisationDescription['count']['Incompatible with owner lifestyle'] = `Description of Owner Lifestyle when
+      view by count`;
+
+      visualisationDescription['count']['Litter relinquishment'] = `Description of Litter when
+      view by count`;
+
+      visualisationDescription['count']['Moving'] = `Description of Moving when
+      view by count`;
+
+      // description when view by percentage
       visualisationDescription['percentage']['default'] = `From the second quarter
       of 2017 onwards, almost 50% of the intakes are purely stray animals while
       20% consist of multiple reasons aggregated as one category. The intake reason
@@ -287,6 +321,21 @@ window.onload=() => {
       where the percentage of one increases as the other decreases. Intakes due to
       moving owner grow and drop occasionally while remaining as the 4th top intake reasons.
       `;
+
+      visualisationDescription['percentage']['Stray'] = `Description of Stray when
+      view by percentage`;
+
+      visualisationDescription['percentage']['Other Reason'] = `Description of Other Reason when
+      view by percentage`;
+
+      visualisationDescription['percentage']['Incompatible with owner lifestyle'] = `Description of Owner Lifestyle when
+      view by percentage`;
+
+      visualisationDescription['percentage']['Litter relinquishment'] = `Description of Litter when
+      view by percentage`;
+
+      visualisationDescription['percentage']['Moving'] = `Description of Moving when
+      view by percentage`;
 
       updateDescription(visualisationDescription['count']['default'], false);
 
@@ -306,6 +355,7 @@ window.onload=() => {
           .transition()
           .attr('d', s => drawCountArea(s));
 
+        wdtcmEvents.viewBy = 'count';
         updateDescription(visualisationDescription['count']['default']);
       });
 
@@ -324,6 +374,7 @@ window.onload=() => {
           .transition()
           .attr('d', s => drawPercentageArea(s));
 
+        wdtcmEvents.viewBy = 'percentage';
         updateDescription(visualisationDescription['percentage']['default']);
       });
     });
