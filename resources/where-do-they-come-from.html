@@ -75,6 +75,11 @@
             </label>
           </div>
         </div>
+        <ul class="list-group vis-body border-top border-bottom my-4" id="wdtcm-extra-information-container">
+          <li class="list-group-item text-center pb-0 font-weight-bold border-0">Description</li>
+          <li class="list-group-item pt-0 pb-2 border-0" id="wdtcm-extra-information">
+          </li>
+        </ul>
         <ul class="list-group vis-body border-top border-bottom my-4" id="wdtcm-legend-container">
           <li class="list-group-item text-center py-2 font-weight-bold border-0">Legend</li>
         </ul>
@@ -104,14 +109,20 @@
 <script type="text/javascript">
 "use strict";
 
-function updateDescription(text, focus=true) {
+function updateGeneralDescription(text, focus=true) {
   $("#wdtcm-description").html(text);
   if (focus) {
     window.location.hash = "where-do-they-come-from";
   }
 }
 
+function updateHoverDescription(text) {
+  $("#wdtcm-extra-information").html(text);
+}
+
 window.onload=() => {
+  $('#wdtcm-extra-information-container').hide();
+
   let containerWidth=$('#wdtcm-container').width();
   let containerHeight=containerWidth*0.5;
   containerHeight=0.75*containerHeight;
@@ -240,10 +251,15 @@ window.onload=() => {
            d3.select(this)
              .style('stroke-width', '2px')
              .style('stroke', 'gray');
-           updateDescription(visualisationDescription[wdtcmEvents.viewBy][types[i]], false);
+           $('#wdtcm-legend-container').hide();
+           $('#wdtcm-instruction').hide();
+           $('#wdtcm-extra-information-container').show();
+           updateHoverDescription(visualisationDescription[wdtcmEvents.viewBy][types[i]]);
          })
          .on("mouseout", function(d, i) {
-           updateDescription(visualisationDescription[wdtcmEvents.viewBy]['default'], false);
+           $('#wdtcm-extra-information-container').hide();
+           $('#wdtcm-legend-container').show();
+           $('#wdtcm-instruction').show();
            d3.select(this)
              .style('stroke-width', 'none')
              .style('stroke', 'none');
@@ -322,9 +338,16 @@ window.onload=() => {
       for(let reason in distribution) {
         let countTemplate = '';
         for(let count of distribution[reason]) {
-          countTemplate += `<li class="list-group-item py-1">${count[0]} ${count[1]}</li>`
+          countTemplate += `<li class="list-group-item py-1">
+          ${count[0]}
+          <div style='float:right'>
+            ${count[1]}
+          </div>
+        </li>`;
         }
-        visualisationDescription['count'][reason] = `Count distribution of ${reason}
+        visualisationDescription['count'][reason] = `
+        <div class='text-center py-3'> (${reason}) </div>
+        Count distribution:
         <ul class="list-group small">
           ${countTemplate}
         </ul>
@@ -333,16 +356,23 @@ window.onload=() => {
         let percentageTemplate = '';
         for(let count of distribution[reason]) {
           let percent = count[1]/reasonTotal[reason] * 100;
-          percentageTemplate += `<li class="list-group-item py-1">${count[0]} ${percent.toFixed(2)} %</li>`
+          percentageTemplate += `<li class="list-group-item py-1">
+          ${count[0]}
+          <div style='float:right'>
+            ${percent.toFixed(2)} %
+          </div>
+        </li>`;
         }
-        visualisationDescription['percentage'][reason] = `Percentage distribution of ${reason}
+        visualisationDescription['percentage'][reason] = `
+        <div class='text-center py-3'> (${reason}) </div>
+        Percentage distribution:
         <ul class="list-group small">
           ${percentageTemplate}
         </ul>
         `;
       }
 
-      updateDescription(visualisationDescription['count']['default'], false);
+      updateGeneralDescription(visualisationDescription['count']['default'], false);
 
       /* add action on button click */
       $('#wdtcm-count').click(e => {
@@ -361,7 +391,7 @@ window.onload=() => {
           .attr('d', s => drawCountArea(s));
 
         wdtcmEvents.viewBy = 'count';
-        updateDescription(visualisationDescription['count']['default']);
+        updateGeneralDescription(visualisationDescription['count']['default']);
       });
 
       $('#wdtcm-percentage').click(e => {
@@ -380,7 +410,7 @@ window.onload=() => {
           .attr('d', s => drawPercentageArea(s));
 
         wdtcmEvents.viewBy = 'percentage';
-        updateDescription(visualisationDescription['percentage']['default']);
+        updateGeneralDescription(visualisationDescription['percentage']['default']);
       });
     });
 }
