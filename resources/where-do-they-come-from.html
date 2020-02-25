@@ -320,11 +320,26 @@ window.onload=() => {
 
       // dynamically add description for each intake reason
       for(let reason in distribution) {
-        visualisationDescription['count'][reason] = `Description of ${reason} when
-        view by count`;
+        let countTemplate = '';
+        for(let count of distribution[reason]) {
+          countTemplate += `<li class="list-group-item py-1">${count[0]} ${count[1]}</li>`
+        }
+        visualisationDescription['count'][reason] = `Count distribution of ${reason}
+        <ul class="list-group small">
+          ${countTemplate}
+        </ul>
+        `;
 
-        visualisationDescription['percentage'][reason] = `Description of ${reason} when
-        view by percentage`;
+        let percentageTemplate = '';
+        for(let count of distribution[reason]) {
+          let percent = count[1]/reasonTotal[reason] * 100;
+          percentageTemplate += `<li class="list-group-item py-1">${count[0]} ${percent.toFixed(2)} %</li>`
+        }
+        visualisationDescription['percentage'][reason] = `Percentage distribution of ${reason}
+        <ul class="list-group small">
+          ${percentageTemplate}
+        </ul>
+        `;
       }
 
       updateDescription(visualisationDescription['count']['default'], false);
