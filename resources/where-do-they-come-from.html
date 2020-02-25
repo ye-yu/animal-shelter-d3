@@ -370,6 +370,18 @@ window.onload=() => {
           ${percentageTemplate}
         </ul>
         `;
+
+        if (reason == 'Other reason') {
+          let otherReasonDescription = `
+          <div class='small pt-3'>
+            The top three of intake reason in this category include:
+              Unsuitable Accomodation (15%),
+              Abandoned (14%),
+              and Unable to Afford (12%).
+          </div>`;
+          visualisationDescription['count'][reason] += otherReasonDescription;
+          visualisationDescription['percentage'][reason] += otherReasonDescription;
+        }
       }
 
       updateGeneralDescription(visualisationDescription['count']['default'], false);
