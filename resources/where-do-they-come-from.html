@@ -310,21 +310,6 @@ window.onload=() => {
       The animal intake activity increases on every period from the end of the spring
       until mid-summer.`;
 
-      visualisationDescription['count']['Stray'] = `Description of Stray when
-      view by count`;
-
-      visualisationDescription['count']['Other Reason'] = `Description of Other Reason when
-      view by count`;
-
-      visualisationDescription['count']['Incompatible with owner lifestyle'] = `Description of Owner Lifestyle when
-      view by count`;
-
-      visualisationDescription['count']['Litter relinquishment'] = `Description of Litter when
-      view by count`;
-
-      visualisationDescription['count']['Moving'] = `Description of Moving when
-      view by count`;
-
       // description when view by percentage
       visualisationDescription['percentage']['default'] = `From the second quarter
       of 2017 onwards, almost 50% of the intakes are purely stray animals while
@@ -334,20 +319,14 @@ window.onload=() => {
       moving owner grow and drop occasionally while remaining as the 4th top intake reasons.
       `;
 
-      visualisationDescription['percentage']['Stray'] = `Description of Stray when
-      view by percentage`;
+      // dynamically add description for each intake reason
+      for(let reason in distribution) {
+        visualisationDescription['count'][reason] = `Description of ${reason} when
+        view by count`;
 
-      visualisationDescription['percentage']['Other Reason'] = `Description of Other Reason when
-      view by percentage`;
-
-      visualisationDescription['percentage']['Incompatible with owner lifestyle'] = `Description of Owner Lifestyle when
-      view by percentage`;
-
-      visualisationDescription['percentage']['Litter relinquishment'] = `Description of Litter when
-      view by percentage`;
-
-      visualisationDescription['percentage']['Moving'] = `Description of Moving when
-      view by percentage`;
+        visualisationDescription['percentage'][reason] = `Description of ${reason} when
+        view by percentage`;
+      }
 
       updateDescription(visualisationDescription['count']['default'], false);
 
