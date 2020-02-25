@@ -188,8 +188,7 @@ window.onload=() => {
 
         reasonTotal[reason] = sum;
       }
-      reasonTotal = tuplize(reasonTotal).sort((a, b) => b[1] - a[1]);
-      let types = reasonTotal.sort((a, b) => a[1] - b[1]).map(e => e[0]);
+      let types = tuplize(reasonTotal).sort((a, b) => a[1] - b[1]).map(e => e[0]);
 
       /* stack entries dataset */
       let rows=[];
