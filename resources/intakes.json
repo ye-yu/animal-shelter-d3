@@ -8,7 +8,7 @@
         "Dog": 8
       }
     },
-    "Other Reason": {
+    "Other reason": {
       "Total": 120,
       "Animal": {
         "Dog": 54,
@@ -42,7 +42,7 @@
         "Guinea Pig": 1
       }
     },
-    "Other Reason": {
+    "Other reason": {
       "Total": 170,
       "Animal": {
         "Dog": 68,
@@ -124,7 +124,7 @@
         "Cat": 64
       }
     },
-    "Other Reason": {
+    "Other reason": {
       "Total": 193,
       "Animal": {
         "Others": 5,
@@ -137,7 +137,7 @@
   },
   "2017Q4": {
     "Total": 637,
-    "Other Reason": {
+    "Other reason": {
       "Total": 109,
       "Animal": {
         "Dog": 54,
@@ -209,7 +209,7 @@
         "Guinea Pig": 3
       }
     },
-    "Other Reason": {
+    "Other reason": {
       "Total": 100,
       "Animal": {
         "Others": 1,
@@ -278,7 +278,7 @@
         "Cat": 222
       }
     },
-    "Other Reason": {
+    "Other reason": {
       "Total": 186,
       "Animal": {
         "Dog": 92,
@@ -302,7 +302,7 @@
         "Cat": 38
       }
     },
-    "Other Reason": {
+    "Other reason": {
       "Total": 212,
       "Animal": {
         "Others": 2,
@@ -379,7 +379,7 @@
         "Dog": 146
       }
     },
-    "Other Reason": {
+    "Other reason": {
       "Total": 193,
       "Animal": {
         "House Rabbit": 9,
@@ -425,7 +425,7 @@
         "Cat": 4
       }
     },
-    "Other Reason": {
+    "Other reason": {
       "Total": 145,
       "Animal": {
         "Dog": 72,
@@ -471,7 +471,7 @@
         "Guinea Pig": 3
       }
     },
-    "Other Reason": {
+    "Other reason": {
       "Total": 231,
       "Animal": {
         "Cat": 119,
@@ -511,7 +511,7 @@
         "Others": 1
       }
     },
-    "Other Reason": {
+    "Other reason": {
       "Total": 132,
       "Animal": {
         "Dog": 49,
