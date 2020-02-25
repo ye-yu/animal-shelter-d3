@@ -159,25 +159,37 @@ window.onload=() => {
                             graphDimension.width + 1.5 * graphDimension.marginX])
                     .nice();
 
-      /* extract the types of intake */
-      let types={};
-      for(let i in data) {
-        let keys = Object.keys(data[i]).filter(e => e !== 'Total');
-
-        for(let j of keys) {
-          if (!isinkey(types, j)) {
-            types[j] = 0;
+      let distribution={};
+      for(let quarter in data) {
+        for (let reason in data[quarter]) {
+          if (reason == 'Total') {
+            continue;
           }
-          types[j] += data[i][j]['Total'];
+          if (!isinkey(distribution, reason)) {
+            distribution[reason]={};
+          }
+          for (let animal in data[quarter][reason]['Animal']) {
+            if (animal == 'Total') {
+              continue;
+            }
+            if (!isinkey(distribution[reason], animal)) {
+              distribution[reason][animal] = 0;
+            }
+
+            distribution[reason][animal] += data[quarter][reason]['Animal'][animal];
+          }
         }
       }
 
-      // convert dictionary to tuple and
-      // sort descendingly and only take out
-      // types
-      types=tuplize(types);
-      types=types.sort((a, b) => a[1]-b[1]);
-      types=types.map(e => e[0]);
+      let reasonTotal = {};
+      for(let reason in distribution) {
+        distribution[reason] = tuplize(distribution[reason]).sort((a, b) => b[1] - a[1]);
+        let sum = distribution[reason].map(x => x[1]).reduce((a, b) => a+b);
+
+        reasonTotal[reason] = sum;
+      }
+      reasonTotal = tuplize(reasonTotal).sort((a, b) => b[1] - a[1]);
+      let types = reasonTotal.sort((a, b) => a[1] - b[1]).map(e => e[0]);
 
       /* stack entries dataset */
       let rows=[];
