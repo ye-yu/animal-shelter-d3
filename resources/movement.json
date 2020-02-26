@@ -1,5 +1,5 @@
 {
-  "0": {
+  "1st": {
     "Total": 7288,
     "Adoption": {
       "Total": 3226,
@@ -61,7 +61,7 @@
       "Cat": 1
     }
   },
-  "1": {
+  "2nd": {
     "Total": 2259,
     "Adoption": {
       "Total": 1525,
@@ -111,7 +111,7 @@
       "Dog": 1
     }
   },
-  "2": {
+  "3rd": {
     "Total": 546,
     "Adoption": {
       "Total": 366,
@@ -147,7 +147,7 @@
       "Cat": 1
     }
   },
-  "3": {
+  "4th": {
     "Total": 137,
     "Adoption*": {
       "Total": 10,
@@ -178,7 +178,7 @@
       "House Rabbit": 1
     }
   },
-  ">3": {
+  ">4th": {
     "Total": 60,
     "Adoption*": {
       "Total": 6,
