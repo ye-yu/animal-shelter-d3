@@ -46,8 +46,8 @@ function whereDoTheyGo() {
        let max = d3.max(totals)
        let colourScale = d3.scaleLog()
                            .domain([min, max])
-                           .range([0.65, 1]);
-       let heatmapColour = (domain) => d3.interpolateYlGn(colourScale(domain));
+                           .range([0.1, 0.35]);
+       let heatmapColour = (domain) => d3.interpolateYlOrBr(colourScale(domain));
 
        /* create legend */
        let legendHeatmapAttr = {};
