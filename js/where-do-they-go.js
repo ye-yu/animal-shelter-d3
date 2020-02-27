@@ -110,153 +110,179 @@ function whereDoTheyGo() {
     .attr('x', (d, i) => `${graphDimension.marginX + 0.5 * movementContainer.width + i * (movementContainer.width + linksContainer.width)}px`)
     .text(d => `${d[0]} Movement`);
 
-    for(let {index, value} of enumerate(data)) {
-      let nMovement = tuplize(data[value]).filter(x => x[0] !== 'Total').sort((a, b) => b[1]['Total'] - a[1]['Total']);
-      let total = data[value]['Total'];
+    d3.json('movement-count.json').then(movementCount => {
+      function consecutiveMovement(a, b) {
+        a = a.split(/:/)[0];
+        b = b.split(/:/)[0];
 
-      let g = d3.select(`g#movement-${index}-container`);
+        return (
+          (a == '1st' && b == '2nd') ||
+          (a == '2nd' && b == '3rd') ||
+          (a == '3rd' && b == '4th') ||
+          (a == '4th' && b == '>4th')
+        )
+      }
 
-      /* append each movement box */
-      g.selectAll(`rect`)
-      .data(nMovement)
-      .enter()
-      .append('rect')
-      .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + i*movementContainer.height	}px`)
-      .attr('x', `${graphDimension.marginX + index * (movementContainer.width + linksContainer.width)}px`)
-      .attr('width', `${movementContainer.width}px`)
-      .attr('height', `${movementContainer.height - 3}px`)
-      .attr('fill', d => `${heatmapColour(d[1]['Total'])}`)
-      .attr('stroke', 'gray')
-      .attr('stroke-width', '0px');
+      function unstack(a) {
+        let unstacked = [];
+        for(let e of a) {
+          for(let d of e[1]) {
+            unstacked.push([e[0], d[0], d[1]['Total']]);
+          };
+        }
+        return unstacked;
+      }
 
-      // console.log("box", value, "array", nMovement);
-      /* append each movement box label */
-      g.selectAll(`text.movement-${index}-rect`)
-      .data(nMovement)
-      .enter()
-      .append('text')
-      .attr('class', `vis-body movement-${index}-rect`)
+      let consecutiveCount = tuplize(movementCount).map(x => [x[0], tuplize(x[1]).filter(y => consecutiveMovement(x[0], y[0]))]);
+      consecutiveCount = unstack(consecutiveCount);      
+
+      /* draw individual movement boxes */
+      for(let {index, value} of enumerate(data)) {
+        let nMovement = tuplize(data[value]).filter(x => x[0] !== 'Total').sort((a, b) => b[1]['Total'] - a[1]['Total']);
+        let total = data[value]['Total'];
+
+        let g = d3.select(`g#movement-${index}-container`);
+
+        /* append each movement box */
+        g.selectAll(`rect`)
+        .data(nMovement)
+        .enter()
+        .append('rect')
+        .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + i*movementContainer.height	}px`)
+        .attr('x', `${graphDimension.marginX + index * (movementContainer.width + linksContainer.width)}px`)
+        .attr('width', `${movementContainer.width}px`)
+        .attr('height', `${movementContainer.height - 3}px`)
+        .attr('fill', d => `${heatmapColour(d[1]['Total'])}`)
+        .attr('stroke', 'gray')
+        .attr('stroke-width', '0px');
+
+        // console.log("box", value, "array", nMovement);
+        /* append each movement box label */
+        g.selectAll(`text.movement-${index}-rect`)
+        .data(nMovement)
+        .enter()
+        .append('text')
+        .attr('class', `vis-body movement-${index}-rect`)
+        .attr('text-anchor', 'middle')
+        .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + movementContainer.height/2 + 3 + i*movementContainer.height}px`)
+        .attr('x', `${graphDimension.marginX + 0.5 * movementContainer.width + index * (movementContainer.width + linksContainer.width)}px`)
+        .text(d => `${d[0]}`)
+        .style('font-size', '0.75em');
+
+        /* create selection box */
+        g.selectAll(`rect.movement-${index}-rect`)
+        .data(nMovement)
+        .enter()
+        .append('rect')
+        .attr('id', d => `${value}:${d[0]}`)
+        .attr('class', `movement-${index}-rect`)
+        .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + i*movementContainer.height	}px`)
+        .attr('x', `${graphDimension.marginX + index * (movementContainer.width + linksContainer.width)}px`)
+        .attr('width', `${movementContainer.width}px`)
+        .attr('height', `${movementContainer.height - 3}px`)
+        .attr('fill-opacity', '0')
+        .attr('stroke', 'gray')
+        .attr('stroke-width', '0px')
+        .attr('selected', false)
+        .style("pointer-events", "all")
+        .on("click", function(d, i) {
+          let element = d3.select(this);
+          if (element.attr('selected') == 'true') {
+            delete wdtgEvents.selectedMovements[element.attr('id')]
+            element.attr('selected', false)
+            .transition()
+            .style('stroke-width', '0px');
+          } else {
+            wdtgEvents.selectedMovements[element.attr('id')] = this;
+            element.attr('selected', true)
+            .transition()
+            .style('stroke-width', '2px');
+          }
+
+          if (Object.keys(wdtgEvents.selectedMovements).length > 0) {
+            d3.select('g#wdtg-clear-button')
+            .transition()
+            .attr('opacity', '1');
+          } else {
+            d3.select('g#wdtg-clear-button')
+            .transition()
+            .attr('opacity', '0');
+          }
+        })
+        .on("mouseover", function(d, i) {
+          if (d3.select(this).attr('selected') == 'false') {
+            d3.select(this)
+            .style('stroke-width', '0.5px');
+          }
+        })
+        .on("mouseout", function(d, i) {
+          if (d3.select(this).attr('selected') == 'false') {
+            d3.select(this)
+            .style('stroke-width', '0px');
+          }
+        });
+
+      }
+
+      function unselectAllBoxes() {
+        for(let selected in wdtgEvents.selectedMovements) {
+          d3.select(wdtgEvents.selectedMovements[selected])
+          .attr('selected', false)
+          .transition()
+          .style('stroke-width', '0px');
+        }
+        delete wdtgEvents.selectedMovements;
+        wdtgEvents.selectedMovements = {};
+      }
+
+      let clearButton = svg.append('g');
+      clearButton.attr('id', 'wdtg-clear-button')
+      .attr('opacity', '0');
+
+      let clearButtonAttr = {};
+      clearButtonAttr.width = 60;
+      clearButtonAttr.height = 30;
+      clearButton.append('rect')
+      .attr('x', `${graphDimension.width - clearButtonAttr.width}px`)
+      .attr('y', `${graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height}px`)
+      .attr('width', `${clearButtonAttr.width}px`)
+      .attr('height', `${clearButtonAttr.height}px`)
+      .attr('fill', '#f7f7f7');
+
+      clearButton.append('text')
+      .attr('class', 'vis-body small')
+      .attr('textLength', 30)
+      .attr('x', `${0.5 * clearButtonAttr.width + graphDimension.width - clearButtonAttr.width}px`)
+      .attr('y', `${0.6 * clearButtonAttr.height + graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height}px`)
       .attr('text-anchor', 'middle')
-      .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + movementContainer.height/2 + 3 + i*movementContainer.height}px`)
-      .attr('x', `${graphDimension.marginX + 0.5 * movementContainer.width + index * (movementContainer.width + linksContainer.width)}px`)
-      .text(d => `${d[0]}`)
-      .style('font-size', '0.75em');
+      .style('font-size', '0.75em')
+      .text('clear');
 
-      /* create selection box */
-      g.selectAll(`rect.movement-${index}-rect`)
-      .data(nMovement)
-      .enter()
-      .append('rect')
-      .attr('id', d => `${value}:${d[0]}`)
-      .attr('class', `movement-${index}-rect`)
-      .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + i*movementContainer.height	}px`)
-      .attr('x', `${graphDimension.marginX + index * (movementContainer.width + linksContainer.width)}px`)
-      .attr('width', `${movementContainer.width}px`)
-      .attr('height', `${movementContainer.height - 3}px`)
+      clearButton.append('rect')
+      .attr('x', `${graphDimension.width - clearButtonAttr.width}px`)
+      .attr('y', `${graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height}px`)
+      .attr('width', `${clearButtonAttr.width}px`)
+      .attr('height', `${clearButtonAttr.height}px`)
       .attr('fill-opacity', '0')
       .attr('stroke', 'gray')
-      .attr('stroke-width', '0px')
-      .attr('selected', false)
+      .attr('stroke-width', '0.5px')
       .style("pointer-events", "all")
       .on("click", function(d, i) {
-        let element = d3.select(this);
-        if (element.attr('selected') == 'true') {
-          delete wdtgEvents.selectedMovements[element.attr('id')]
-          element.attr('selected', false)
-          .transition()
-          .style('stroke-width', '0px');
-        } else {
-          wdtgEvents.selectedMovements[element.attr('id')] = this;
-          element.attr('selected', true)
-          .transition()
-          .style('stroke-width', '2px');
-        }
-
-        if (Object.keys(wdtgEvents.selectedMovements).length > 0) {
-          d3.select('g#wdtg-clear-button')
-          .transition()
-          .attr('opacity', '1');
-        } else {
-          d3.select('g#wdtg-clear-button')
-          .transition()
-          .attr('opacity', '0');
-        }
+        d3.select(this)
+        .style('stroke-width', '0.5px');
+        unselectAllBoxes();
+        d3.select('g#wdtg-clear-button')
+        .transition()
+        .attr('opacity', '0');
       })
       .on("mouseover", function(d, i) {
-        if (d3.select(this).attr('selected') == 'false') {
-          d3.select(this)
-          .style('stroke-width', '0.5px');
-        }
+        d3.select(this)
+        .style('stroke-width', '1px');
       })
       .on("mouseout", function(d, i) {
-        if (d3.select(this).attr('selected') == 'false') {
-          d3.select(this)
-          .style('stroke-width', '0px');
-        }
+        d3.select(this)
+        .style('stroke-width', '0.5px');
       });
-
-    }
-
-    function unselectAllBoxes() {
-      for(let selected in wdtgEvents.selectedMovements) {
-        d3.select(wdtgEvents.selectedMovements[selected])
-        .attr('selected', false)
-        .transition()
-        .style('stroke-width', '0px');
-      }
-      delete wdtgEvents.selectedMovements;
-      wdtgEvents.selectedMovements = {};
-    }
-
-    let clearButton = svg.append('g');
-    clearButton.attr('id', 'wdtg-clear-button')
-    .attr('opacity', '0');
-
-    let clearButtonAttr = {};
-    clearButtonAttr.width = 60;
-    clearButtonAttr.height = 30;
-    clearButton.append('rect')
-    .attr('x', `${graphDimension.width - clearButtonAttr.width}px`)
-    .attr('y', `${graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height}px`)
-    .attr('width', `${clearButtonAttr.width}px`)
-    .attr('height', `${clearButtonAttr.height}px`)
-    .attr('fill', '#f7f7f7');
-
-    clearButton.append('text')
-    .attr('class', 'vis-body small')
-    .attr('textLength', 30)
-    .attr('x', `${0.5 * clearButtonAttr.width + graphDimension.width - clearButtonAttr.width}px`)
-    .attr('y', `${0.6 * clearButtonAttr.height + graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height}px`)
-    .attr('text-anchor', 'middle')
-    .style('font-size', '0.75em')
-    .text('clear');
-
-    clearButton.append('rect')
-    .attr('x', `${graphDimension.width - clearButtonAttr.width}px`)
-    .attr('y', `${graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height}px`)
-    .attr('width', `${clearButtonAttr.width}px`)
-    .attr('height', `${clearButtonAttr.height}px`)
-    .attr('fill-opacity', '0')
-    .attr('stroke', 'gray')
-    .attr('stroke-width', '0.5px')
-    .style("pointer-events", "all")
-    .on("click", function(d, i) {
-      d3.select(this)
-      .style('stroke-width', '0.5px');
-
-      unselectAllBoxes();
-
-      d3.select('g#wdtg-clear-button')
-      .transition()
-      .attr('opacity', '0');
-    })
-    .on("mouseover", function(d, i) {
-      d3.select(this)
-      .style('stroke-width', '1px');
-    })
-    .on("mouseout", function(d, i) {
-      d3.select(this)
-      .style('stroke-width', '0.5px');
     });
   });
 }
