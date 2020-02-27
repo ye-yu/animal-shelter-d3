@@ -130,10 +130,38 @@ function whereDoTheyGo() {
           .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + i*movementContainer.height	}px`)
           .attr('x', `${graphDimension.marginX + index * (movementContainer.width + linksContainer.width)}px`)
           .attr('width', `${movementContainer.width}px`)
-          .attr('height', `${movementContainer.height}px`)
+          .attr('height', `${movementContainer.height - 3}px`)
           .attr('fill', d => `${heatmapColour(d[1]['Total'])}`)
           .attr('stroke', 'gray')
-          .attr('stroke-width', '0.5px');
+          .attr('stroke-width', '0px')
+          .attr('selected', false)
+          .style("pointer-events", "all")
+          .on("click", function(d, i) {
+            console.log(d3.select(this).attr('selected'));
+            if (d3.select(this).attr('selected') == 'true') {
+              d3.select(this)
+                .attr('selected', false)
+                .transition()
+                .style('stroke-width', '0px');
+            } else {
+              d3.select(this)
+                .attr('selected', true)
+                .transition()
+                .style('stroke-width', '2px');
+            }
+          })
+          .on("mouseover", function(d, i) {
+            if (d3.select(this).attr('selected') == 'false') {
+              d3.select(this)
+              .style('stroke-width', '0.5px');
+            }
+          })
+          .on("mouseout", function(d, i) {
+            if (d3.select(this).attr('selected') == 'false') {
+              d3.select(this)
+              .style('stroke-width', '0px');
+            }
+          });
      }
    });
 }
