@@ -116,58 +116,72 @@ function whereDoTheyGo() {
      	   let g = d3.select(`g#movement-${index}-container`);
 
          /* append each movement box */
-         g.selectAll(`rect.movement-${index}-rect`)
+         g.selectAll(`rect`)
           .data(nMovement)
           .enter()
           .append('rect')
-          .attr('class', `movement-${index}-rect`)
           .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + i*movementContainer.height	}px`)
           .attr('x', `${graphDimension.marginX + index * (movementContainer.width + linksContainer.width)}px`)
           .attr('width', `${movementContainer.width}px`)
           .attr('height', `${movementContainer.height - 3}px`)
           .attr('fill', d => `${heatmapColour(d[1]['Total'])}`)
           .attr('stroke', 'gray')
-          .attr('stroke-width', '0px')
-          .attr('selected', false)
-          .style("pointer-events", "all")
-          .on("click", function(d, i) {
-            if (d3.select(this).attr('selected') == 'true') {
-              d3.select(this)
-                .attr('selected', false)
-                .transition()
-                .style('stroke-width', '0px');
-            } else {
-              d3.select(this)
-                .attr('selected', true)
-                .transition()
-                .style('stroke-width', '2px');
-            }
-          })
-          .on("mouseover", function(d, i) {
-            if (d3.select(this).attr('selected') == 'false') {
-              d3.select(this)
-              .style('stroke-width', '0.5px');
-            }
-          })
-          .on("mouseout", function(d, i) {
-            if (d3.select(this).attr('selected') == 'false') {
-              d3.select(this)
-              .style('stroke-width', '0px');
-            }
-          });
+          .attr('stroke-width', '0px');
 
           // console.log("box", value, "array", nMovement);
           /* append each movement box label */
-          g.selectAll(`text.movement-${index}-text`)
-           .data(nMovement)
-           .enter()
-           .append('text')
-           .attr('class', `vis-body movement-${index}-text)`)
-           .attr('text-anchor', 'middle')
-           .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + movementContainer.height/2 + 3 + i*movementContainer.height}px`)
-           .attr('x', `${graphDimension.marginX + 0.5 * movementContainer.width + index * (movementContainer.width + linksContainer.width)}px`)
-           .text((d, i, arr) => `${d[0]}`)
-           .style('font-size', '0.75em');
+        g.selectAll(`text.movement-${index}-rect`)
+         .data(nMovement)
+         .enter()
+         .append('text')
+         .attr('class', `vis-body movement-${index}-rect`)
+         .attr('text-anchor', 'middle')
+         .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + movementContainer.height/2 + 3 + i*movementContainer.height}px`)
+         .attr('x', `${graphDimension.marginX + 0.5 * movementContainer.width + index * (movementContainer.width + linksContainer.width)}px`)
+         .text((d, i, arr) => `${d[0]}`)
+         .style('font-size', '0.75em');
+
+        /* create selection box */
+        g.selectAll(`rect.movement-${index}-rect`)
+         .data(nMovement)
+         .enter()
+         .append('rect')
+         .attr('class', `movement-${index}-rect`)
+         .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + i*movementContainer.height	}px`)
+         .attr('x', `${graphDimension.marginX + index * (movementContainer.width + linksContainer.width)}px`)
+         .attr('width', `${movementContainer.width}px`)
+         .attr('height', `${movementContainer.height - 3}px`)
+         .attr('fill-opacity', '0')
+         .attr('stroke', 'gray')
+         .attr('stroke-width', '0px')
+         .attr('selected', false)
+         .style("pointer-events", "all")
+         .on("click", function(d, i) {
+           if (d3.select(this).attr('selected') == 'true') {
+             d3.select(this)
+               .attr('selected', false)
+               .transition()
+               .style('stroke-width', '0px');
+           } else {
+             d3.select(this)
+               .attr('selected', true)
+               .transition()
+               .style('stroke-width', '2px');
+           }
+         })
+         .on("mouseover", function(d, i) {
+           if (d3.select(this).attr('selected') == 'false') {
+             d3.select(this)
+             .style('stroke-width', '0.5px');
+           }
+         })
+         .on("mouseout", function(d, i) {
+           if (d3.select(this).attr('selected') == 'false') {
+             d3.select(this)
+             .style('stroke-width', '0px');
+           }
+         });
+
      }
    });
 }
