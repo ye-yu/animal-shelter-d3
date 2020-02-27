@@ -140,7 +140,7 @@ function whereDoTheyGo() {
       let lineCountMax = d3.max(consecutiveCount.map(x => x[2]));
       let lineScale = d3.scaleLog()
       .domain([lineCountMin,lineCountMax])
-      .range([1, 10]);
+      .range([3, 15]);
 
       function splitToMovement(string) {
         string = string.split(/:/);
@@ -161,7 +161,7 @@ function whereDoTheyGo() {
       }
 
       consecutiveCount = consecutiveCount.map(x => ({
-        id: `${x[0]}:${x[1]}`,
+        id: CSS.escape(`line-${x[0]}:${x[1]}`.replace(/(\s|:|>|\*)/g, '-')),
         from: splitToMovement(x[0]),
         to: splitToMovement(x[1]),
         count: x[2]
@@ -169,16 +169,17 @@ function whereDoTheyGo() {
       console.log(consecutiveCount);
 
       svg.append('g')
+      .attr('id', 'line-group')
       .selectAll('line')
       .data(consecutiveCount)
       .enter()
       .append('line')
+      .attr('id', d => d.id)
       .attr('x1', d => `${graphDimension.marginX + (d.from.number + 1) * movementContainer.width + d.from.number * linksContainer.width}px`)
       .attr('x2', d => `${graphDimension.marginX + d.to.number * (movementContainer.width) + d.to.number * linksContainer.width}px`)
       .attr('y1', d => `${graphDimension.marginY + graphDimension.offsetTop + d.from.type * movementContainer.height + 0.5 * movementContainer.height}px`)
       .attr('y2', d => `${graphDimension.marginY + graphDimension.offsetTop + d.to.type * movementContainer.height + 0.5 * movementContainer.height}px`)
       .attr('stroke', 'black')
-      // .attr('stroke-width', d => `${lineScale(d.count)}`)
       .attr('stroke-width', '1px')
       .attr('stroke-opacity', '0.35')
       .attr('stroke-linecap', 'round');
@@ -235,15 +236,16 @@ function whereDoTheyGo() {
         .on("click", function(d, i) {
           let element = d3.select(this);
           if (element.attr('selected') == 'true') {
-            delete wdtgEvents.selectedMovements[element.attr('id')]
             element.attr('selected', false)
             .transition()
             .style('stroke-width', '0px');
+            unhighlightSelectedMovement(element.attr('id'));
           } else {
             wdtgEvents.selectedMovements[element.attr('id')] = this;
             element.attr('selected', true)
             .transition()
             .style('stroke-width', '2px');
+            highlightSelectedMovement();
           }
 
           if (Object.keys(wdtgEvents.selectedMovements).length > 0) {
@@ -268,7 +270,54 @@ function whereDoTheyGo() {
             .style('stroke-width', '0px');
           }
         });
+      }
 
+      function highlightSelectedMovement() {
+        if (Object.keys(wdtgEvents.selectedMovements).length > 1) {
+          let movements = Object.keys(data);
+          let selected = tuplize(wdtgEvents.selectedMovements)
+          .map(x => x[0])
+          .sort((a, b) => movements.indexOf(a.split(/:/)[0]) - movements.indexOf(b.split(/:/)[0]));
+
+          let pairs = []
+          for (let i = 0; i < selected.length - 1; i++) {
+            for (let j = i + 1; j < selected.length; j++) {
+              if (consecutiveMovement(selected[i], selected[j])) {
+                pairs.push([`${selected[i]}:${selected[j]}`]);
+                let lineId = `line#line-${selected[i]}:${selected[j]}`.replace(/(\s|:|>|\*)/g, '-');
+                d3.select(lineId)
+                .transition()
+                .attr('stroke-width', d => `${lineScale(d.count)}`);
+              }
+            }
+          }
+          console.log(pairs);
+        }
+      }
+
+      function unhighlightSelectedMovement(unhighlighted) {
+        if (Object.keys(wdtgEvents.selectedMovements).length > 1) {
+          let movements = Object.keys(data);
+          let selected = tuplize(wdtgEvents.selectedMovements)
+          .map(x => x[0])
+          .sort((a, b) => movements.indexOf(a.split(/:/)[0]) - movements.indexOf(b.split(/:/)[0]));
+
+          let pairs = []
+          for (let i = 0; i < selected.length - 1; i++) {
+            for (let j = i + 1; j < selected.length; j++) {
+              if (consecutiveMovement(selected[i], selected[j]) &&
+                  isinarray([selected[i], selected[j]], unhighlighted)) {
+                pairs.push([`${selected[i]}:${selected[j]}`]);
+                let lineId = `line#line-${selected[i]}:${selected[j]}`.replace(/(\s|:|>|\*)/g, '-');
+                d3.select(lineId)
+                .transition()
+                .attr('stroke-width', d => '1px');
+              }
+            }
+          }
+          console.log("Unselected", pairs);
+        }
+        delete wdtgEvents.selectedMovements[unhighlighted];
       }
 
       function unselectAllBoxes() {
