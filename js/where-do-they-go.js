@@ -109,6 +109,8 @@ function whereDoTheyGo() {
          console.log(value, nMovement);
 
      	  let g = d3.select(`g#movement-${index}-container`);
+
+        /* append movement text */
          g.append('text')
           .attr('class', 'vis-body small')
           .attr('text-anchor', 'middle')
@@ -122,6 +124,7 @@ function whereDoTheyGo() {
           .attr('x', `${graphDimension.marginX + 0.5 * movementContainer.width + index * (movementContainer.width + linksContainer.width)}px`)
           .text(`Movement`);
 
+         /* append each movement box */
          g.selectAll(`rect:not(.movement-${index}-rect)`)
           .data(nMovement)
           .enter()
