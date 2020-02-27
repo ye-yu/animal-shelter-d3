@@ -98,31 +98,22 @@ function whereDoTheyGo() {
        linksContainer.width /= (nMovements - 1);
 
        svg.selectAll('g:not(.svg-container)')
-       	 .data(tuplize(data))
+       	  .data(tuplize(data))
           .enter()
-       	 .append('g')
-          .attr('id', (d, i) => `movement-${i}-container`);
+      	  .append('g')
+          .attr('id', (d, i) => `movement-${i}-container`)
+          .append('text')
+          .attr('class', 'vis-body small')
+          .attr('text-anchor', 'middle')
+          .attr('y', `${graphDimension.marginY + graphDimension.offsetTop/3*2}px`)
+          .attr('x', (d, i) => `${graphDimension.marginX + 0.5 * movementContainer.width + i * (movementContainer.width + linksContainer.width)}px`)
+          .text(d => `${d[0]}\nMovement`)
 
        for(let {index, value} of enumerate(data)) {
          let nMovement = tuplize(data[value]).filter(x => x[0] !== 'Total').sort((a, b) => b[1]['Total'] - a[1]['Total']);
          let total = data[value]['Total'];
-         console.log(value, nMovement);
 
-     	  let g = d3.select(`g#movement-${index}-container`);
-
-        /* append movement text */
-         g.append('text')
-          .attr('class', 'vis-body small')
-          .attr('text-anchor', 'middle')
-          .attr('y', `${graphDimension.marginY + graphDimension.offsetTop/2}px`)
-          .attr('x', `${graphDimension.marginX + 0.5 * movementContainer.width + index * (movementContainer.width + linksContainer.width)}px`)
-          .text(`${value}`);
-         g.append('text')
-          .attr('class', 'vis-body small')
-          .attr('text-anchor', 'middle')
-          .attr('y', `${graphDimension.marginY + graphDimension.offsetTop/2 + 20}px`)
-          .attr('x', `${graphDimension.marginX + 0.5 * movementContainer.width + index * (movementContainer.width + linksContainer.width)}px`)
-          .text(`Movement`);
+     	   let g = d3.select(`g#movement-${index}-container`);
 
          /* append each movement box */
          g.selectAll(`rect:not(.movement-${index}-rect)`)
