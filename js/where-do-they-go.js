@@ -131,7 +131,6 @@ function whereDoTheyGo() {
           .attr('selected', false)
           .style("pointer-events", "all")
           .on("click", function(d, i) {
-            console.log(d3.select(this).attr('selected'));
             if (d3.select(this).attr('selected') == 'true') {
               d3.select(this)
                 .attr('selected', false)
