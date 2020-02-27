@@ -97,6 +97,7 @@ function whereDoTheyGo() {
     linksContainer.width = graphDimension.width - (movementContainer.width * nMovements);
     linksContainer.width /= (nMovements - 1);
 
+    /* label movement title */
     svg.selectAll('g:not(.svg-container)')
     .data(tuplize(data))
     .enter()
@@ -107,7 +108,7 @@ function whereDoTheyGo() {
     .attr('text-anchor', 'middle')
     .attr('y', `${graphDimension.marginY + graphDimension.offsetTop/3*2}px`)
     .attr('x', (d, i) => `${graphDimension.marginX + 0.5 * movementContainer.width + i * (movementContainer.width + linksContainer.width)}px`)
-    .text(d => `${d[0]}\nMovement`)
+    .text(d => `${d[0]} Movement`);
 
     for(let {index, value} of enumerate(data)) {
       let nMovement = tuplize(data[value]).filter(x => x[0] !== 'Total').sort((a, b) => b[1]['Total'] - a[1]['Total']);
