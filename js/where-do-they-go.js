@@ -134,7 +134,39 @@ function whereDoTheyGo() {
       }
 
       let consecutiveCount = tuplize(movementCount).map(x => [x[0], tuplize(x[1]).filter(y => consecutiveMovement(x[0], y[0]))]);
-      consecutiveCount = unstack(consecutiveCount);      
+      consecutiveCount = unstack(consecutiveCount);
+      /* draw line between boxes */
+      let lineCountMin = d3.min(consecutiveCount.map(x => x[2]));
+      let lineCountMax = d3.max(consecutiveCount.map(x => x[2]));
+      let lineScale = d3.scaleLinear()
+      .domain([lineCountMin,lineCountMax])
+      .range([0, 50]);
+
+      function splitToMovement(string) {
+        string = string.split(/:/);
+        let movementNumber = string[0];
+        let movementType = string[1];
+
+        movementType = tuplize(data[movementNumber])
+        .filter(x => x[0] !== 'Total')
+        .sort((a, b) => b[1]['Total'] - a[1]['Total'])
+        .map(x => x[0])
+        .indexOf(movementType);
+        movementNumber = Object.keys(data).indexOf(movementNumber);
+
+        return {
+          type: movementType,
+          number: movementNumber
+        }
+      }
+
+      consecutiveCount = consecutiveCount.map(x => ({
+        from: splitToMovement(x[0]),
+        to: splitToMovement(x[1]),
+        count: x[2]
+      }));
+      console.log(consecutiveCount);
+
 
       /* draw individual movement boxes */
       for(let {index, value} of enumerate(data)) {
