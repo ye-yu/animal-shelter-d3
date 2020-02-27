@@ -116,7 +116,7 @@ function whereDoTheyGo() {
      	   let g = d3.select(`g#movement-${index}-container`);
 
          /* append each movement box */
-         g.selectAll(`rect:not(.movement-${index}-rect)`)
+         g.selectAll(`rect.movement-${index}-rect`)
           .data(nMovement)
           .enter()
           .append('rect')
