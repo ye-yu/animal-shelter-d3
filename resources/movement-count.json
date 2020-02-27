@@ -1,0 +1,1526 @@
+{
+  "1st:Adoption": {
+    "Total": 3622,
+    "2nd:Adoption": {
+      "Total": 315,
+      "3rd:Adoption": {
+        "Total": 33,
+        "4th:Foster": {
+          "Total": 1,
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        },
+        ">4th:Adoption": {
+          "Total": 2
+        },
+        "4th:Adoption": {
+          "Total": 4,
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        },
+        "4th:Reclaimed": {
+          "Total": 1,
+          ">4th:Not Adopted": {
+            "Total": 1
+          }
+        },
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      "4th:Foster": {
+        "Total": 2,
+        ">4th:Adoption": {
+          "Total": 2
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 5
+      },
+      "3rd:Reclaimed": {
+        "Total": 11,
+        "4th:Not Adopted": {
+          "Total": 8
+        },
+        "4th:Transfer": {
+          "Total": 1,
+          ">4th:Not Adopted": {
+            "Total": 1
+          }
+        },
+        ">4th:Not Adopted": {
+          "Total": 1
+        },
+        "4th:Foster": {
+          "Total": 1,
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        },
+        ">4th:Adoption": {
+          "Total": 2
+        },
+        "4th:Reclaimed": {
+          "Total": 1,
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        }
+      },
+      "4th:Not Adopted": {
+        "Total": 10
+      },
+      "4th:Adoption": {
+        "Total": 7,
+        ">4th:Adoption": {
+          "Total": 2
+        }
+      },
+      "4th:Transfer": {
+        "Total": 1,
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 2
+      },
+      "3rd:Transfer": {
+        "Total": 2,
+        "4th:Not Adopted": {
+          "Total": 2
+        }
+      },
+      "3rd:Foster": {
+        "Total": 3,
+        "4th:Adoption": {
+          "Total": 3,
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        },
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      "4th:Reclaimed": {
+        "Total": 2,
+        ">4th:Not Adopted": {
+          "Total": 1
+        },
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      }
+    },
+    "2nd:Reclaimed": {
+      "Total": 40,
+      "3rd:Reclaimed": {
+        "Total": 3,
+        "4th:Not Adopted": {
+          "Total": 3
+        }
+      },
+      "4th:Not Adopted": {
+        "Total": 4
+      },
+      "3rd:Adoption": {
+        "Total": 5
+      },
+      "3rd:Not Adopted": {
+        "Total": 31
+      },
+      "3rd:Transfer": {
+        "Total": 1,
+        "4th:Not Adopted": {
+          "Total": 1
+        }
+      }
+    },
+    "3rd:Reclaimed": {
+      "Total": 14,
+      "4th:Not Adopted": {
+        "Total": 11
+      },
+      "4th:Transfer": {
+        "Total": 1,
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      },
+      "4th:Foster": {
+        "Total": 1,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 2
+      },
+      "4th:Reclaimed": {
+        "Total": 1,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      }
+    },
+    "4th:Not Adopted": {
+      "Total": 15
+    },
+    "3rd:Adoption": {
+      "Total": 58,
+      "4th:Foster": {
+        "Total": 1,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 2
+      },
+      "4th:Adoption": {
+        "Total": 5,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      "4th:Reclaimed": {
+        "Total": 1,
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "4th:Foster": {
+      "Total": 3,
+      ">4th:Adoption": {
+        "Total": 3
+      }
+    },
+    ">4th:Adoption": {
+      "Total": 7
+    },
+    "2nd:Transfer": {
+      "Total": 14,
+      "3rd:Not Adopted": {
+        "Total": 13
+      },
+      "3rd:Transfer": {
+        "Total": 1,
+        "4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      "4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "3rd:Not Adopted": {
+      "Total": 46
+    },
+    "4th:Adoption": {
+      "Total": 12,
+      ">4th:Adoption": {
+        "Total": 3
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "2nd:Foster": {
+      "Total": 27,
+      "3rd:Foster": {
+        "Total": 5,
+        "4th:Adoption": {
+          "Total": 4,
+          ">4th:Not Adopted": {
+            "Total": 1
+          },
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        },
+        ">4th:Not Adopted": {
+          "Total": 1
+        },
+        "4th:Foster": {
+          "Total": 1,
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        },
+        ">4th:Adoption": {
+          "Total": 2
+        }
+      },
+      "4th:Adoption": {
+        "Total": 5,
+        ">4th:Not Adopted": {
+          "Total": 1
+        },
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      },
+      "3rd:Adoption": {
+        "Total": 20,
+        "4th:Adoption": {
+          "Total": 1
+        }
+      },
+      "3rd:Not Adopted": {
+        "Total": 2
+      },
+      "4th:Foster": {
+        "Total": 1,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 2
+      }
+    },
+    "3rd:Foster": {
+      "Total": 8,
+      "4th:Adoption": {
+        "Total": 7,
+        ">4th:Not Adopted": {
+          "Total": 1
+        },
+        ">4th:Adoption": {
+          "Total": 2
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      },
+      "4th:Foster": {
+        "Total": 1,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 3
+      }
+    },
+    ">4th:Not Adopted": {
+      "Total": 3
+    },
+    "3rd:Transfer": {
+      "Total": 4,
+      "4th:Not Adopted": {
+        "Total": 4
+      }
+    },
+    "4th:Transfer": {
+      "Total": 1,
+      ">4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "4th:Reclaimed": {
+      "Total": 2,
+      ">4th:Not Adopted": {
+        "Total": 1
+      },
+      ">4th:Adoption": {
+        "Total": 1
+      }
+    }
+  },
+  "1st:Foster": {
+    "Total": 1963,
+    "2nd:Adoption": {
+      "Total": 1280,
+      "3rd:Foster": {
+        "Total": 10,
+        "4th:Adoption": {
+          "Total": 6,
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        },
+        ">4th:Adoption": {
+          "Total": 2
+        },
+        "4th:Transfer": {
+          "Total": 1,
+          ">4th:Not Adopted": {
+            "Total": 1
+          }
+        },
+        ">4th:Not Adopted": {
+          "Total": 1
+        },
+        "4th:Not Adopted": {
+          "Total": 2
+        },
+        "4th:Foster": {
+          "Total": 1,
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        }
+      },
+      "4th:Adoption": {
+        "Total": 14,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 3
+      },
+      "3rd:Adoption": {
+        "Total": 57,
+        "4th:Adoption": {
+          "Total": 6
+        },
+        "4th:Foster": {
+          "Total": 1,
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        },
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      "3rd:Reclaimed": {
+        "Total": 5,
+        "4th:Not Adopted": {
+          "Total": 3
+        },
+        "4th:Adoption": {
+          "Total": 2
+        }
+      },
+      "4th:Not Adopted": {
+        "Total": 7
+      },
+      "3rd:Transfer": {
+        "Total": 2,
+        "4th:Not Adopted": {
+          "Total": 2
+        }
+      },
+      "4th:Transfer": {
+        "Total": 1,
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      },
+      "4th:Foster": {
+        "Total": 2,
+        ">4th:Adoption": {
+          "Total": 2
+        }
+      }
+    },
+    "2nd:Foster": {
+      "Total": 381,
+      "3rd:Adoption": {
+        "Total": 263,
+        "4th:Adoption": {
+          "Total": 13,
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        },
+        "4th:Foster": {
+          "Total": 2,
+          ">4th:Adoption": {
+            "Total": 1
+          },
+          ">4th:Not Adopted": {
+            "Total": 1
+          }
+        },
+        ">4th:Adoption": {
+          "Total": 2
+        },
+        "4th:Reclaimed": {
+          "Total": 5,
+          ">4th:Not Adopted": {
+            "Total": 5
+          }
+        },
+        ">4th:Not Adopted": {
+          "Total": 6
+        }
+      },
+      "3rd:Foster": {
+        "Total": 69,
+        "4th:Not Adopted": {
+          "Total": 8
+        },
+        "4th:Adoption": {
+          "Total": 51,
+          ">4th:Adoption": {
+            "Total": 1
+          },
+          ">4th:Not Adopted": {
+            "Total": 1
+          }
+        },
+        "4th:Foster": {
+          "Total": 9,
+          ">4th:Adoption": {
+            "Total": 9
+          }
+        },
+        ">4th:Adoption": {
+          "Total": 10
+        },
+        "4th:Transfer": {
+          "Total": 1,
+          ">4th:Not Adopted": {
+            "Total": 1
+          }
+        },
+        ">4th:Not Adopted": {
+          "Total": 2
+        }
+      },
+      "4th:Not Adopted": {
+        "Total": 11
+      },
+      "4th:Adoption": {
+        "Total": 65,
+        ">4th:Adoption": {
+          "Total": 2
+        },
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      "3rd:Not Adopted": {
+        "Total": 44
+      },
+      "4th:Foster": {
+        "Total": 12,
+        ">4th:Adoption": {
+          "Total": 11
+        },
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 13
+      },
+      "3rd:Stolen": {
+        "Total": 1,
+        "4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      "4th:Reclaimed": {
+        "Total": 5,
+        ">4th:Not Adopted": {
+          "Total": 5
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 8
+      },
+      "4th:Transfer": {
+        "Total": 1,
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      "3rd:Transfer": {
+        "Total": 2,
+        "4th:Not Adopted": {
+          "Total": 2
+        }
+      },
+      "3rd:Reclaimed": {
+        "Total": 2,
+        "4th:Adoption": {
+          "Total": 1
+        },
+        "4th:Foster": {
+          "Total": 1,
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        },
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      }
+    },
+    "3rd:Adoption": {
+      "Total": 322,
+      "4th:Adoption": {
+        "Total": 19,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      "4th:Foster": {
+        "Total": 3,
+        ">4th:Adoption": {
+          "Total": 2
+        },
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 3
+      },
+      "4th:Reclaimed": {
+        "Total": 5,
+        ">4th:Not Adopted": {
+          "Total": 5
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 6
+      }
+    },
+    "3rd:Foster": {
+      "Total": 80,
+      "4th:Not Adopted": {
+        "Total": 10
+      },
+      "4th:Adoption": {
+        "Total": 58,
+        ">4th:Adoption": {
+          "Total": 2
+        },
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 12
+      },
+      "4th:Foster": {
+        "Total": 10,
+        ">4th:Adoption": {
+          "Total": 10
+        }
+      },
+      "4th:Transfer": {
+        "Total": 2,
+        ">4th:Not Adopted": {
+          "Total": 2
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 3
+      }
+    },
+    "4th:Not Adopted": {
+      "Total": 18
+    },
+    "4th:Adoption": {
+      "Total": 80,
+      ">4th:Adoption": {
+        "Total": 3
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    ">4th:Adoption": {
+      "Total": 16
+    },
+    "3rd:Not Adopted": {
+      "Total": 69
+    },
+    "2nd:Transfer": {
+      "Total": 21,
+      "3rd:Not Adopted": {
+        "Total": 21
+      }
+    },
+    "2nd:Not Adopted": {
+      "Total": 273
+    },
+    "3rd:Reclaimed": {
+      "Total": 8,
+      "4th:Not Adopted": {
+        "Total": 3
+      },
+      "4th:Reclaimed": {
+        "Total": 1,
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      },
+      "4th:Adoption": {
+        "Total": 3
+      },
+      "4th:Foster": {
+        "Total": 1,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 1
+      }
+    },
+    "4th:Foster": {
+      "Total": 14,
+      ">4th:Adoption": {
+        "Total": 13
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "2nd:Reclaimed": {
+      "Total": 3,
+      "3rd:Reclaimed": {
+        "Total": 1,
+        "4th:Reclaimed": {
+          "Total": 1,
+          ">4th:Not Adopted": {
+            "Total": 1
+          }
+        },
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      "4th:Reclaimed": {
+        "Total": 1,
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      },
+      "3rd:Adoption": {
+        "Total": 1
+      },
+      "3rd:Foster": {
+        "Total": 1,
+        "4th:Adoption": {
+          "Total": 1
+        }
+      },
+      "4th:Adoption": {
+        "Total": 1
+      }
+    },
+    "4th:Reclaimed": {
+      "Total": 6,
+      ">4th:Not Adopted": {
+        "Total": 6
+      }
+    },
+    ">4th:Not Adopted": {
+      "Total": 10
+    },
+    "3rd:Transfer": {
+      "Total": 4,
+      "4th:Not Adopted": {
+        "Total": 4
+      }
+    },
+    "3rd:Stolen": {
+      "Total": 1,
+      "4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "4th:Transfer": {
+      "Total": 2,
+      ">4th:Not Adopted": {
+        "Total": 2
+      }
+    },
+    "2nd:Stolen": {
+      "Total": 3,
+      "3rd:Not Adopted": {
+        "Total": 2
+      },
+      "3rd:Adoption": {
+        "Total": 1
+      }
+    },
+    "2nd:Escaped": {
+      "Total": 2,
+      "3rd:Not Adopted": {
+        "Total": 2
+      }
+    }
+  },
+  "2nd:Adoption": {
+    "Total": 1657,
+    "3rd:Foster": {
+      "Total": 14,
+      "4th:Adoption": {
+        "Total": 10,
+        ">4th:Adoption": {
+          "Total": 2
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 3
+      },
+      "4th:Transfer": {
+        "Total": 1,
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      },
+      "4th:Not Adopted": {
+        "Total": 2
+      },
+      "4th:Foster": {
+        "Total": 1,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      }
+    },
+    "4th:Adoption": {
+      "Total": 23,
+      ">4th:Adoption": {
+        "Total": 3
+      }
+    },
+    ">4th:Adoption": {
+      "Total": 8
+    },
+    "3rd:Adoption": {
+      "Total": 96,
+      "4th:Foster": {
+        "Total": 2,
+        ">4th:Adoption": {
+          "Total": 2
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 3
+      },
+      "4th:Adoption": {
+        "Total": 10,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      "4th:Reclaimed": {
+        "Total": 1,
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "4th:Foster": {
+      "Total": 4,
+      ">4th:Adoption": {
+        "Total": 4
+      }
+    },
+    "3rd:Reclaimed": {
+      "Total": 18,
+      "4th:Not Adopted": {
+        "Total": 12
+      },
+      "4th:Adoption": {
+        "Total": 3
+      },
+      "4th:Transfer": {
+        "Total": 1,
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      },
+      "4th:Foster": {
+        "Total": 1,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 2
+      },
+      "4th:Reclaimed": {
+        "Total": 1,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      }
+    },
+    "4th:Not Adopted": {
+      "Total": 18
+    },
+    "3rd:Transfer": {
+      "Total": 4,
+      "4th:Not Adopted": {
+        "Total": 4
+      }
+    },
+    "4th:Transfer": {
+      "Total": 2,
+      ">4th:Not Adopted": {
+        "Total": 2
+      }
+    },
+    ">4th:Not Adopted": {
+      "Total": 3
+    },
+    "4th:Reclaimed": {
+      "Total": 2,
+      ">4th:Not Adopted": {
+        "Total": 1
+      },
+      ">4th:Adoption": {
+        "Total": 1
+      }
+    }
+  },
+  "1st:Transfer": {
+    "Total": 471,
+    "2nd:Not Adopted": {
+      "Total": 470
+    },
+    "2nd:Transfer": {
+      "Total": 1,
+      "3rd:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "3rd:Not Adopted": {
+      "Total": 1
+    }
+  },
+  "2nd:Not Adopted": {
+    "Total": 1803
+  },
+  "2nd:Foster": {
+    "Total": 417,
+    "3rd:Adoption": {
+      "Total": 290,
+      "4th:Adoption": {
+        "Total": 14,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      "4th:Foster": {
+        "Total": 2,
+        ">4th:Adoption": {
+          "Total": 1
+        },
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 2
+      },
+      "4th:Reclaimed": {
+        "Total": 5,
+        ">4th:Not Adopted": {
+          "Total": 5
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 6
+      }
+    },
+    "3rd:Foster": {
+      "Total": 76,
+      "4th:Not Adopted": {
+        "Total": 8
+      },
+      "4th:Adoption": {
+        "Total": 57,
+        ">4th:Adoption": {
+          "Total": 2
+        },
+        ">4th:Not Adopted": {
+          "Total": 2
+        }
+      },
+      "4th:Foster": {
+        "Total": 10,
+        ">4th:Adoption": {
+          "Total": 10
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 12
+      },
+      ">4th:Not Adopted": {
+        "Total": 3
+      },
+      "4th:Transfer": {
+        "Total": 1,
+        ">4th:Not Adopted": {
+          "Total": 1
+        }
+      }
+    },
+    "4th:Not Adopted": {
+      "Total": 11
+    },
+    "4th:Adoption": {
+      "Total": 72,
+      ">4th:Adoption": {
+        "Total": 3
+      },
+      ">4th:Not Adopted": {
+        "Total": 2
+      }
+    },
+    "3rd:Not Adopted": {
+      "Total": 46
+    },
+    "4th:Foster": {
+      "Total": 13,
+      ">4th:Adoption": {
+        "Total": 12
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    ">4th:Adoption": {
+      "Total": 15
+    },
+    ">4th:Not Adopted": {
+      "Total": 9
+    },
+    "3rd:Stolen": {
+      "Total": 1,
+      "4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "4th:Reclaimed": {
+      "Total": 5,
+      ">4th:Not Adopted": {
+        "Total": 5
+      }
+    },
+    "4th:Transfer": {
+      "Total": 1,
+      ">4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "3rd:Transfer": {
+      "Total": 2,
+      "4th:Not Adopted": {
+        "Total": 2
+      }
+    },
+    "3rd:Reclaimed": {
+      "Total": 2,
+      "4th:Adoption": {
+        "Total": 1
+      },
+      "4th:Foster": {
+        "Total": 1,
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 1
+      }
+    }
+  },
+  "3rd:Adoption": {
+    "Total": 400,
+    "4th:Foster": {
+      "Total": 4,
+      ">4th:Adoption": {
+        "Total": 3
+      },
+      ">4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    ">4th:Adoption": {
+      "Total": 5
+    },
+    "4th:Adoption": {
+      "Total": 24,
+      ">4th:Adoption": {
+        "Total": 2
+      }
+    },
+    "4th:Reclaimed": {
+      "Total": 6,
+      ">4th:Not Adopted": {
+        "Total": 6
+      }
+    },
+    ">4th:Not Adopted": {
+      "Total": 7
+    }
+  },
+  "1st:Reclaimed": {
+    "Total": 1222,
+    "2nd:Not Adopted": {
+      "Total": 1050
+    },
+    "2nd:Adoption": {
+      "Total": 62,
+      "3rd:Reclaimed": {
+        "Total": 2,
+        "4th:Adoption": {
+          "Total": 1
+        },
+        "4th:Not Adopted": {
+          "Total": 1
+        }
+      },
+      "4th:Adoption": {
+        "Total": 2
+      },
+      "3rd:Adoption": {
+        "Total": 6
+      },
+      "3rd:Foster": {
+        "Total": 1,
+        "4th:Adoption": {
+          "Total": 1
+        }
+      },
+      "4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "2nd:Reclaimed": {
+      "Total": 90,
+      "3rd:Not Adopted": {
+        "Total": 61
+      },
+      "3rd:Reclaimed": {
+        "Total": 21,
+        "4th:Adoption": {
+          "Total": 4,
+          ">4th:Not Adopted": {
+            "Total": 2
+          }
+        },
+        ">4th:Not Adopted": {
+          "Total": 9
+        },
+        "4th:Not Adopted": {
+          "Total": 9
+        },
+        "4th:Reclaimed": {
+          "Total": 8,
+          ">4th:Not Adopted": {
+            "Total": 7
+          },
+          ">4th:Adoption": {
+            "Total": 1
+          }
+        },
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      "4th:Adoption": {
+        "Total": 5,
+        ">4th:Not Adopted": {
+          "Total": 2
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 9
+      },
+      "3rd:Adoption": {
+        "Total": 7
+      },
+      "4th:Not Adopted": {
+        "Total": 9
+      },
+      "4th:Reclaimed": {
+        "Total": 8,
+        ">4th:Not Adopted": {
+          "Total": 7
+        },
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 1
+      },
+      "3rd:Foster": {
+        "Total": 1,
+        "4th:Adoption": {
+          "Total": 1
+        }
+      }
+    },
+    "3rd:Not Adopted": {
+      "Total": 72
+    },
+    "3rd:Reclaimed": {
+      "Total": 23,
+      "4th:Adoption": {
+        "Total": 5,
+        ">4th:Not Adopted": {
+          "Total": 2
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 9
+      },
+      "4th:Not Adopted": {
+        "Total": 10
+      },
+      "4th:Reclaimed": {
+        "Total": 8,
+        ">4th:Not Adopted": {
+          "Total": 7
+        },
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 1
+      }
+    },
+    "4th:Adoption": {
+      "Total": 9,
+      ">4th:Not Adopted": {
+        "Total": 2
+      }
+    },
+    ">4th:Not Adopted": {
+      "Total": 9
+    },
+    "2nd:Foster": {
+      "Total": 9,
+      "3rd:Adoption": {
+        "Total": 7
+      },
+      "3rd:Foster": {
+        "Total": 2,
+        "4th:Adoption": {
+          "Total": 2
+        }
+      },
+      "4th:Adoption": {
+        "Total": 2
+      }
+    },
+    "3rd:Adoption": {
+      "Total": 20
+    },
+    "2nd:Transfer": {
+      "Total": 11,
+      "3rd:Not Adopted": {
+        "Total": 11
+      }
+    },
+    "4th:Not Adopted": {
+      "Total": 10
+    },
+    "4th:Reclaimed": {
+      "Total": 8,
+      ">4th:Not Adopted": {
+        "Total": 7
+      },
+      ">4th:Adoption": {
+        "Total": 1
+      }
+    },
+    ">4th:Adoption": {
+      "Total": 1
+    },
+    "3rd:Foster": {
+      "Total": 4,
+      "4th:Adoption": {
+        "Total": 4
+      }
+    }
+  },
+  "3rd:Foster": {
+    "Total": 92,
+    "4th:Not Adopted": {
+      "Total": 10
+    },
+    "4th:Adoption": {
+      "Total": 69,
+      ">4th:Adoption": {
+        "Total": 4
+      },
+      ">4th:Not Adopted": {
+        "Total": 2
+      }
+    },
+    ">4th:Adoption": {
+      "Total": 15
+    },
+    "4th:Foster": {
+      "Total": 11,
+      ">4th:Adoption": {
+        "Total": 11
+      }
+    },
+    ">4th:Not Adopted": {
+      "Total": 4
+    },
+    "4th:Transfer": {
+      "Total": 2,
+      ">4th:Not Adopted": {
+        "Total": 2
+      }
+    }
+  },
+  "4th:Not Adopted": {
+    "Total": 43
+  },
+  "2nd:Reclaimed": {
+    "Total": 133,
+    "3rd:Reclaimed": {
+      "Total": 25,
+      "4th:Not Adopted": {
+        "Total": 12
+      },
+      "4th:Reclaimed": {
+        "Total": 9,
+        ">4th:Not Adopted": {
+          "Total": 8
+        },
+        ">4th:Adoption": {
+          "Total": 1
+        }
+      },
+      ">4th:Not Adopted": {
+        "Total": 10
+      },
+      "4th:Adoption": {
+        "Total": 4,
+        ">4th:Not Adopted": {
+          "Total": 2
+        }
+      },
+      ">4th:Adoption": {
+        "Total": 1
+      }
+    },
+    "4th:Not Adopted": {
+      "Total": 13
+    },
+    "3rd:Adoption": {
+      "Total": 13
+    },
+    "3rd:Not Adopted": {
+      "Total": 92
+    },
+    "4th:Reclaimed": {
+      "Total": 9,
+      ">4th:Not Adopted": {
+        "Total": 8
+      },
+      ">4th:Adoption": {
+        "Total": 1
+      }
+    },
+    ">4th:Not Adopted": {
+      "Total": 10
+    },
+    "4th:Adoption": {
+      "Total": 6,
+      ">4th:Not Adopted": {
+        "Total": 2
+      }
+    },
+    "3rd:Transfer": {
+      "Total": 1,
+      "4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    ">4th:Adoption": {
+      "Total": 1
+    },
+    "3rd:Foster": {
+      "Total": 2,
+      "4th:Adoption": {
+        "Total": 2
+      }
+    }
+  },
+  "3rd:Reclaimed": {
+    "Total": 45,
+    "4th:Not Adopted": {
+      "Total": 24
+    },
+    "4th:Reclaimed": {
+      "Total": 10,
+      ">4th:Not Adopted": {
+        "Total": 8
+      },
+      ">4th:Adoption": {
+        "Total": 2
+      }
+    },
+    ">4th:Not Adopted": {
+      "Total": 11
+    },
+    "4th:Adoption": {
+      "Total": 8,
+      ">4th:Not Adopted": {
+        "Total": 2
+      }
+    },
+    "4th:Transfer": {
+      "Total": 1,
+      ">4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    ">4th:Adoption": {
+      "Total": 4
+    },
+    "4th:Foster": {
+      "Total": 2,
+      ">4th:Adoption": {
+        "Total": 2
+      }
+    }
+  },
+  "4th:Adoption": {
+    "Total": 101,
+    ">4th:Adoption": {
+      "Total": 6
+    },
+    ">4th:Not Adopted": {
+      "Total": 4
+    }
+  },
+  ">4th:Adoption": {
+    "Total": 24
+  },
+  "4th:Foster": {
+    "Total": 17,
+    ">4th:Adoption": {
+      "Total": 16
+    },
+    ">4th:Not Adopted": {
+      "Total": 1
+    }
+  },
+  "2nd:Transfer": {
+    "Total": 47,
+    "3rd:Not Adopted": {
+      "Total": 46
+    },
+    "3rd:Transfer": {
+      "Total": 1,
+      "4th:Not Adopted": {
+        "Total": 1
+      }
+    },
+    "4th:Not Adopted": {
+      "Total": 1
+    }
+  },
+  "3rd:Not Adopted": {
+    "Total": 188
+  },
+  "4th:Reclaimed": {
+    "Total": 16,
+    ">4th:Not Adopted": {
+      "Total": 14
+    },
+    ">4th:Adoption": {
+      "Total": 2
+    }
+  },
+  ">4th:Not Adopted": {
+    "Total": 22
+  },
+  "1st:Released To Wild": {
+    "Total": 7,
+    "2nd:Not Adopted": {
+      "Total": 7
+    }
+  },
+  "3rd:Transfer": {
+    "Total": 8,
+    "4th:Not Adopted": {
+      "Total": 8
+    }
+  },
+  "3rd:Stolen": {
+    "Total": 1,
+    "4th:Not Adopted": {
+      "Total": 1
+    }
+  },
+  "4th:Transfer": {
+    "Total": 3,
+    ">4th:Not Adopted": {
+      "Total": 3
+    }
+  },
+  "2nd:Stolen": {
+    "Total": 3,
+    "3rd:Not Adopted": {
+      "Total": 2
+    },
+    "3rd:Adoption": {
+      "Total": 1
+    }
+  },
+  "2nd:Escaped": {
+    "Total": 2,
+    "3rd:Not Adopted": {
+      "Total": 2
+    }
+  },
+  "1st:Stolen": {
+    "Total": 2,
+    "2nd:Not Adopted": {
+      "Total": 2
+    }
+  },
+  "1st:Escaped": {
+    "Total": 1,
+    "2nd:Not Adopted": {
+      "Total": 1
+    }
+  }
+}
