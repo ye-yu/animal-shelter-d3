@@ -138,9 +138,9 @@ function whereDoTheyGo() {
       /* draw line between boxes */
       let lineCountMin = d3.min(consecutiveCount.map(x => x[2]));
       let lineCountMax = d3.max(consecutiveCount.map(x => x[2]));
-      let lineScale = d3.scaleLinear()
+      let lineScale = d3.scaleLog()
       .domain([lineCountMin,lineCountMax])
-      .range([0, 50]);
+      .range([1, 10]);
 
       function splitToMovement(string) {
         string = string.split(/:/);
@@ -161,12 +161,27 @@ function whereDoTheyGo() {
       }
 
       consecutiveCount = consecutiveCount.map(x => ({
+        id: `${x[0]}:${x[1]}`,
         from: splitToMovement(x[0]),
         to: splitToMovement(x[1]),
         count: x[2]
       }));
       console.log(consecutiveCount);
 
+      svg.append('g')
+      .selectAll('line')
+      .data(consecutiveCount)
+      .enter()
+      .append('line')
+      .attr('x1', d => `${graphDimension.marginX + (d.from.number + 1) * movementContainer.width + d.from.number * linksContainer.width}px`)
+      .attr('x2', d => `${graphDimension.marginX + d.to.number * (movementContainer.width) + d.to.number * linksContainer.width}px`)
+      .attr('y1', d => `${graphDimension.marginY + graphDimension.offsetTop + d.from.type * movementContainer.height + 0.5 * movementContainer.height}px`)
+      .attr('y2', d => `${graphDimension.marginY + graphDimension.offsetTop + d.to.type * movementContainer.height + 0.5 * movementContainer.height}px`)
+      .attr('stroke', 'black')
+      // .attr('stroke-width', d => `${lineScale(d.count)}`)
+      .attr('stroke-width', '1px')
+      .attr('stroke-opacity', '0.35')
+      .attr('stroke-linecap', 'round');
 
       /* draw individual movement boxes */
       for(let {index, value} of enumerate(data)) {
