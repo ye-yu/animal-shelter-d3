@@ -327,7 +327,7 @@ function whereDoTheyGo() {
           .transition()
           .style('stroke-width', '0px');
         }
-        d3.select('line')
+        d3.selectAll('line')
         .transition()
         .attr('stroke-width', d => '1px');
         delete wdtgEvents.selectedMovements;
