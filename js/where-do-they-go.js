@@ -290,24 +290,24 @@ function whereDoTheyGo() {
       clearButtonAttr.width = 60;
       clearButtonAttr.height = 30;
       clearButton.append('rect')
-      .attr('x', `${graphDimension.width - clearButtonAttr.width}px`)
-      .attr('y', `${graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height}px`)
+      .attr('x', `${graphDimension.width/2}px`)
+      .attr('y', `${graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height/2}px`)
       .attr('width', `${clearButtonAttr.width}px`)
       .attr('height', `${clearButtonAttr.height}px`)
       .attr('fill', '#f7f7f7');
 
       clearButton.append('text')
-      .attr('class', 'vis-body small')
+      .attr('class', 'vis-body small font-weight-bold')
       .attr('textLength', 30)
-      .attr('x', `${0.5 * clearButtonAttr.width + graphDimension.width - clearButtonAttr.width}px`)
-      .attr('y', `${0.6 * clearButtonAttr.height + graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height}px`)
+      .attr('x', `${0.5 * clearButtonAttr.width + graphDimension.width/2}px`)
+      .attr('y', `${0.6 * clearButtonAttr.height + graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height/2}px`)
       .attr('text-anchor', 'middle')
       .style('font-size', '0.75em')
       .text('clear');
 
       clearButton.append('rect')
-      .attr('x', `${graphDimension.width - clearButtonAttr.width}px`)
-      .attr('y', `${graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height}px`)
+      .attr('x', `${graphDimension.width/2}px`)
+      .attr('y', `${graphDimension.offsetTop + graphDimension.height - clearButtonAttr.height/2}px`)
       .attr('width', `${clearButtonAttr.width}px`)
       .attr('height', `${clearButtonAttr.height}px`)
       .attr('fill-opacity', '0')
