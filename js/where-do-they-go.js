@@ -155,6 +155,19 @@ function whereDoTheyGo() {
               .style('stroke-width', '0px');
             }
           });
+
+          // console.log("box", value, "array", nMovement);
+          /* append each movement box label */
+          g.selectAll(`text.movement-${index}-text`)
+           .data(nMovement)
+           .enter()
+           .append('text')
+           .attr('class', `vis-body movement-${index}-text)`)
+           .attr('text-anchor', 'middle')
+           .attr('y', (d, i) => `${graphDimension.marginY + graphDimension.offsetTop + movementContainer.height/2 + 3 + i*movementContainer.height}px`)
+           .attr('x', `${graphDimension.marginX + 0.5 * movementContainer.width + index * (movementContainer.width + linksContainer.width)}px`)
+           .text((d, i, arr) => `${d[0]}`)
+           .style('font-size', '0.75em');
      }
    });
 }
