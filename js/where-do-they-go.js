@@ -379,6 +379,11 @@ function whereDoTheyGo() {
         d3.select(this)
         .style('stroke-width', '0.5px');
       });
+    })
+    .then(() => {
+      /* hot fix to put line to the back */
+      let e = $('#line-group');
+      e.parent().prepend(e);
     });
   });
 }
