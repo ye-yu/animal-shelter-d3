@@ -62,7 +62,7 @@
     }
   },
   "2nd": {
-    "Total": 4062,
+    "Total": 3012,
     "Adoption": {
       "Total": 1525,
       "Cat": 1076,
@@ -74,13 +74,13 @@
       "Rat": 8
     },
     "Not Adopted": {
-      "Total": 1803,
-      "House Rabbit": 39,
-      "Dog": 920,
-      "Cat": 718,
+      "Total": 753,
+      "House Rabbit": 38,
+      "Dog": 65,
+      "Cat": 543,
       "Rat": 51,
-      "Others": 70,
-      "Bird": 5
+      "Others": 53,
+      "Bird": 3
     },
     "Foster": {
       "Total": 417,
@@ -121,7 +121,7 @@
     }
   },
   "3rd": {
-    "Total": 734,
+    "Total": 642,
     "Adoption": {
       "Total": 366,
       "Dog": 121,
@@ -146,11 +146,11 @@
       "Cat": 14
     },
     "Not Adopted": {
-      "Total": 188,
-      "Cat": 83,
-      "Dog": 91,
+      "Total": 96,
+      "Cat": 64,
+      "Dog": 20,
       "House Rabbit": 3,
-      "Bird": 4,
+      "Bird": 2,
       "Others": 5,
       "Guinea Pig": 2
     },
@@ -166,11 +166,11 @@
     }
   },
   "4th": {
-    "Total": 180,
+    "Total": 156,
     "Not Adopted": {
-      "Total": 43,
-      "Cat": 20,
-      "Dog": 22,
+      "Total": 19,
+      "Cat": 15,
+      "Dog": 3,
       "House Rabbit": 1
     },
     "Adoption*": {
@@ -206,8 +206,11 @@
     "Adoption": {
       "Total": 24
     },
+    "Reclaimed": {
+      "Total": 3
+    },
     "Not Adopted": {
-      "Total": 22
+      "Total": 7
     }
   }
 }
