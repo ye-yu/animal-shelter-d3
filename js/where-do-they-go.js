@@ -4,7 +4,7 @@ function whereDoTheyGo(directoryPrefix='') {
   let containerWidth=$('#wdtg-container').width();
   let containerHeight=containerWidth*0.4;
 
-  let svg = d3.select('svg#wdtg-graph');
+  let svg = d3.select('div#wdtg-graph-and-legend-container svg#wdtg-graph');
 
   let xCoverage=0.95;
   let yCoverage=0.95;
@@ -57,7 +57,7 @@ function whereDoTheyGo(directoryPrefix='') {
     for(let i of range(legendHeatmapAttr.divisions)) {
       let boxFill = legendHeatmapScale(i);
       boxFill = heatmapColour(boxFill);
-      d3.select('svg#wdtg-heatmap-legend')
+      d3.select('div#wdtg-graph-and-legend-container svg#wdtg-heatmap-legend')
       .attr('width', `${legendHeatmapAttr.width}px`)
       .attr('height', `${0.3*legendHeatmapAttr.width}px`)
       .append('rect')
@@ -68,7 +68,7 @@ function whereDoTheyGo(directoryPrefix='') {
       .attr('height', `${legendHeatmapAttr.boxHeight}px`)
       .attr('fill', `${boxFill}`);
     }
-    d3.select('svg#wdtg-heatmap-legend')
+    d3.select('div#wdtg-graph-and-legend-container svg#wdtg-heatmap-legend')
     .append('text')
     .style('font-size', '0.75em')
     .attr('class', 'vis-body')
@@ -76,7 +76,7 @@ function whereDoTheyGo(directoryPrefix='') {
     .attr('x', '0px')
     .attr('y', `${legendHeatmapAttr.boxHeight * 2 + 5}px`)
     .text(min);
-    d3.select('svg#wdtg-heatmap-legend')
+    d3.select('div#wdtg-graph-and-legend-container svg#wdtg-heatmap-legend')
     .append('text')
     .style('font-size', '0.75em')
     .attr('class', 'vis-body')
@@ -98,7 +98,7 @@ function whereDoTheyGo(directoryPrefix='') {
     linksContainer.width /= (nMovements - 1);
 
     /* label movement title */
-    svg.selectAll('g:not(.svg-container)')
+    svg.selectAll('div#wdtg-graph-and-legend-container g:not(.svg-container)')
     .data(tuplize(data))
     .enter()
     .append('g')
@@ -169,7 +169,7 @@ function whereDoTheyGo(directoryPrefix='') {
 
       svg.append('g')
       .attr('id', 'line-group')
-      .selectAll('line')
+      .selectAll('div#wdtg-graph-and-legend-container line')
       .data(consecutiveCount)
       .enter()
       .append('line')
@@ -198,12 +198,12 @@ function whereDoTheyGo(directoryPrefix='') {
         lineData.push(i)
       }
 
-      d3.select('svg#wdtg-line-size-legend')
+      d3.select('div#wdtg-graph-and-legend-container svg#wdtg-line-size-legend')
       .attr('width', `${$('#wdtg-line-size-legend-container').width()}px`)
       .attr('height', `${legendLineSizeAttr.height * legendLineSizeAttr.divisions}px`)
       .append('g')
       .attr('id', 'line-size-group')
-      .selectAll('line.line-size-legend')
+      .selectAll('div#wdtg-graph-and-legend-container line.line-size-legend')
       .data(lineData)
       .enter()
       .append('line')
@@ -216,7 +216,7 @@ function whereDoTheyGo(directoryPrefix='') {
       .attr('stroke','black')
       .attr('stroke-opacity','1');
 
-      d3.select('g#line-size-group')
+      d3.select('div#wdtg-graph-and-legend-container g#line-size-group')
       .append('text')
       .style('font-size', '0.55em')
       .attr('id', 'line-size-upper-limit-text')
@@ -225,7 +225,7 @@ function whereDoTheyGo(directoryPrefix='') {
       .attr('y', `10`)
       .text('');
 
-      d3.select('g#line-size-group')
+      d3.select('div#wdtg-graph-and-legend-container g#line-size-group')
       .append('text')
       .style('font-size', '0.55em')
       .attr('id', 'line-size-lower-limit-text')
@@ -300,11 +300,11 @@ function whereDoTheyGo(directoryPrefix='') {
           }
 
           if (Object.keys(wdtgEvents.selectedMovements).length > 0) {
-            d3.select('g#wdtg-clear-button')
+            d3.select('div#wdtg-graph-and-legend-container g#wdtg-clear-button')
             .transition()
             .attr('opacity', '1');
           } else {
-            d3.select('g#wdtg-clear-button')
+            d3.select('div#wdtg-graph-and-legend-container g#wdtg-clear-button')
             .transition()
             .attr('opacity', '0');
           }
@@ -404,9 +404,9 @@ function whereDoTheyGo(directoryPrefix='') {
       }
 
       function showSelectOneMoreBox() {
-        transitionText(d3.select('text#line-size-upper-limit-text'), '');
-        transitionText(d3.select('text#line-size-lower-limit-text'), 'Select one more linked box');
-        d3.selectAll('line')
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-upper-limit-text'), '');
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-lower-limit-text'), 'Select one more linked box');
+        d3.selectAll('div#wdtg-graph-and-legend-container line')
         .transition()
         .attr('stroke-width', d => '1px')
         .attr('stroke','black')
@@ -414,13 +414,13 @@ function whereDoTheyGo(directoryPrefix='') {
       }
 
       function showSelectTwoBoxes() {
-        transitionText(d3.select('text#line-size-upper-limit-text'), '');
-        transitionText(d3.select('text#line-size-lower-limit-text'), 'Select at least two linked boxes');
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-upper-limit-text'), '');
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-lower-limit-text'), 'Select at least two linked boxes');
       }
 
       function updateLineSizeLimits(lower, upper) {
-        transitionText(d3.select('text#line-size-lower-limit-text'), lower);
-        transitionText(d3.select('text#line-size-upper-limit-text'), upper);
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-lower-limit-text'), lower);
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-upper-limit-text'), upper);
       }
 
       function updateLineSizeLegend() {
@@ -447,7 +447,7 @@ function whereDoTheyGo(directoryPrefix='') {
             let a = selected[pair[0][0]];
             let b = selected[pair[0][1]];
             let count = movementCount[a][b]['Total'];
-            d3.selectAll('line.line-size-legend')
+            d3.selectAll('div#wdtg-graph-and-legend-container line.line-size-legend')
             .transition()
             .attr('stroke-width', i => `${15}px`)
             .attr('stroke-opacity','0.8');
@@ -459,14 +459,14 @@ function whereDoTheyGo(directoryPrefix='') {
             let min = d3.min(counts);
             lineScale.domain([min, max]).range([3, 15]);
             legendLineSizeScale.range([max, min]);
-            d3.selectAll('line.line-size-legend')
+            d3.selectAll('div#wdtg-graph-and-legend-container line.line-size-legend')
             .transition()
             .attr('stroke-width', i => `${lineScale(legendLineSizeScale(i))}px`)
             .attr('stroke-opacity','0.8');
             updateLineSizeLimits(min, max);
           }
         } else {
-          d3.selectAll('line.line-size-legend')
+          d3.selectAll('div#wdtg-graph-and-legend-container line.line-size-legend')
           .transition()
           .attr('stroke-width', i => `0.5px`);
           showSelectTwoBoxes();
@@ -480,7 +480,7 @@ function whereDoTheyGo(directoryPrefix='') {
           .transition()
           .style('stroke-width', '0px');
         }
-        d3.selectAll('line')
+        d3.selectAll('div#wdtg-graph-and-legend-container line')
         .transition()
         .attr('stroke-width', d => '1px')
         .attr('stroke','black')
@@ -534,7 +534,7 @@ function whereDoTheyGo(directoryPrefix='') {
         d3.select(this)
         .style('stroke-width', '0.5px');
         unselectAllBoxes();
-        d3.select('g#wdtg-clear-button')
+        d3.select('div#wdtg-graph-and-legend-container g#wdtg-clear-button')
         .transition()
         .attr('opacity', '0');
       })
