@@ -283,7 +283,12 @@ function whereDoTheyGo() {
                 let lineId = `line#line-${selected[i]}:${selected[j]}`.replace(/(\s|:|>|\*)/g, '-');
                 d3.select(lineId)
                 .transition()
-                .attr('stroke-width', d => `${lineScale(d.count)}`);
+                .attr('stroke-width', d => `${lineScale(d.count)}`)
+                .attr('stroke','black')
+                .attr('stroke-opacity','0.8');
+
+                let e = $(lineId);
+                e.parent().append(e);
               }
             }
           }
@@ -304,7 +309,9 @@ function whereDoTheyGo() {
                 let lineId = `line#line-${selected[i]}:${selected[j]}`.replace(/(\s|:|>|\*)/g, '-');
                 d3.select(lineId)
                 .transition()
-                .attr('stroke-width', d => '1px');
+                .attr('stroke-width', d => '1px')
+                .attr('stroke','black')
+                .attr('stroke-opacity','0.35');
               }
             }
           }
@@ -321,7 +328,9 @@ function whereDoTheyGo() {
         }
         d3.selectAll('line')
         .transition()
-        .attr('stroke-width', d => '1px');
+        .attr('stroke-width', d => '1px')
+        .attr('stroke','black')
+        .attr('stroke-opacity','0.35');
         delete wdtgEvents.selectedMovements;
         wdtgEvents.selectedMovements = {};
       }
