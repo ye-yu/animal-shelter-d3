@@ -458,6 +458,13 @@ function whereDoTheyGo(directoryPrefix='') {
         wdtgEvents.selectedMovements = {};
       }
 
+      let instructionMessage = svg.append('text')
+      .attr('class', 'vis-body small')
+      .attr('text-anchor', 'middle')
+      .attr('x', `${graphDimension.marginX + graphDimension.width/2}px`)
+      .attr('y', `${graphDimension.offsetTop - 10}px`)
+      .text('(Click on the boxes that are linked to view animal count.)');
+
       let clearButton = svg.append('g');
       clearButton.attr('id', 'wdtg-clear-button')
       .attr('opacity', '0');
