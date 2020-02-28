@@ -16,3 +16,15 @@ html {
   border-top: solid gray 3px;
   border-bottom: solid gray 3px;
 }
+
+#header-background {
+  background: url(../resources/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+ul.list-preprend-right-arrow li::before{
+  content: ">";
+  padding-right: 5px;
+}
