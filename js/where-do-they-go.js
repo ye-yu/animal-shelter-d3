@@ -221,8 +221,8 @@ function whereDoTheyGo(directoryPrefix='') {
       .style('font-size', '0.55em')
       .attr('id', 'line-size-upper-limit-text')
       .attr('class', 'vis-body')
-      .attr('x', `${legendLineSizeAttr.width + 5}px`)
-      .attr('y', `10px`)
+      .attr('x', `${legendLineSizeAttr.width + 5}`)
+      .attr('y', `10`)
       .text('');
 
       d3.select('g#line-size-group')
@@ -230,8 +230,8 @@ function whereDoTheyGo(directoryPrefix='') {
       .style('font-size', '0.55em')
       .attr('id', 'line-size-lower-limit-text')
       .attr('class', 'vis-body')
-      .attr('x', `${legendLineSizeAttr.width + 5}px`)
-      .attr('y', `${$('#wdtg-line-size-legend').height() - 5}px`)
+      .attr('x', `${legendLineSizeAttr.width + 5}`)
+      .attr('y', `${$('#wdtg-line-size-legend').height() - 5}`)
       .text('Select at least two linked boxes');
 
 
@@ -385,12 +385,27 @@ function whereDoTheyGo(directoryPrefix='') {
         }
       }
 
-      function showSelectOneMoreBox() {
-        d3.select('text#line-size-lower-limit-text')
-        .text('Select one more linked box');
-        d3.select('text#line-size-upper-limit-text')
-        .text('');
+      function transitionText(selected, text) {
+        if (selected.text() == text) {
+          return;
+        }
 
+        let offset = 800;
+        let initialX = selected.attr('x');
+        selected.transition(100)
+        .attr('opacity', 0)
+        .on('end', () => {
+          selected.attr('x', initialX - offset)
+          .text(text)
+          .attr('opacity', 1)
+          .transition(100)
+          .attr('x', initialX);
+        });
+      }
+
+      function showSelectOneMoreBox() {
+        transitionText(d3.select('text#line-size-upper-limit-text'), '');
+        transitionText(d3.select('text#line-size-lower-limit-text'), 'Select one more linked box');
         d3.selectAll('line')
         .transition()
         .attr('stroke-width', d => '1px')
@@ -399,10 +414,13 @@ function whereDoTheyGo(directoryPrefix='') {
       }
 
       function showSelectTwoBoxes() {
-        d3.select('text#line-size-lower-limit-text')
-        .text('Select at least two linked boxes');
-        d3.select('text#line-size-upper-limit-text')
-        .text('');
+        transitionText(d3.select('text#line-size-upper-limit-text'), '');
+        transitionText(d3.select('text#line-size-lower-limit-text'), 'Select at least two linked boxes');
+      }
+
+      function updateLineSizeLimits(lower, upper) {
+        transitionText(d3.select('text#line-size-lower-limit-text'), lower);
+        transitionText(d3.select('text#line-size-upper-limit-text'), upper);
       }
 
       function updateLineSizeLegend() {
@@ -433,10 +451,7 @@ function whereDoTheyGo(directoryPrefix='') {
             .transition()
             .attr('stroke-width', i => `${15}px`)
             .attr('stroke-opacity','0.8');
-            d3.select('text#line-size-lower-limit-text')
-            .text(count);
-            d3.select('text#line-size-upper-limit-text')
-            .text(count);
+            updateLineSizeLimits(count, count);
           } else if (wdtgEvents.currentConsecutivesCount == 0) {
             showSelectOneMoreBox();
           } else {
@@ -448,10 +463,7 @@ function whereDoTheyGo(directoryPrefix='') {
             .transition()
             .attr('stroke-width', i => `${lineScale(legendLineSizeScale(i))}px`)
             .attr('stroke-opacity','0.8');
-            d3.select('text#line-size-lower-limit-text')
-            .text(min);
-            d3.select('text#line-size-upper-limit-text')
-            .text(max);
+            updateLineSizeLimits(min, max);
           }
         } else {
           d3.selectAll('line.line-size-legend')
