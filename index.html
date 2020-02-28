@@ -11,7 +11,7 @@
 
 <!-- body -->
 <body>
-  <div class="container-fluid">
+  <div class="container-fluid mb-5">
     <div class="row mt-5 border-top">
       <div class="col bg-light display-4 vis-title text-center py-4 shadow">
         Life in the Animal Shelter
@@ -46,6 +46,87 @@
       <div class="col-2 py-5"></div>
     </div>
   </div>
+
+  <!-- visualisation-1 -->
+  <style media="screen">
+    .btn-xs {
+      font-size: 0.75em;
+      padding: 3px 5px;
+    }
+
+    .btn-compact {
+      background-color: #f7f7f7;
+      border: solid #aaa 1px;
+    }
+
+    .btn-compact.active {
+      background-color: #eee;
+      border: solid #666 1px;
+    }
+
+    .border-top-thick {
+      border-top: solid gray 2px;
+    }
+
+    .border-bottom-thick {
+      border-bottom: solid gray 2px;
+    }
+  </style>
+  <div class="container-fluid" id="where-do-they-come-from">
+    <div class="mx-auto px-2 py-2 h2 vis-title text-center text-capitalize text-dark title-border"
+         style="width:60%">
+      Where do they come from?
+      <div class="h6 mt-3 vis-body">
+        Stacked line chart of the animal intake count over the
+        quarter of the year &amp; their intake reason in
+        <br>
+        <a href="https://bloomington.in.gov/animal-shelter"
+        target="_blank">
+          Animal Care & Control, Bloomington, Indiana
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3">
+    <div class="row flex-lg-row flex-column-reverse">
+      <div class="col-lg-9" id="wdtcm-container">
+        <svg id="wdtcm-graph">
+        </svg>
+      </div>
+      <div class="col-lg-3">
+        <div class="text-center bg-light border border-rounded py-2 mb-2 vis-body align-middle mt-3" style="font-size:0.75em">
+          <b>View by:</b>
+          <div class="btn-group ml-1 btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-compact btn-xs active">
+              <input type="radio" name="view-by" id="wdtcm-count" autocomplete="off" checked>
+              Count
+            </label>
+            <label class="btn btn-compact btn-xs">
+              <input type="radio" name="view-by" id="wdtcm-percentage" autocomplete="off">
+              Percentage
+            </label>
+          </div>
+        </div>
+        <ul class="list-group vis-body border-top border-bottom my-4" id="wdtcm-extra-information-container">
+          <li class="list-group-item text-center pb-0 font-weight-bold border-0">Description</li>
+          <li class="list-group-item pt-0 pb-2 border-0" id="wdtcm-extra-information">
+          </li>
+        </ul>
+        <ul class="list-group vis-body border-top border-bottom my-4" id="wdtcm-legend-container">
+          <li class="list-group-item text-center py-2 font-weight-bold border-0">Legend</li>
+        </ul>
+        <div class="vis-body text-center small" id="wdtcm-instruction">
+          <span class="action font-weight-bold">Hover over</span> the area or
+          <span class="action font-weight-bold">change the y-axis view</span> by clicking the option
+          above to look at the elaboration of the data.
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2 py-3 border-top-thick border-bottom-thick">
+      <div class="col text-center" id="wdtcm-description">
+      </div>
+    </div>
+  </div>
 </body>
 
 <!-- javascript -->
@@ -57,3 +138,9 @@
         crossorigin="anonymous"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="js/index.js"></script>
+<script src="js/where-do-they-come-from.js"></script>
+<script type="text/javascript">
+  window.onload = () => {
+    whereDoTheyComeFrom('resources/');
+  }
+</script>
