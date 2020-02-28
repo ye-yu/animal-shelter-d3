@@ -298,8 +298,6 @@ function whereDoTheyGo() {
             highlightSelectedMovement();
           }
 
-          updateLineSizeLegend();
-
           if (Object.keys(wdtgEvents.selectedMovements).length > 0) {
             d3.select('g#wdtg-clear-button')
             .transition()
@@ -325,6 +323,7 @@ function whereDoTheyGo() {
       }
 
       function highlightSelectedMovement() {
+        updateLineSizeLegend();
         if (Object.keys(wdtgEvents.selectedMovements).length > 1) {
           let movements = Object.keys(data);
           let selected = tuplize(wdtgEvents.selectedMovements)
@@ -337,7 +336,12 @@ function whereDoTheyGo() {
                 let lineId = `line#line-${selected[i]}:${selected[j]}`.replace(/(\s|:|>|\*)/g, '-');
                 d3.select(lineId)
                 .transition()
-                .attr('stroke-width', d => `${lineScale(d.count)}`)
+                .attr('stroke-width', d => {
+                  if (selected.length > 2) {
+                    return `${lineScale(d.count)}`;
+                  }
+                  return '15px';
+                  })
                 .attr('stroke','black')
                 .attr('stroke-opacity','0.8');
 
@@ -371,10 +375,30 @@ function whereDoTheyGo() {
           }
         }
         delete wdtgEvents.selectedMovements[unhighlighted];
+        highlightSelectedMovement();
       }
 
       function updateLineSizeLegend() {
-        if (Object.keys(wdtgEvents.selectedMovements).length > 1) {
+        if (Object.keys(wdtgEvents.selectedMovements).length == 2) {
+          let a = Object.keys(wdtgEvents.selectedMovements)[0];
+          let b = Object.keys(wdtgEvents.selectedMovements)[1];
+          if (consecutiveMovement(b, a)) {
+            let temp = a;
+            a = b;
+            b = temp;
+          }
+          if (movementCount[a][b]) {
+            let count = movementCount[a][b]['Total'];
+            d3.selectAll('line.line-size-legend')
+            .transition()
+            .attr('stroke-width', i => `${15}px`)
+            .attr('stroke-opacity','0.8');
+            d3.select('text#line-size-lower-limit-text')
+            .text(count);
+            d3.select('text#line-size-upper-limit-text')
+            .text(count);
+          }
+        } else if (Object.keys(wdtgEvents.selectedMovements).length > 1) {
           let movements = Object.keys(data);
           let selected = tuplize(wdtgEvents.selectedMovements)
           .map(x => x[0])
@@ -392,6 +416,7 @@ function whereDoTheyGo() {
           }
           let max = d3.max(counts);
           let min = d3.min(counts);
+          lineScale.domain([min, max]).range([3, 15]);
           legendLineSizeScale.range([max, min]);
           d3.selectAll('line.line-size-legend')
           .transition()
