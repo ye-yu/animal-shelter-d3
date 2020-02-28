@@ -1,3 +1,5 @@
+"use strict";
+
 function whereDoTheyComeFrom(directoryPrefix='') {
   function updateGeneralDescription(text, focus=true) {
     $("#wdtcm-description").html(text);
