@@ -127,7 +127,7 @@ function whereDoTheyComeFrom() {
           /* draw stacked line char */
           svg.attr('width', containerWidth + 'px')
           .attr('height', (1.1 * (graphDimension.offsetTop + containerHeight)) + 'px')
-          .selectAll('path')
+          .selectAll('svg#wdtcm-graph path')
           .data(stacked)
           .enter()
           .append('path')
@@ -278,17 +278,17 @@ function whereDoTheyComeFrom() {
 
           /* add action on button click */
           $('#wdtcm-count').click(e => {
-            d3.select("#wdtcm-xaxis-label")
+            d3.select("svg#wdtcm-graph #wdtcm-xaxis-label")
             .text("Count");
 
             yScale=yScale.domain([1, maxOverQuarter])
             .nice();
 
-            svg.select("g#wdtcm-yaxis")
+            svg.select("svg#wdtcm-graph g#wdtcm-yaxis")
             .transition()
             .call(d3.axisLeft(yScale));
 
-            d3.selectAll('path.wdtcm-plot')
+            d3.selectAll('svg#wdtcm-graph path.wdtcm-plot')
             .transition()
             .attr('d', s => drawCountArea(s));
 
@@ -297,17 +297,17 @@ function whereDoTheyComeFrom() {
           });
 
           $('#wdtcm-percentage').click(e => {
-            d3.select("#wdtcm-xaxis-label")
+            d3.select("svg#wdtcm-graph #wdtcm-xaxis-label")
             .text("Percentage (%)");
 
             yScale=yScale.domain([0, 100])
             .nice();
 
-            svg.select("g#wdtcm-yaxis")
+            svg.select("svg#wdtcm-graph g#wdtcm-yaxis")
             .transition()
             .call(d3.axisLeft(yScale));
 
-            d3.selectAll('path.wdtcm-plot')
+            d3.selectAll('svg#wdtcm-graph path.wdtcm-plot')
             .transition()
             .attr('d', s => drawPercentageArea(s));
 
