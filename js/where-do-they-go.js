@@ -1,6 +1,6 @@
 "use strict";
 
-function whereDoTheyGo() {
+function whereDoTheyGo(directoryPrefix='') {
   let containerWidth=$('#wdtg-container').width();
   let containerHeight=containerWidth*0.4;
 
@@ -34,7 +34,7 @@ function whereDoTheyGo() {
   .attr('y', `${graphDimension.offsetTop / 2}px`)
   .text("Parallel Linked Heatmap of Animals' Movement");
 
-  d3.json('movement.json').then(data => {
+  d3.json(directoryPrefix + 'movement.json').then(data => {
     /* get minimum and maximum values */
     let totals = tuplize(data)
     totals = totals.map(x => tuplize(x[1]).filter(x => x[0] !== 'Total'));
@@ -110,7 +110,7 @@ function whereDoTheyGo() {
     .attr('x', (d, i) => `${graphDimension.marginX + 0.5 * movementContainer.width + i * (movementContainer.width + linksContainer.width)}px`)
     .text(d => `${d[0]} Movement`);
 
-    d3.json('movement-count.json').then(movementCount => {
+    d3.json(directoryPrefix + 'movement-count.json').then(movementCount => {
       function consecutiveMovement(a, b) {
         a = a.split(/:/)[0];
         b = b.split(/:/)[0];
