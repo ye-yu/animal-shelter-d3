@@ -218,7 +218,7 @@ function whereDoTheyGo(directoryPrefix='') {
 
       d3.select('div#wdtg-graph-and-legend-container g#line-size-group')
       .append('text')
-      .style('font-size', '0.55em')
+      .style('font-size', '0.7em')
       .attr('id', 'line-size-upper-limit-text')
       .attr('class', 'vis-body')
       .attr('x', `${legendLineSizeAttr.width + 5}`)
@@ -227,7 +227,7 @@ function whereDoTheyGo(directoryPrefix='') {
 
       d3.select('div#wdtg-graph-and-legend-container g#line-size-group')
       .append('text')
-      .style('font-size', '0.55em')
+      .style('font-size', '0.7em')
       .attr('id', 'line-size-lower-limit-text')
       .attr('class', 'vis-body')
       .attr('x', `${legendLineSizeAttr.width + 5}`)
