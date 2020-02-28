@@ -22,7 +22,8 @@ function whereDoTheyGo() {
   .attr('height', `${containerHeight}px`);
 
   let wdtgEvents = {
-    selectedMovements: {}
+    selectedMovements: {},
+    currentConsecutivesCount: 0
   };
 
   /* set title of the graph */
@@ -337,7 +338,7 @@ function whereDoTheyGo() {
                 d3.select(lineId)
                 .transition()
                 .attr('stroke-width', d => {
-                  if (selected.length > 2) {
+                  if (wdtgEvents.currentConsecutivesCount > 1) {
                     return `${lineScale(d.count)}`;
                   }
                   return '15px';
@@ -379,15 +380,28 @@ function whereDoTheyGo() {
       }
 
       function updateLineSizeLegend() {
-        if (Object.keys(wdtgEvents.selectedMovements).length == 2) {
-          let a = Object.keys(wdtgEvents.selectedMovements)[0];
-          let b = Object.keys(wdtgEvents.selectedMovements)[1];
-          if (consecutiveMovement(b, a)) {
-            let temp = a;
-            a = b;
-            b = temp;
+        if (Object.keys(wdtgEvents.selectedMovements).length > 1) {
+          let movements = Object.keys(data);
+          let selected = tuplize(wdtgEvents.selectedMovements)
+          .map(x => x[0])
+          .sort((a, b) => movements.indexOf(a.split(/:/)[0]) - movements.indexOf(b.split(/:/)[0]));
+
+          let counts = [];
+          let pair = [];
+          for (let i = 0; i < selected.length - 1; i++) {
+            for (let j = i + 1; j < selected.length; j++) {
+              if (consecutiveMovement(selected[i], selected[j])) {
+                if(movementCount[selected[i]][selected[j]]) {
+                  counts.push(movementCount[selected[i]][selected[j]]['Total']);
+                  pair.push([i, j]);
+                }
+              }
+            }
           }
-          if (movementCount[a][b]) {
+          wdtgEvents.currentConsecutivesCount = counts.length;
+          if (wdtgEvents.currentConsecutivesCount == 1) {
+            let a = selected[pair[0][0]];
+            let b = selected[pair[0][1]];
             let count = movementCount[a][b]['Total'];
             d3.selectAll('line.line-size-legend')
             .transition()
@@ -397,35 +411,20 @@ function whereDoTheyGo() {
             .text(count);
             d3.select('text#line-size-upper-limit-text')
             .text(count);
+          } else {
+            let max = d3.max(counts);
+            let min = d3.min(counts);
+            lineScale.domain([min, max]).range([3, 15]);
+            legendLineSizeScale.range([max, min]);
+            d3.selectAll('line.line-size-legend')
+            .transition()
+            .attr('stroke-width', i => `${lineScale(legendLineSizeScale(i))}px`)
+            .attr('stroke-opacity','0.8');
+            d3.select('text#line-size-lower-limit-text')
+            .text(min);
+            d3.select('text#line-size-upper-limit-text')
+            .text(max);
           }
-        } else if (Object.keys(wdtgEvents.selectedMovements).length > 1) {
-          let movements = Object.keys(data);
-          let selected = tuplize(wdtgEvents.selectedMovements)
-          .map(x => x[0])
-          .sort((a, b) => movements.indexOf(a.split(/:/)[0]) - movements.indexOf(b.split(/:/)[0]));
-
-          let counts = [];
-          for (let i = 0; i < selected.length - 1; i++) {
-            for (let j = i + 1; j < selected.length; j++) {
-              if (consecutiveMovement(selected[i], selected[j])) {
-                if(movementCount[selected[i]][selected[j]]) {
-                  counts.push(movementCount[selected[i]][selected[j]]['Total']);
-                }
-              }
-            }
-          }
-          let max = d3.max(counts);
-          let min = d3.min(counts);
-          lineScale.domain([min, max]).range([3, 15]);
-          legendLineSizeScale.range([max, min]);
-          d3.selectAll('line.line-size-legend')
-          .transition()
-          .attr('stroke-width', i => `${lineScale(legendLineSizeScale(i))}px`)
-          .attr('stroke-opacity','0.8');
-          d3.select('text#line-size-lower-limit-text')
-          .text(min);
-          d3.select('text#line-size-upper-limit-text')
-          .text(max);
         } else {
           d3.selectAll('line.line-size-legend')
           .transition()
