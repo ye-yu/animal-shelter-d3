@@ -53,9 +53,9 @@ function whereDoTheyGo() {
     legendHeatmapAttr.divisions = 200;
     legendHeatmapAttr.boxWidth = legendHeatmapAttr.width / legendHeatmapAttr.divisions;
     legendHeatmapAttr.boxHeight = 20;
-    let legendScale = d3.scaleLinear().domain([0, legendHeatmapAttr.divisions-1]).range([min, max]);
+    let legendHeatmapScale = d3.scaleLinear().domain([0, legendHeatmapAttr.divisions-1]).range([min, max]);
     for(let i of range(legendHeatmapAttr.divisions)) {
-      let boxFill = legendScale(i);
+      let boxFill = legendHeatmapScale(i);
       boxFill = heatmapColour(boxFill);
       d3.select('svg#wdtg-heatmap-legend')
       .attr('width', `${legendHeatmapAttr.width}px`)
@@ -138,7 +138,7 @@ function whereDoTheyGo() {
       /* draw line between boxes */
       let lineCountMin = d3.min(consecutiveCount.map(x => x[2]));
       let lineCountMax = d3.max(consecutiveCount.map(x => x[2]));
-      let lineScale = d3.scaleLog()
+      let lineScale = d3.scaleLinear()
       .domain([lineCountMin,lineCountMax])
       .range([3, 15]);
 
@@ -182,6 +182,58 @@ function whereDoTheyGo() {
       .attr('stroke-width', '1px')
       .attr('stroke-opacity', '0.35')
       .attr('stroke-linecap', 'round');
+
+      /* draw line size legend */
+      let legendLineSizeAttr = {};
+      legendLineSizeAttr.width = 0.3 * $('#wdtg-legend-container').width();
+      legendLineSizeAttr.divisions = 50;
+      legendLineSizeAttr.height = 0.8 * legendLineSizeAttr.width / legendLineSizeAttr.divisions;
+
+      let legendLineSizeScale = d3.scaleLinear()
+      .domain([0, legendLineSizeAttr.divisions-1])
+      .range([15, 3]);
+
+      let lineData = [];
+      for(let i of range(legendLineSizeAttr.divisions)) {
+        lineData.push(i)
+      }
+
+      d3.select('svg#wdtg-line-size-legend')
+      .attr('width', `${$('#wdtg-legend-container').width()}px`)
+      .attr('height', `${legendLineSizeAttr.height * legendLineSizeAttr.divisions}px`)
+      .append('g')
+      .attr('id', 'line-size-group')
+      .selectAll('line.line-size-legend')
+      .data(lineData)
+      .enter()
+      .append('line')
+      .attr('class', 'line-size-legend')
+      .attr('x1', `${legendLineSizeAttr.width/2}px`)
+      .attr('x2', `${legendLineSizeAttr.width/2}px`)
+      .attr('y1', i => `${i * legendLineSizeAttr.height}px`)
+      .attr('y2', i => `${(i+1) * legendLineSizeAttr.height}px`)
+      .attr('stroke-width', i => `0.5px`)
+      .attr('stroke','black')
+      .attr('stroke-opacity','1');
+
+      d3.select('g#line-size-group')
+      .append('text')
+      .style('font-size', '0.55em')
+      .attr('id', 'line-size-upper-limit-text')
+      .attr('class', 'vis-body')
+      .attr('x', `${legendLineSizeAttr.width + 5}px`)
+      .attr('y', `10px`)
+      .text('undefined');
+
+      d3.select('g#line-size-group')
+      .append('text')
+      .style('font-size', '0.55em')
+      .attr('id', 'line-size-lower-limit-text')
+      .attr('class', 'vis-body')
+      .attr('x', `${legendLineSizeAttr.width + 5}px`)
+      .attr('y', `${$('#wdtg-line-size-legend').height() - 5}px`)
+      .text('undefined');
+
 
       /* draw individual movement boxes */
       for(let {index, value} of enumerate(data)) {
@@ -245,6 +297,8 @@ function whereDoTheyGo() {
             .style('stroke-width', '2px');
             highlightSelectedMovement();
           }
+
+          updateLineSizeLegend();
 
           if (Object.keys(wdtgEvents.selectedMovements).length > 0) {
             d3.select('g#wdtg-clear-button')
@@ -319,6 +373,45 @@ function whereDoTheyGo() {
         delete wdtgEvents.selectedMovements[unhighlighted];
       }
 
+      function updateLineSizeLegend() {
+        if (Object.keys(wdtgEvents.selectedMovements).length > 1) {
+          let movements = Object.keys(data);
+          let selected = tuplize(wdtgEvents.selectedMovements)
+          .map(x => x[0])
+          .sort((a, b) => movements.indexOf(a.split(/:/)[0]) - movements.indexOf(b.split(/:/)[0]));
+
+          let counts = [];
+          for (let i = 0; i < selected.length - 1; i++) {
+            for (let j = i + 1; j < selected.length; j++) {
+              if (consecutiveMovement(selected[i], selected[j])) {
+                if(movementCount[selected[i]][selected[j]]) {
+                  counts.push(movementCount[selected[i]][selected[j]]['Total']);
+                }
+              }
+            }
+          }
+          let max = d3.max(counts);
+          let min = d3.min(counts);
+          legendLineSizeScale.range([max, min]);
+          d3.selectAll('line.line-size-legend')
+          .transition()
+          .attr('stroke-width', i => `${lineScale(legendLineSizeScale(i))}px`)
+          .attr('stroke-opacity','0.8');
+          d3.select('text#line-size-lower-limit-text')
+          .text(min);
+          d3.select('text#line-size-upper-limit-text')
+          .text(max);
+        } else {
+          d3.selectAll('line.line-size-legend')
+          .transition()
+          .attr('stroke-width', i => `0.5px`);
+          d3.select('text#line-size-lower-limit-text')
+          .text('undefined');
+          d3.select('text#line-size-upper-limit-text')
+          .text('undefined');
+        }
+      }
+
       function unselectAllBoxes() {
         for(let selected in wdtgEvents.selectedMovements) {
           d3.select(wdtgEvents.selectedMovements[selected])
@@ -331,6 +424,12 @@ function whereDoTheyGo() {
         .attr('stroke-width', d => '1px')
         .attr('stroke','black')
         .attr('stroke-opacity','0.35');
+
+        d3.select('text#line-size-lower-limit-text')
+        .text('undefined');
+        d3.select('text#line-size-upper-limit-text')
+        .text('undefined');
+
         delete wdtgEvents.selectedMovements;
         wdtgEvents.selectedMovements = {};
       }
