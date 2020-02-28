@@ -4,7 +4,7 @@ function whereDoTheyComeFrom(directoryPrefix='') {
   function updateGeneralDescription(text, focus=true) {
     $("#wdtcm-description").html(text);
     if (focus) {
-      window.location.hash = "where-do-they-come-from";
+      $('body').scrollTo('#wdtcm-full-container');
     }
   }
 
@@ -15,7 +15,7 @@ function whereDoTheyComeFrom(directoryPrefix='') {
   $('#wdtcm-extra-information-container').hide();
 
   let containerWidth=$('#wdtcm-container').width();
-  let containerHeight=containerWidth*0.5;
+  let containerHeight=containerWidth*0.75;
   containerHeight=0.75*containerHeight;
 
   let svg = d3.select('svg#wdtcm-graph');
