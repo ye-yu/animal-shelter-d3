@@ -199,7 +199,7 @@ function whereDoTheyGo(directoryPrefix='') {
       }
 
       d3.select('svg#wdtg-line-size-legend')
-      .attr('width', `${$('#wdtg-legend-container').width()}px`)
+      .attr('width', `${$('#wdtg-line-size-legend-container').width()}px`)
       .attr('height', `${legendLineSizeAttr.height * legendLineSizeAttr.divisions}px`)
       .append('g')
       .attr('id', 'line-size-group')
