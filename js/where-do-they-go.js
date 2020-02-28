@@ -223,7 +223,7 @@ function whereDoTheyGo(directoryPrefix='') {
       .attr('class', 'vis-body')
       .attr('x', `${legendLineSizeAttr.width + 5}px`)
       .attr('y', `10px`)
-      .text('undefined');
+      .text('');
 
       d3.select('g#line-size-group')
       .append('text')
@@ -232,7 +232,7 @@ function whereDoTheyGo(directoryPrefix='') {
       .attr('class', 'vis-body')
       .attr('x', `${legendLineSizeAttr.width + 5}px`)
       .attr('y', `${$('#wdtg-line-size-legend').height() - 5}px`)
-      .text('undefined');
+      .text('Select at least two linked boxes');
 
 
       /* draw individual movement boxes */
@@ -351,6 +351,8 @@ function whereDoTheyGo(directoryPrefix='') {
               }
             }
           }
+        } else {
+          showSelectOneMoreBox();
         }
       }
 
@@ -376,7 +378,31 @@ function whereDoTheyGo(directoryPrefix='') {
           }
         }
         delete wdtgEvents.selectedMovements[unhighlighted];
+        console.log(Object.keys(wdtgEvents.selectedMovements).length == 0);
         highlightSelectedMovement();
+        if (Object.keys(wdtgEvents.selectedMovements).length == 0) {
+          showSelectTwoBoxes();
+        }
+      }
+
+      function showSelectOneMoreBox() {
+        d3.select('text#line-size-lower-limit-text')
+        .text('Select one more linked box');
+        d3.select('text#line-size-upper-limit-text')
+        .text('');
+
+        d3.selectAll('line')
+        .transition()
+        .attr('stroke-width', d => '1px')
+        .attr('stroke','black')
+        .attr('stroke-opacity','0.35');
+      }
+
+      function showSelectTwoBoxes() {
+        d3.select('text#line-size-lower-limit-text')
+        .text('Select at least two linked boxes');
+        d3.select('text#line-size-upper-limit-text')
+        .text('');
       }
 
       function updateLineSizeLegend() {
@@ -411,6 +437,8 @@ function whereDoTheyGo(directoryPrefix='') {
             .text(count);
             d3.select('text#line-size-upper-limit-text')
             .text(count);
+          } else if (wdtgEvents.currentConsecutivesCount == 0) {
+            showSelectOneMoreBox();
           } else {
             let max = d3.max(counts);
             let min = d3.min(counts);
@@ -429,10 +457,7 @@ function whereDoTheyGo(directoryPrefix='') {
           d3.selectAll('line.line-size-legend')
           .transition()
           .attr('stroke-width', i => `0.5px`);
-          d3.select('text#line-size-lower-limit-text')
-          .text('undefined');
-          d3.select('text#line-size-upper-limit-text')
-          .text('undefined');
+          showSelectTwoBoxes();
         }
       }
 
@@ -449,11 +474,7 @@ function whereDoTheyGo(directoryPrefix='') {
         .attr('stroke','black')
         .attr('stroke-opacity','0.35');
 
-        d3.select('text#line-size-lower-limit-text')
-        .text('undefined');
-        d3.select('text#line-size-upper-limit-text')
-        .text('undefined');
-
+        showSelectTwoBoxes();
         delete wdtgEvents.selectedMovements;
         wdtgEvents.selectedMovements = {};
       }
