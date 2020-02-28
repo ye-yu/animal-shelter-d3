@@ -2,10 +2,9 @@
 
 function whereDoTheyGo() {
   let containerWidth=$('#wdtg-container').width();
-  let containerHeight=containerWidth*0.5;
+  let containerHeight=containerWidth*0.4;
 
   let svg = d3.select('svg#wdtg-graph');
-  let legend = d3.select('svg#wdtg-legend');
 
   let xCoverage=0.95;
   let yCoverage=0.95;
@@ -49,7 +48,7 @@ function whereDoTheyGo() {
 
     /* create heatmap legend */
     let legendHeatmapAttr = {};
-    legendHeatmapAttr.width = $('#wdtg-legend-container').width();
+    legendHeatmapAttr.width = $('#wdtg-heatmap-legend-container').width();
     legendHeatmapAttr.divisions = 200;
     legendHeatmapAttr.boxWidth = legendHeatmapAttr.width / legendHeatmapAttr.divisions;
     legendHeatmapAttr.boxHeight = 20;
@@ -91,7 +90,7 @@ function whereDoTheyGo() {
     let movementContainer = {};
 
     movementContainer.width = graphDimension.width * movementToLinksRatio / nMovements;
-    movementContainer.height = movementContainer.width * 0.35;
+    movementContainer.height = movementContainer.width * 0.25;
 
     let linksContainer = {};
     linksContainer.width = graphDimension.width - (movementContainer.width * nMovements);
@@ -185,7 +184,7 @@ function whereDoTheyGo() {
 
       /* draw line size legend */
       let legendLineSizeAttr = {};
-      legendLineSizeAttr.width = 0.3 * $('#wdtg-legend-container').width();
+      legendLineSizeAttr.width = 0.3 * $('#wdtg-line-size-legend-container').width();
       legendLineSizeAttr.divisions = 50;
       legendLineSizeAttr.height = 0.8 * legendLineSizeAttr.width / legendLineSizeAttr.divisions;
 
@@ -284,6 +283,7 @@ function whereDoTheyGo() {
         .attr('selected', false)
         .style("pointer-events", "all")
         .on("click", function(d, i) {
+          window.location.hash = "wdtg-container";
           let element = d3.select(this);
           if (element.attr('selected') == 'true') {
             element.attr('selected', false)
