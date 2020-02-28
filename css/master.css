@@ -11,3 +11,8 @@
 html {
  scroll-behavior: smooth;
 }
+
+.title-border {
+  border-top: solid gray 3px;
+  border-bottom: solid gray 3px;
+}
