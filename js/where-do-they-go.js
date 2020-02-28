@@ -26,8 +26,6 @@ function whereDoTheyGo() {
     selectedMovements: {}
   };
 
-  console.log(graphDimension);
-
   /* set title of the graph */
   svg.append('text')
   .attr('class', 'vis-title h5')
@@ -168,7 +166,6 @@ function whereDoTheyGo() {
         to: splitToMovement(x[1]),
         count: x[2]
       }));
-      console.log(consecutiveCount);
 
       svg.append('g')
       .attr('id', 'line-group')
@@ -206,7 +203,6 @@ function whereDoTheyGo() {
         .attr('stroke', 'gray')
         .attr('stroke-width', '0px');
 
-        // console.log("box", value, "array", nMovement);
         /* append each movement box label */
         g.selectAll(`text.movement-${index}-rect`)
         .data(nMovement)
@@ -281,11 +277,9 @@ function whereDoTheyGo() {
           .map(x => x[0])
           .sort((a, b) => movements.indexOf(a.split(/:/)[0]) - movements.indexOf(b.split(/:/)[0]));
 
-          let pairs = []
           for (let i = 0; i < selected.length - 1; i++) {
             for (let j = i + 1; j < selected.length; j++) {
               if (consecutiveMovement(selected[i], selected[j])) {
-                pairs.push([`${selected[i]}:${selected[j]}`]);
                 let lineId = `line#line-${selected[i]}:${selected[j]}`.replace(/(\s|:|>|\*)/g, '-');
                 d3.select(lineId)
                 .transition()
@@ -293,7 +287,6 @@ function whereDoTheyGo() {
               }
             }
           }
-          console.log(pairs);
         }
       }
 
@@ -304,12 +297,10 @@ function whereDoTheyGo() {
           .map(x => x[0])
           .sort((a, b) => movements.indexOf(a.split(/:/)[0]) - movements.indexOf(b.split(/:/)[0]));
 
-          let pairs = []
           for (let i = 0; i < selected.length - 1; i++) {
             for (let j = i + 1; j < selected.length; j++) {
               if (consecutiveMovement(selected[i], selected[j]) &&
                   isinarray([selected[i], selected[j]], unhighlighted)) {
-                pairs.push([`${selected[i]}:${selected[j]}`]);
                 let lineId = `line#line-${selected[i]}:${selected[j]}`.replace(/(\s|:|>|\*)/g, '-');
                 d3.select(lineId)
                 .transition()
@@ -317,7 +308,6 @@ function whereDoTheyGo() {
               }
             }
           }
-          console.log("Unselected", pairs);
         }
         delete wdtgEvents.selectedMovements[unhighlighted];
       }
