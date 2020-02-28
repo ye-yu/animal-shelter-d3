@@ -1,4 +1,4 @@
-function whereDoTheyComeFrom() {
+function whereDoTheyComeFrom(directoryPrefix='') {
   function updateGeneralDescription(text, focus=true) {
     $("#wdtcm-description").html(text);
     if (focus) {
@@ -34,7 +34,7 @@ function whereDoTheyComeFrom() {
 
   let yScale = d3.scaleLinear();
   let xScale = d3.scaleLinear();
-  d3.json("intakes.json")
+  d3.json(directoryPrefix + "intakes.json")
   .then(data => {
 
     /* calculate y-axis scale */
