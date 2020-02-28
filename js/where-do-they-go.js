@@ -49,7 +49,7 @@ function whereDoTheyGo() {
     .range([0.1, 0.35]);
     let heatmapColour = (domain) => d3.interpolateYlOrBr(colourScale(domain));
 
-    /* create legend */
+    /* create heatmap legend */
     let legendHeatmapAttr = {};
     legendHeatmapAttr.width = $('#wdtg-legend-container').width();
     legendHeatmapAttr.divisions = 200;
@@ -60,6 +60,8 @@ function whereDoTheyGo() {
       let boxFill = legendScale(i);
       boxFill = heatmapColour(boxFill);
       d3.select('svg#wdtg-heatmap-legend')
+      .attr('width', `${legendHeatmapAttr.width}px`)
+      .attr('height', `${0.3*legendHeatmapAttr.width}px`)
       .append('rect')
       .attr('class', 'heatmap-legend-box')
       .attr('x', `${i * legendHeatmapAttr.boxWidth}px`)
