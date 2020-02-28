@@ -3,11 +3,11 @@
 
 <!-- stylesheet -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous">
+rel="stylesheet"
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+crossorigin="anonymous">
 <link rel="stylesheet"
-      href="css/master.css">
+href="css/master.css">
 
 <!-- body -->
 <body>
@@ -17,8 +17,7 @@
         Life in the Animal Shelter
         <p class="vis-body h6">
           Visualisation of Data from
-          <a href="https://bloomington.in.gov/animal-shelter"
-          target="_blank">
+          <a href="https://bloomington.in.gov/animal-shelter" target="_blank">
             Animal Care & Control, Bloomington, Indiana
           </a>
         </p>
@@ -49,39 +48,37 @@
 
   <!-- visualisation-1 -->
   <style media="screen">
-    .btn-xs {
-      font-size: 0.75em;
-      padding: 3px 5px;
-    }
+  .btn-xs {
+    font-size: 0.75em;
+    padding: 3px 5px;
+  }
 
-    .btn-compact {
-      background-color: #f7f7f7;
-      border: solid #aaa 1px;
-    }
+  .btn-compact {
+    background-color: #f7f7f7;
+    border: solid #aaa 1px;
+  }
 
-    .btn-compact.active {
-      background-color: #eee;
-      border: solid #666 1px;
-    }
+  .btn-compact.active {
+    background-color: #eee;
+    border: solid #666 1px;
+  }
 
-    .border-top-thick {
-      border-top: solid gray 2px;
-    }
+  .border-top-thick {
+    border-top: solid gray 2px;
+  }
 
-    .border-bottom-thick {
-      border-bottom: solid gray 2px;
-    }
+  .border-bottom-thick {
+    border-bottom: solid gray 2px;
+  }
   </style>
   <div class="container-fluid" id="where-do-they-come-from">
-    <div class="mx-auto px-2 py-2 h2 vis-title text-center text-capitalize text-dark title-border"
-         style="width:60%">
+    <div class="mx-auto px-2 py-2 h2 vis-title text-center text-capitalize text-dark title-border" style="width:60%">
       Where do they come from?
       <div class="h6 mt-3 vis-body">
         Stacked line chart of the animal intake count over the
         quarter of the year &amp; their intake reason in
         <br>
-        <a href="https://bloomington.in.gov/animal-shelter"
-        target="_blank">
+        <a href="https://bloomington.in.gov/animal-shelter" target="_blank">
           Animal Care & Control, Bloomington, Indiana
         </a>
       </div>
@@ -127,22 +124,64 @@
       </div>
     </div>
   </div>
+  <div class="container-fluid my-5 vis-body" id="where-do-they-go">
+    <div class="mx-auto px-2 py-2 h2 vis-title text-center text-capitalize text-dark title-border" style="width:60%">
+      Where do they go?
+      <div class="h6 mt-3 vis-body">
+        Linked parallel chart of the animals movement until their final adoption state in
+        <br>
+        <a href="https://bloomington.in.gov/animal-shelter" target="_blank">
+          Animal Care & Control, Bloomington, Indiana
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3" id="wdtg-graph-and-legend-container">
+    <div class="row flex-lg-row flex-column-reverse">
+      <div class="col" id="wdtg-container">
+        <svg id="wdtg-graph">
+        </svg>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9" id="wdtg-heatmap-legend-container">
+        <div class="vis-body font-weight-bold py-1 text-center h6">
+          Heatmap Legend
+        </div>
+        <svg id="wdtg-heatmap-legend">
+        </svg>
+      </div>
+      <div class="col-3" id="wdtg-line-size-legend-container">
+        <div class="vis-body font-weight-bold py-1 text-center h6">
+          Line Size Legend
+        </div>
+        <svg id="wdtg-line-size-legend">
+        </svg>
+      </div>
+    </div>
+    <div class="row mt-2 py-3 border-top-thick border-bottom-thick">
+      <div class="col text-center" id="wdtg-description">
+      </div>
+    </div>
+  </div>
 </body>
 
 <!-- javascript -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-			  crossorigin="anonymous"></script>
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+crossorigin="anonymous"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="js/index.js"></script>
 <script src="js/where-do-they-come-from.js"></script>
+<script src="js/where-do-they-go.js"></script>
 <script type="text/javascript">
-  "use strict";
+"use strict";
 
-  window.onload = () => {
-    whereDoTheyComeFrom('resources/');
-  }
+window.onload = () => {
+  whereDoTheyComeFrom('resources/');
+  whereDoTheyGo('resources/');
+}
 </script>
