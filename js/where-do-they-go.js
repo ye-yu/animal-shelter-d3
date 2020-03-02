@@ -391,7 +391,6 @@ function whereDoTheyGo(directoryPrefix='') {
           }
         }
         delete wdtgEvents.selectedMovements[unhighlighted];
-        console.log(Object.keys(wdtgEvents.selectedMovements).length == 0);
         highlightSelectedMovement();
         if (Object.keys(wdtgEvents.selectedMovements).length == 0) {
           showSelectTwoBoxes();
