@@ -15,8 +15,7 @@ function whereDoTheyComeFrom(directoryPrefix='') {
   $('#wdtcm-extra-information-container').hide();
 
   let containerWidth=$('#wdtcm-container').width();
-  let containerHeight=containerWidth*0.75;
-  containerHeight=0.75*containerHeight;
+  let containerHeight=containerWidth*0.55;
 
   let svg = d3.select('svg#wdtcm-graph');
 
