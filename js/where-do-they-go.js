@@ -59,7 +59,7 @@ function whereDoTheyGo(directoryPrefix='') {
       boxFill = heatmapColour(boxFill);
       d3.select('div#wdtg-graph-and-legend-container svg#wdtg-heatmap-legend')
       .attr('width', `${legendHeatmapAttr.width}px`)
-      .attr('height', `${0.3*legendHeatmapAttr.width}px`)
+      .attr('height', `${0.1*legendHeatmapAttr.width}px`)
       .append('rect')
       .attr('class', 'heatmap-legend-box')
       .attr('x', `${i * legendHeatmapAttr.boxWidth}px`)
