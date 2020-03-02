@@ -1,0 +1,132 @@
+{
+  "name": "Animal",
+  "children": [
+    {
+      "name": "Cat",
+      "children": [
+        {
+          "name": "Domestic Long Hair",
+          "value": 19.24561403508772
+        },
+        {
+          "name": "Domestic Medium Hair",
+          "value": 12.508064516129032
+        },
+        {
+          "name": "Domestic Short Hair",
+          "value": 19.970967741935485
+        },
+        {
+          "name": "Others",
+          "value": 20.153846153846153
+        }
+      ]
+    },
+    {
+      "name": "Dog",
+      "children": [
+        {
+          "name": "Beagle",
+          "value": 24.3265306122449
+        },
+        {
+          "name": "Beagle/Mix",
+          "value": 12.37037037037037
+        },
+        {
+          "name": "Border Collie/Mix",
+          "value": 12.916666666666666
+        },
+        {
+          "name": "Boxer",
+          "value": 10.0
+        },
+        {
+          "name": "Bully Breed Mix",
+          "value": 31.757575757575758
+        },
+        {
+          "name": "Chihuahua",
+          "value": 16.976744186046513
+        },
+        {
+          "name": "German Shepherd Dog",
+          "value": 14.6
+        },
+        {
+          "name": "Hound",
+          "value": 44.8
+        },
+        {
+          "name": "Hound/Mix",
+          "value": 27.653846153846153
+        },
+        {
+          "name": "Husky",
+          "value": 13.875
+        },
+        {
+          "name": "Labrador Retriever",
+          "value": 12.404761904761905
+        },
+        {
+          "name": "Labrador Retriever/Mix",
+          "value": 21.88888888888889
+        },
+        {
+          "name": "Mix",
+          "value": 10.0
+        },
+        {
+          "name": "Others",
+          "value": 34.109350237717905
+        },
+        {
+          "name": "Pitbull",
+          "value": 85.15
+        },
+        {
+          "name": "Shep Mix",
+          "value": 19.818181818181817
+        }
+      ]
+    },
+    {
+      "name": "Others",
+      "children": [
+        {
+          "name": "Bird",
+          "value": 3.0
+        },
+        {
+          "name": "Guinea Pig",
+          "value": 9.0
+        },
+        {
+          "name": "Hedgehog",
+          "value": 2.857142857142857
+        },
+        {
+          "name": "House Rabbit",
+          "value": 50.770833333333336
+        },
+        {
+          "name": "Livestock",
+          "value": 16.0
+        },
+        {
+          "name": "Mouse",
+          "value": 3.4
+        },
+        {
+          "name": "Pig",
+          "value": 10.5
+        },
+        {
+          "name": "Rat",
+          "value": 14.625
+        }
+      ]
+    }
+  ]
+}
