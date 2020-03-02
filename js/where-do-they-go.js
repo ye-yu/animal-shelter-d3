@@ -40,35 +40,51 @@ function whereDoTheyGo(directoryPrefix='') {
     let totals = tuplize(data)
     totals = totals.map(x => tuplize(x[1]).filter(x => x[0] !== 'Total'));
     totals = totals.reduce((a, b) => a.concat(b));
-    totals = totals.map(x => x[1]['Total']);
-    let min = d3.min(totals);
-    let max = d3.max(totals)
-    let colourScale = d3.scaleLog()
-    .domain([min, max])
-    .range([0.1, 0.35]);
+    totals = totals.map(x => x[1]['Total']).sort((a, b) => a - b);
+
+    function binArray(arr, size) {
+      if (arr.length === 0) { return arr; }
+      return [ arr.slice(0, size), ...binArray(arr.slice(size), size) ];
+    }
+    let bins = 8;
+    let binSize = Math.floor(totals.length/bins);
+    let binBoundaries = binArray(totals, binSize).map(x => x[x.length-1]);
+    bins = binBoundaries.length;
+    let binMap = arange(bins).map(x => x / bins / 2);
+
+    let heatmapMin = d3.min(totals);
+    let heatmapMax = d3.max(totals);
+    let colourScale = d3.scaleThreshold()
+    .domain(binBoundaries)
+    .range(binMap);
     let heatmapColour = (domain) => d3.interpolateYlOrBr(colourScale(domain));
 
     /* create heatmap legend */
     let legendHeatmapAttr = {};
     legendHeatmapAttr.width = $('#wdtg-heatmap-legend-container').width();
-    legendHeatmapAttr.divisions = 200;
+    legendHeatmapAttr.divisions = bins;
     legendHeatmapAttr.boxWidth = legendHeatmapAttr.width / legendHeatmapAttr.divisions;
     legendHeatmapAttr.boxHeight = 20;
-    let legendHeatmapScale = d3.scaleLinear().domain([0, legendHeatmapAttr.divisions-1]).range([min, max]);
-    for(let i of range(legendHeatmapAttr.divisions)) {
-      let boxFill = legendHeatmapScale(i);
-      boxFill = heatmapColour(boxFill);
-      d3.select('div#wdtg-graph-and-legend-container svg#wdtg-heatmap-legend')
-      .attr('width', `${legendHeatmapAttr.width}px`)
-      .attr('height', `${0.1*legendHeatmapAttr.width}px`)
-      .append('rect')
-      .attr('class', 'heatmap-legend-box')
-      .attr('x', `${i * legendHeatmapAttr.boxWidth}px`)
-      .attr('y', `10px`)
-      .attr('width', `${legendHeatmapAttr.boxWidth + 1}px`)
-      .attr('height', `${legendHeatmapAttr.boxHeight}px`)
-      .attr('fill', `${boxFill}`);
-    }
+    let legendHeatmapScale = d3.scaleLinear()
+    .domain([0, legendHeatmapAttr.divisions-1])
+    .range([heatmapMin, heatmapMax]);
+    d3.select('div#wdtg-graph-and-legend-container svg#wdtg-heatmap-legend')
+    .attr('width', `${legendHeatmapAttr.width}px`)
+    .attr('height', `${0.1*legendHeatmapAttr.width}px`)
+    .selectAll('rect.heatmap-legend-box')
+    .data(binBoundaries)
+    .enter()
+    .append('rect')
+    .attr('class', 'heatmap-legend-box')
+    .attr('x', (d, i) => {
+      console.log(d, heatmapColour(d));
+      return `${i * legendHeatmapAttr.boxWidth}px`;
+    })
+    .attr('y', `10px`)
+    .attr('width', `${legendHeatmapAttr.boxWidth + 1}px`)
+    .attr('height', `${legendHeatmapAttr.boxHeight}px`)
+    .attr('fill', d => `${heatmapColour(d)}`);
+
     d3.select('div#wdtg-graph-and-legend-container svg#wdtg-heatmap-legend')
     .append('text')
     .style('font-size', '0.75em')
@@ -76,15 +92,23 @@ function whereDoTheyGo(directoryPrefix='') {
     .attr('text-anchor', 'start')
     .attr('x', '0px')
     .attr('y', `${legendHeatmapAttr.boxHeight * 2 + 5}px`)
-    .text(min);
+    .text(heatmapMin);
     d3.select('div#wdtg-graph-and-legend-container svg#wdtg-heatmap-legend')
+    .selectAll('text.legend-heatmap-label')
+    .data(binBoundaries)
+    .enter()
     .append('text')
     .style('font-size', '0.75em')
-    .attr('class', 'vis-body')
-    .attr('text-anchor', 'end')
-    .attr('x', `${legendHeatmapAttr.width}px`)
+    .attr('class', 'vis-body legend-heatmap-label')
+    .attr('text-anchor', (d, i) => {
+      if (i == binBoundaries.length - 1) {
+        return 'end';
+      }
+      return 'middle';
+    })
+    .attr('x', (d, i) => `${legendHeatmapAttr.boxWidth * (i + 1)}px`)
     .attr('y', `${legendHeatmapAttr.boxHeight * 2 + 5}px`)
-    .text(max);
+    .text(d => d);
 
     /* calculate boxes size */
     let nMovements = Object.keys(data).length;
@@ -488,15 +512,15 @@ function whereDoTheyGo(directoryPrefix='') {
           } else if (wdtgEvents.currentConsecutivesCount == 0) {
             showSelectOneMoreBox();
           } else {
-            let max = d3.max(counts);
-            let min = d3.min(counts);
-            lineScale.domain([min, max]).range([3, 15]);
-            legendLineSizeScale.range([max, min]);
+            let currLineMin = d3.min(counts);
+            let currLineMax = d3.max(counts);
+            lineScale.domain([currLineMin, currLineMax]).range([3, 15]);
+            legendLineSizeScale.range([currLineMax, currLineMin]);
             d3.selectAll('div#wdtg-graph-and-legend-container line.line-size-legend')
             .transition()
             .attr('stroke-width', i => `${lineScale(legendLineSizeScale(i))}px`)
             .attr('stroke-opacity','0.8');
-            updateLineSizeLimits(min, max);
+            updateLineSizeLimits(currLineMin, currLineMax);
           }
         } else {
           d3.selectAll('div#wdtg-graph-and-legend-container line.line-size-legend')
