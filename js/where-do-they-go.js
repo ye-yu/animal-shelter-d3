@@ -385,13 +385,19 @@ function whereDoTheyGo(directoryPrefix='') {
         }
       }
 
-      function transitionText(selected, text) {
+      function transitionText(selected, text, finalX='default') {
         if (selected.text() == text) {
           return;
         }
 
         let offset = 800;
-        let initialX = selected.attr('x');
+        let initialX = 0;
+        if (finalX == 'default') {
+          initialX = selected.attr('x');
+        } else {
+          initialX = finalX;
+        }
+
         selected.transition(100)
         .attr('opacity', 0)
         .on('end', () => {
@@ -404,8 +410,8 @@ function whereDoTheyGo(directoryPrefix='') {
       }
 
       function showSelectOneMoreBox() {
-        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-upper-limit-text'), '');
-        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-lower-limit-text'), 'Select one more linked box');
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-upper-limit-text'), '', legendLineSizeAttr.width + 5);
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-lower-limit-text'), 'Select one more linked box', legendLineSizeAttr.width + 5);
         d3.selectAll('div#wdtg-graph-and-legend-container line')
         .transition()
         .attr('stroke-width', d => '1px')
@@ -414,13 +420,13 @@ function whereDoTheyGo(directoryPrefix='') {
       }
 
       function showSelectTwoBoxes() {
-        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-upper-limit-text'), '');
-        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-lower-limit-text'), 'Select at least two linked boxes');
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-upper-limit-text'), '', legendLineSizeAttr.width + 5);
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-lower-limit-text'), 'Select at least two linked boxes', legendLineSizeAttr.width + 5);
       }
 
       function updateLineSizeLimits(lower, upper) {
-        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-lower-limit-text'), lower);
-        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-upper-limit-text'), upper);
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-lower-limit-text'), lower, legendLineSizeAttr.width + 5);
+        transitionText(d3.select('div#wdtg-graph-and-legend-container text#line-size-upper-limit-text'), upper, legendLineSizeAttr.width + 5);
       }
 
       function updateLineSizeLegend() {
