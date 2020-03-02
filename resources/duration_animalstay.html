@@ -39,12 +39,15 @@ var margin = {top: 10, right: 10, bottom: 10, left: 10},
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-var text = d3.csv('duration_stay.csv')
-var table = d3.csvParse(text);
-var root = d3.stratify()
-  .id(function(d) { return d.breedname; })
-  .parentId(function(d) { return d.speciesname; })
-  (data);
-root.sum(function(d) { return +d['days of stay']; })
-
+d3.csv('duration_stay.csv', function(data) {
+  var root = d3.stratify()
+    .id(function(d) { return d.breedname; })
+    .parentId(function(d) { return d.speciesname; })
+    (data);
+  root.sum(function(d) { return +d['days of stay']; })
+})
+  d3.treemap()
+    .size([width, height])
+    .padding(4)
+    (root)
 </script>
