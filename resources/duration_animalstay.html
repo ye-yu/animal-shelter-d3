@@ -44,6 +44,6 @@ d3.csv('duration_stay.csv', function(data) {
     .id(function(d) { return d.breedname; })
     .parentId(function(d) { return d.speciesname; })
     (data);
-  root.sum(function(d) { return +d.[days of stay]; })
+  root.sum(function(d) { return +d.['days of stay']; })
 })
 </script>
