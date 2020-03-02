@@ -25,6 +25,7 @@
         crossorigin="anonymous"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="../js/index.js"></script>
+<div id="my_dataviz"></div>
 <script>
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
   width = 445 - margin.left - margin.right,
@@ -40,7 +41,7 @@ var margin = {top: 10, right: 10, bottom: 10, left: 10},
 
 d3.csv('duration_stay.csv', function(data) {
   var root = d3.stratify()
-    .id(function(d) { return d[breedname]; })   
+    .id(function(d) { return d[breedname]; })
     .parentId(function(d) { return d[speciesname]; })
     (data);
   root.sum(function(d) { return +d[days of stay]; })
