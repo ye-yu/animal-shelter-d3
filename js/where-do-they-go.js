@@ -23,6 +23,7 @@ function whereDoTheyGo(directoryPrefix='') {
 
   let wdtgEvents = {
     selectedMovements: {},
+    hoveredTotal: 0,
     currentConsecutivesCount: 0
   };
 
@@ -308,20 +309,32 @@ function whereDoTheyGo(directoryPrefix='') {
             .transition()
             .attr('opacity', '0');
           }
+
         })
         .on("mouseover", function(d, i) {
           if (d3.select(this).attr('selected') == 'false') {
             d3.select(this)
             .style('stroke-width', '0.5px');
           }
+          addToTotal(d[1]['Total']);
         })
         .on("mouseout", function(d, i) {
           if (d3.select(this).attr('selected') == 'false') {
             d3.select(this)
             .style('stroke-width', '0px');
           }
+          subtractFromTotal(d[1]['Total']);
         });
       }
+
+      /* append selected total */
+      svg.append('text')
+      .attr('id', 'wdtg-selected-total')
+      .attr('class', 'vis-body font-weight-bold small')
+      .attr('x', `${containerWidth - 5}`)
+      .attr('y', `${containerHeight * 0.7}`)
+      .attr('text-anchor', 'end')
+      .text('Total Animal in Hovered Box: 0');
 
       function highlightSelectedMovement() {
         updateLineSizeLegend();
@@ -383,6 +396,21 @@ function whereDoTheyGo(directoryPrefix='') {
         if (Object.keys(wdtgEvents.selectedMovements).length == 0) {
           showSelectTwoBoxes();
         }
+      }
+
+      function addToTotal(total) {
+        wdtgEvents.hoveredTotal += total;
+        updateHoveredTotal();
+      }
+
+      function subtractFromTotal(total) {
+        wdtgEvents.hoveredTotal -= total;
+        updateHoveredTotal();
+      }
+
+      function updateHoveredTotal(){
+        d3.select('text#wdtg-selected-total')
+        .text(`Total Animal in Hovered Box: ${wdtgEvents.hoveredTotal}`);
       }
 
       function transitionText(selected, text, finalX='default') {
@@ -543,6 +571,9 @@ function whereDoTheyGo(directoryPrefix='') {
         d3.select('div#wdtg-graph-and-legend-container g#wdtg-clear-button')
         .transition()
         .attr('opacity', '0');
+
+        wdtgEvents.hoveredTotal = 0;
+        updateHoveredTotal();
       })
       .on("mouseover", function(d, i) {
         d3.select(this)
