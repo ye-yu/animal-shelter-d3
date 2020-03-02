@@ -51,87 +51,88 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="../js/index.js"></script>
 <script>
+  d3.json("boxplot_data.json").then(data => {
+    var y0 = data[0]['values'];
+    var y1 = data[1]['values'];
+    var y2 = data[2]['values'];
+    var y3 = data[3]['values'];
+    var y4 = data[4]['values'];
+    var y5 = data[5]['values'];
 
-  var y0 = [110 ,109 ,80 ,38 ,38 ,38 ,49 ,60 ,60 ,39 ,39 ,13 ,40 ,40 ,38 ,57 ,57 ,57 ,32 ,32 ,32 ,50 ,57 ,13 ,74 ,74 ,80 ,52 ,52];
-  var y1 = [54 ,54 ,45 ,45 ,32 ,73 ,73 ,73 ,65 ,26 ,51 ,51 ,51 ,66 ,42 ,13 ,28 ,24 ,24 ,24 ,29];
-  var y2 = [31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,31 ,13 ,27 ,20 ,20 ,20 ,20 ,20 ,20, 9];
-  var y3 = [30 ,29 ,29 ,21 ,18 ,18 ,18 ,18];
-  var y4 = [27 ,24 ,13 ,18 ,13 ,13 ,17 ,13 ,12 ,12 ,25 ,12];
-  var y5 = [54 ,27 ,27 ,27 ,27 ,20 ,14 ,13 ,54 ,54 ,13 ,12 ,13 ,12 ,14 ,14 ,14 ,12 ,12 ,12 ,41 ,41 ,41 ,41 ,12 ,12 ,12 ,18 ,18 ,18 ,18 ,18 ,18 ,60];
+    var trace1 = {
+      y: y0,
+      type: 'box',
+      name: 'Carnivora'
+    };
 
+    var trace2 = {
+      y: y1,
+      type: 'box',
+      name: 'Lagomorpha'
+    };
 
-  var trace1 = {
-    y: y0,
-    type: 'box',
-    name: 'Carnivora'
-  };
+    var trace3 = {
+      y: y2,
+      type: 'box',
+      name: 'Rodentia'
+    };
 
-  var trace2 = {
-    y: y1,
-    type: 'box',
-    name: 'Lagomorpha'
-  };
+    var trace4 = {
+      y: y3,
+      type: 'box',
+      name: 'Galiformes'
+    };
 
-  var trace3 = {
-    y: y2,
-    type: 'box',
-    name: 'Rodentia'
-  };
+    var trace5 = {
+      y: y4,
+      type: 'box',
+      name: 'Squamata'
+    };
 
-  var trace4 = {
-    y: y3,
-    type: 'box',
-    name: 'Galiformes'
-  };
+    var trace6 = {
+      y: y4,
+      type: 'box',
+      name: 'Artiodactyla'
+    };
 
-  var trace5 = {
-    y: y4,
-    type: 'box',
-    name: 'Squamata'
-  };
-
-  var trace6 = {
-    y: y4,
-    type: 'box',
-    name: 'Artiodactyla'
-  };
-
-  var data = [trace1, trace2, trace3, trace4, trace5, trace6];
-  var config = {responsive: true}
-  var layout = {
-  showlegend : false,
-  title: {
-    text:'Boxplot of Animal Age Distribution',
-    font: {
-      family: 'Courier New, monospace',
-      size: 24
-    },
-    xref: 'paper',
-    x: 0.05,
-  },
-  xaxis: {
+    var data = [trace1, trace2, trace3, trace4, trace5, trace6];
+    var config = {responsive: true}
+    var layout = {
+    showlegend : false,
     title: {
-      text: 'Animal Order',
+      text:'Boxplot of Animal Age Distribution',
       font: {
         family: 'Courier New, monospace',
-        size: 18,
-        color: '#7f7f7f'
-      }
-    },
-  },
-  yaxis: {
-    title: {
-      text: 'Age Distribution',
-      font: {
-        family: 'Courier New, monospace',
-        size: 18,
-        color: '#7f7f7f'
+        size: 24
       },
-      tickfont : 'Courier New, monospace',
-      ticksize : 25
+      xref: 'paper',
+      x: 0.05,
+    },
+    xaxis: {
+      title: {
+        text: 'Animal Order',
+        font: {
+          family: 'Courier New, monospace',
+          size: 18,
+          color: '#7f7f7f'
+        }
+      },
+    },
+    yaxis: {
+      title: {
+        text: 'Age Distribution',
+        font: {
+          family: 'Courier New, monospace',
+          size: 18,
+          color: '#7f7f7f'
+        },
+        tickfont : 'Courier New, monospace',
+        ticksize : 25
+      }
     }
-  }
-};
+  };
 
-  Plotly.newPlot('boxplot', data, layout,config);
+    Plotly.newPlot('boxplot', data, layout,config);
+  })
+
 </script>
