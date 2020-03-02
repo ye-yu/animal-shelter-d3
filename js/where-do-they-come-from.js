@@ -208,7 +208,7 @@ function whereDoTheyComeFrom(directoryPrefix='') {
           let visualisationDescription = {count:{},percentage:{}};
           // description when view by count
           visualisationDescription['count']['default'] = `The sum of the animal intakes
-          showed mountain-shaped line graph over the years. This behaviour is
+          showed a mountain-shaped line graph over the years. This behaviour is
           seemingly seasonal &ndash; meaning the mountain-shape repeats on every year as shown in the graph. This
           indicates that the season of the year affects the number of intakes of the quarter;
           The animal intake activity increases on every period from the end of the spring
