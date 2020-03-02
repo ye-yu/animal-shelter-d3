@@ -41,9 +41,9 @@ var margin = {top: 10, right: 10, bottom: 10, left: 10},
 
 d3.csv('duration_stay.csv', function(data) {
   var root = d3.stratify()
-    .id(function(d) { return d[breedname]; })
-    .parentId(function(d) { return d[speciesname]; })
+    .id(function(d) { return d.breedname; })
+    .parentId(function(d) { return d.speciesname; })
     (data);
-  root.sum(function(d) { return +d[days of stay]; })
+  root.sum(function(d) { return +d.[days of stay]; })
 })
 </script>
