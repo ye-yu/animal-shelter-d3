@@ -50,7 +50,7 @@ function whereDoTheyGo(directoryPrefix='') {
     let binSize = Math.floor(totals.length/bins);
     let binBoundaries = binArray(totals, binSize).map(x => x[x.length-1]);
     bins = binBoundaries.length;
-    let binMap = arange(bins).map(x => x / bins / 2);
+    let binMap = arange(bins + 1).map(x => x / (bins + 1) / 2);
 
     let heatmapMin = d3.min(totals);
     let heatmapMax = d3.max(totals);
