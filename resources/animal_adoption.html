@@ -28,63 +28,218 @@
 <script src="../js/index.js"></script>
 <div id="my_dataviz"></div>
 <script>
+d3.csv('adoption_month.csv').then(data => {
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+  /* util functions */
+  function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+    const angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
 
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-d3.csv("adoption_month.csv",
+    return {
+      x: centerX + (radius * Math.cos(angleInRadians)),
+      y: centerY + (radius * Math.sin(angleInRadians))
+    };
+  }
 
-  // When reading the csv, I must format variables:
-  function(d){
-    return { date :  d3.timeParse("%Y,%m")(d.year,d.month) , species: d.species, adopted : d.isAdopted }
-  },
 
-  // Now I can use this dataset:
-  function(data) {
+  function describeSector(x, y, radius, startAngle, endAngle){
+    const start = polarToCartesian(x, y, radius, endAngle);
+    const end = polarToCartesian(x, y, radius, startAngle);
 
-    var species_animal = d3.nest() // nest function allows to group the calculation per level of a factor
-    .key(function(d) { return d.species;})
-    .entries(data);
-    // Add X axis --> it is a date format
-    var x = d3.scaleTime()
-      .domain(d3.extent(data, function(d) { return d.date; }))
-      .range([ 0, width ]);
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
 
-    // Add Y axis
-    var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.value; })])
-      .range([ height, 0 ]);
-    svg.append("g")
-      .call(d3.axisLeft(y));
+    const d = [
+      "M", x, y,
+      "L", start.x, start.y,
+      "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y,
+      "Z"
+    ].join(" ");
 
-    var res = species_animal.map(function(d){ return d.key }) // list of group names
-    var color = d3.scaleOrdinal()
-      .domain(res)
-      .range(['#e41a1c','#377eb8','#4daf4a','#ffff33','#a65628'])
+    return d;
+  }
 
-    // Add the line
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.value) })
-        )
+
+  function describeArchedSector(x, y, innerRadius, outerRadius, startAngle, endAngle) {
+    const innerSector = {
+      start: polarToCartesian(x, y, innerRadius, endAngle),
+      end: polarToCartesian(x, y, innerRadius, startAngle)
+    }
+
+    const outerSector = {
+      start: polarToCartesian(x, y, outerRadius, endAngle),
+      end: polarToCartesian(x, y, outerRadius, startAngle)
+    }
+
+    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+
+    return [
+      "M", innerSector.start.x, innerSector.start.y,
+      "L", outerSector.start.x, outerSector.start.y,
+      "A", outerRadius, outerRadius, 0, largeArcFlag, 0, outerSector.end.x, outerSector.end.y,
+      "L", innerSector.end.x, innerSector.end.y,
+      "A", innerRadius, innerRadius, 0, largeArcFlag, 1, innerSector.start.x, innerSector.start.y,
+      "Z"
+    ].join(" ");
+  }
+
+  data = data.map(row => {
+    let year = +row['year'];
+    let month = +row['month'];
+    let isAdopted = row['isAdopted'] == "True";
+    let species = row['species'];
+    return {
+      year: year,
+      month: month,
+      isAdopted: isAdopted,
+      species: species
+    };
+  });
+
+  console.log(data);
+
+  /* data transformation */
+  let totalAnimals = data.reduce((acc, d) => {
+    let found = acc.find(a => a.year === d.year && a.month === d.month);
+    if (!found) {
+      acc.push({year:d.year, month: d.month, data: [d.isAdopted]});
+    }
+    else {
+      found.data.push(d.isAdopted);
+    }
+    return acc;
+  }, []);
+
+ 	totalAnimals = totalAnimals.map(row => {
+    let sum = row.data.length;
+    let adopted = row.data.filter(x => x).length / sum;
+    let notAdopted = 1 - adopted;
+    return {
+      year: row.year,
+      month: row.month,
+      adopted: adopted,
+      notAdopted: notAdopted
+    }
+  });
+
+  console.log(totalAnimals);
+
+  let species = data.reduce((acc, d) => {
+    let found = acc.find(a => a.year === d.year && a.species === d.species && a.month === d.month);
+    if (!found) {
+      acc.push({year:d.year, month: d.month, species: d.species, data: [d.isAdopted]});
+    }
+    else {
+      found.data.push(d.isAdopted);
+    }
+    return acc;
+  }, []);
+
+
+  let cats = species.filter(x => x.species == 'Dog').map(row => {
+    let sum = row.data.length;
+    let adopted = row.data.filter(x => x).length / sum;
+    let notAdopted = 1 - adopted;
+    return {
+      year: row.year,
+      month: row.month,
+      adopted: adopted,
+      notAdopted: notAdopted
+    }
+  });
+  console.log(species);
+
+  let svg = d3.select("#adoption");
+    // set circle properties
+  let sectorAngle = 360 / cats.length;
+  let smallRadius = 100;
+  let radius = 200;
+  let smallCircleMargin = 10;
+    // set scaling function
+  let scaleSmallRadius = d3.scaleLinear()
+  .domain([0, 1])
+  .range([0, smallRadius]);
+
+  // insert data for inner sector
+  svg.selectAll('path.adoption-cat-inner-circle')
+  .data(cats)
+  .enter()
+  .append('path')
+  .attr('class', 'adoption-cat-inner-circle')
+  .attr('fill', (row, index) => {
+    if (index % 2 == 0) {
+	    return '#253';
+    }
+    return '#352';
+  })
+  .attr('d', (row, index) => {
+    let offset = 0.5;
+    let sectorRadius = scaleSmallRadius(row.notAdopted);
+    let startAngle = index * sectorAngle + offset;
+    let endAngle = (index + 1) * sectorAngle;
+    let cx = 2 * radius + smallRadius + smallCircleMargin;
+    let cy = smallRadius + smallCircleMargin;
+    return describeSector(cx, cy, sectorRadius, startAngle, endAngle);
+  });
+
+
+    // insert data for outer sector
+  svg.selectAll('path.adoption-cat-outer-circle')
+  .data(cats)
+  .enter()
+  .append('path')
+  .attr('class', 'adoption-cat-outer-circle')
+  .attr('fill', row => {
+    if (row.year == 2017) {
+      return '#cc7';
+    }
+    if (row.year == 2018) {
+      return '#cd8';
+    }
+    return '#cb6';
+
+  })
+  .attr('d', (row, index) => {
+    let offset = 0.5;
+    let sectorRadius = scaleSmallRadius(row.notAdopted);
+    let outerRadius = smallRadius;
+    let startAngle = index * sectorAngle + offset;
+    let endAngle = (index + 1) * sectorAngle;
+    let cx = 2 * radius + smallRadius + smallCircleMargin;
+    let cy = smallRadius + smallCircleMargin;
+    return describeArchedSector(cx, cy, sectorRadius, outerRadius, startAngle, endAngle);
+  });
+
+  svg.selectAll('text.adoption-cat-text')
+  .data(cats)
+  .enter()
+  .append('text')
+  .attr('class', 'adoption-cat-text small')
+  .attr('x', (row, index) => {
+    let angle = index * sectorAngle + 0.5 * sectorAngle;
+    let cx = 2 * radius + smallRadius + smallCircleMargin;
+    let cy = smallRadius + smallCircleMargin;
+    let position = polarToCartesian(cx, cy, smallRadius, angle);
+    return position.x;
+  })
+  .attr('y', (row, index) => {
+    let angle = index * sectorAngle + 0.5 * sectorAngle;
+    let cx = 2 * radius + smallRadius + smallCircleMargin;
+    let cy = smallRadius + smallCircleMargin;
+    let position = polarToCartesian(cx, cy, smallRadius + 5, angle);
+    return position.y;
+  })
+  .attr('text-anchor', (row, index) => {
+    let angle = index * sectorAngle + 0.5 * sectorAngle;
+    if (angle > 180) {
+      return 'end';
+    }
+    return 'start';
+  })
+  .style('font-size', '0.55em')
+  .text(row => `Y${row.year}M${row.month}`);
+
+});
+
+
 
 })
 </script>
