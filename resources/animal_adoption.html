@@ -46,7 +46,7 @@ d3.csv("adoption_month.csv",
 
   // When reading the csv, I must format variables:
   function(d){
-    return { year : d.year, month: d.month, species: d.species, adopted : d.isAdopted }
+    return { date : (d.year"-"d.month) , species: d.species, adopted : d.isAdopted }
   },
 
   // Now I can use this dataset:
