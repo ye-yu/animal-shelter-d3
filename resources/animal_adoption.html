@@ -11,12 +11,13 @@
 <link rel="stylesheet"
       href="../css/animal_adoption.css">
 
+<body>
 
-<!-- body -->
+</body>
 <div class="container-fluid">
   <h1 class='vis-title text-center'>Percentage of animal adoption over months</h1>
 </div>
-
+  <svg id="adoption"></svg>
 <!-- javascript -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
 			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -26,7 +27,6 @@
         crossorigin="anonymous"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="../js/index.js"></script>
-<div id="my_dataviz"></div>
 <script>
 d3.csv('adoption_month.csv').then(data => {
 
@@ -147,7 +147,9 @@ d3.csv('adoption_month.csv').then(data => {
   });
   console.log(species);
 
-  let svg = d3.select("#adoption");
+  let svg = d3.select("#adoption")
+  .attr('width', $(window).width(1000))
+  .attr('height', $(window).height(450));
     // set circle properties
   let sectorAngle = 360 / cats.length;
   let smallRadius = 100;
