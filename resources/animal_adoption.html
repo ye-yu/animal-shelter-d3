@@ -73,7 +73,7 @@ d3.csv("adoption_month.csv",
     var res = species_animal.map(function(d){ return d.key }) // list of group names
     var color = d3.scaleOrdinal()
       .domain(res)
-      .range(['#e41a1c','#377eb8','#4daf4a'])
+      .range(['#e41a1c','#377eb8','#4daf4a','#ffff33','#a65628'])
 
     // Add the line
     svg.append("path")
