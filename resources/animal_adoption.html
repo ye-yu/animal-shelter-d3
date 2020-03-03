@@ -11,9 +11,18 @@
 <link rel="stylesheet"
       href="../css/animal_adoption.css">
 
-<body>
+<body style="overflow-x: hidden;">
+  <div class="container-fluid mt-5 vis-body" id="who-was-adopted">
+    <div class="mx-auto px-2 py-2 h2 vis-title text-center text-capitalize text-dark title-border" style="width:60%">
+      Who was adopted?
+      <div class="h6 mt-3 vis-body">
+        A small multiples of circle graph that
+        describes the proportion of the adopted animal to the non-adopted animal over month
+      </div>
+    </div>
+  </div>
   <div class="container-fluid">
-    <h1 class='vis-title text-center'>Percentage of animal adoption over months</h1>
+    <h1 class='vis-title text-center h4'>Percentage of animal adoption over months</h1>
   </div>
     <svg id="adoption_allani"></svg>
 </body>
@@ -122,9 +131,6 @@ d3.csv('adoption_month.csv').then(data => {
 
   console.log(totalAnimals);
 
-  let svg_all = d3.select("#adoption_allani")
-  .attr('width', $(window).width())
-  .attr('height', $(window).width() * 0.4);
     // set circle properties
   let sectorAngle = 360 / totalAnimals.length;
   let smallCircleMargin = 40;
@@ -138,6 +144,11 @@ d3.csv('adoption_month.csv').then(data => {
   .domain([0, 1])
   .range([0, radius]);
 
+  let svgWidth=$(window).width(), svgHeight=$(window).width() * 0.4;
+  let svg_all = d3.select("#adoption_allani")
+  .attr('width', svgWidth)
+  .attr('height', svgHeight)
+  .attr('transform', `translate(${2 * smallCircleMargin}, 0)`);
   ////////////////////////////////////////////////////////////////////////////
   //All animal
   // insert data for inner sector
@@ -760,5 +771,12 @@ svg_all.selectAll('text.adoption-Others-text')
 .style('font-size', '0.55em')
 .text((row, i) => `M${row.month}`);
 
+ svg_all.append('text')
+ .attr('text-anchor', 'middle')
+ .attr('class', 'vis-body')
+.attr("x", 3 * smallCircleMargin + 2 * radius + smallRadius)
+.attr("y", 2 * smallCircleMargin + 2 * smallRadius)
+.style("color", "black")
+.text("Cat");
 });
 </script>
