@@ -30,7 +30,6 @@ function durationStay(directoryPrefix="") {
     data['children']
     .map(x => [x['name'], x['children']])
     .forEach(row => domains[row[0]] = minMax(row[1].map(x => x.value)));
-    console.log(domains);
     // Then d3.treemap computes the position of each element of the hierarchy
     d3.treemap()
     .size([width, height])
