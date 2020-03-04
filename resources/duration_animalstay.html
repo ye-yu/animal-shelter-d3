@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- stylesheet -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous">
+<link rel="stylesheet"
+      href="../css/master.css">
+      <link rel="stylesheet"
+            href="../css/duration_animalstay.css">
+
+<!-- body -->
+<body>
+  <div class="container-fluid mt-5 vis-body" id="how-long-did-they-stay">
+    <div class="mx-auto px-2 py-2 h2 vis-title text-center text-capitalize text-dark title-border" style="width:60%">
+      How Long Did They Stay?
+      <div class="h6 mt-3 vis-body">
+        A treemap that describes the average of the
+        total duration of stay in the shelter for each animals and their breed name
+      </div>
+    </div>
+  </div>
+  <!-- Create a div where the graph will take place -->
+  <div class="mb-3" id="my_dataviz"></div>
+</body>
+<!-- javascript -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3plus.org/js/d3plus.v2.0.0-alpha.25.full.min.js"></script>
+<script src="../js/index.js"></script>
+<div id="my_dataviz"></div>
+<script>
+
+// set the dimensions of the graph
+var widthRatio = 0.7, heightRatio=0.8;
+var width = $(window).width() * widthRatio,
+  height = $(window).height() * heightRatio;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+.append("svg")
+  .attr("width", $(window).width())
+  .attr("height", height)
+.append("g")
+  .attr("transform", `translate(${$(window).width() * (1 - widthRatio)/2}, 0)`)
+;
+
+// read json data
+d3.json("duration_stay.json").then(function(data) {
+
+  // Give the data to this cluster layout:
+  function minMax(arr) {
+    return [d3.min(arr), d3.max(arr)]
+  }
+
+  var root = d3.hierarchy(data)
+  .sum(function(d){ return d.value})
+  .sort((b, a) => b.value - a.value) // Here the size of each leave is given in the 'value' field in input data
+
+  /* calculate the domain for each parent tree */
+  var domains = {};
+  data['children']
+  .map(x => [x['name'], x['children']])
+  .forEach(row => domains[row[0]] = minMax(row[1].map(x => x.value)));
+  console.log(domains);
+  // Then d3.treemap computes the position of each element of the hierarchy
+d3.treemap()
+    .size([width, height])
+    .paddingTop(28)
+    .paddingRight(7)
+    .paddingInner(3)      // Padding between each rectangle
+    //.paddingOuter(6)
+    //.padding(20)
+    (root)
+
+  // prepare a color scale
+  var color = d3.scaleOrdinal()
+    .domain(["Cat", "Dog", "Others"])
+    .range([ "#402D54", "#D18975", "#8FD175"])
+
+  // And a opacity scale
+  var opacity = d3.scaleLinear()
+    .range([1, 0.6])
+  // use this information to add rectangles:
+  svg
+    .selectAll("rect")
+    .data(root.leaves())
+    .enter()
+    .append("rect")
+      .attr('x', function (d) { return d.x0; })
+      .attr('y', function (d) { return d.y0; })
+      .attr('width', function (d) { return d.x1 - d.x0; })
+      .attr('height', function (d) { return d.y1 - d.y0; })
+      .style("stroke", "black")
+      .style("fill", function(d){ return color(d.parent.data.name)} )
+      .style("opacity", function(d){ return opacity.domain(domains[d.parent.data.name])(d.data.value)})
+
+  function wrap(text, width) {
+    text.each(function() {
+      let text = d3.select(this),
+        words = text.text().split('').reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        x = text.attr("x"),
+        y = text.attr("y"),
+        dy = 1.1,
+        tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+      while (words.length > 0) {
+        word = words.pop()
+        line.push(word);
+        tspan.text(line.join(""));
+        if (tspan.node().getComputedTextLength() > width) {
+          line.pop();
+          tspan.text(line.join(""));
+          line = [word];
+          tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+        }
+      }
+    });
+  }
+  // and to add the text labels
+  svg
+    .selectAll("text")
+    .data(root.leaves())
+    .enter()
+    .append("text")
+    .attr("class", "vis-body small")    // +10 to adjust position (more right)
+    .attr("x", function(d){ return d.x0+5})    // +10 to adjust position (more right)
+      .attr("y", function(d){ return d.y0+0})    // +20 to adjust position (lower)
+      .text(function(d){ return d.data.name })
+      .attr("font-size", "19px")
+      .attr("fill", "white")
+      .each(function(d){ wrap(d3.select(this), d.x1 - d.x0 - 5)})
+
+
+  // and to add the text labels
+  svg
+    .selectAll("vals")
+    .data(root.leaves())
+    .enter()
+    .append("text")
+    .attr("class", "vis-body")
+      .attr("x", function(d){ return d.x0+5})    // +10 to adjust position (more right)
+      .attr("y", function(d){ return d.y1-5})    // +20 to adjust position (lower)
+      .text(function(d){ return `${d.data.value.toFixed(2)} days` })
+      .attr("font-size", "0.55em")
+      .attr("fill", "white")
+
+  // Add title for the 3 groups
+  svg
+    .selectAll("titles")
+    .data(root.descendants().filter(function(d){return d.depth==1}))
+    .enter()
+    .append("text")
+    .attr("class", "vis-body")
+      .attr("x", function(d){ return d.x0})
+      .attr("y", function(d){ return d.y0+21})
+      .text(function(d){ return d.data.name })
+      .attr("font-size", "0.9em")
+      .attr("fill",  function(d){ return color(d.data.name)} )
+
+  // Add title for the 3 groups
+  svg
+    .append("text")
+      .attr("x", width/2)
+      .attr("y", 20)    // +20 to adjust position (lower)
+      .attr("class", "vis-title text-capitalize")
+      .text("Duration of animal stay")
+      .attr("font-size", "19px")
+      .attr("text-anchor", "middle")
+      .attr("fill",  "grey" )
+
+})
+</script>
