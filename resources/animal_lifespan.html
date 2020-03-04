@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- stylesheet -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous">
+<link rel="stylesheet"
+      href="../css/master.css">
+
+<style media="screen">
+.border-top-thick {
+   border-top: solid gray 2px;
+ }
+
+.border-bottom-thick {
+   border-bottom: solid gray 2px;
+ }
+
+ .collapsible {
+
+   color: white;
+   cursor: pointer;
+   padding: 18px;
+   width: 100%;
+   border: none;
+   text-align: left;
+   outline: none;
+   font-size: 15px;
+ }
+
+ .active, .collapsible:hover {
+   background-color: #555;
+ }
+
+ .content {
+   padding: 0 18px;
+   max-height: 0;
+   overflow: hidden;
+   transition: max-height 0.2s ease-out;
+   background-color: #f1f1f1;
+ }
+</style>
+
+<!-- body -->
+<body "my-5 vis-body">
+  <div class="container-fluid" id="where-do-they-come-from" style = "margin-top : 30px">
+    <div class="mx-auto px-2 py-2 h2 vis-title text-center text-capitalize text-dark title-border"
+         style="width:60%">
+         How long do they live?
+         <div class="h6 mt-3 vis-body">
+           Boxplot that illustrates the life expectancy of Animals grouped in
+           their respective order at
+           <br>
+           <a href="https://bloomington.in.gov/animal-shelter"
+           target="_blank">
+           Animal Care & Control, Bloomington, Indiana
+           </a>
+         </div>
+    </div>
+  </div>
+  <div class = "container">
+    <div class="row">
+      <div class='col-lg-10' id = "boxplot" style = "height:600px;" >
+      </div>
+      <div class="col-lg-2" style = "padding-top : 70px; font-family : Nanum Gothic;">
+        <h5 style = "font-family : Merriweather">Animal Order</h5>
+
+        <p style = "font-family : Merriweather;">Click to expand</p>
+        <button class="collapsible" style = "background-color : rgb(31, 119, 180); fill-opacity : 0.5;">Carnivora</button>
+<div class="content">
+<p>Cat, Dog, Racoon, Squirrel</p>
+</div>
+<button class="collapsible" style = "background-color : rgb(255, 127, 14); fill-opacity : 0.5;">Lagomorpha</button>
+<div class="content">
+<p>House Rabbit</p>
+</div>
+<button class="collapsible" style = "background-color : rgb(44, 160, 4); fill-opacity : 0.5;">Rodentia</button>
+<div class="content">
+<p>Rat, Guinea Pig, Hamster, Hedgehog, Mouse, Gerbil, Ferret</p>
+    </div>
+    <button class="collapsible" style = "background-color : rgb(214, 39, 40); fill-opacity : 0.5;">Galiformes</button>
+    <div class="content">
+    <p>Rat, Chicken</p>
+        </div>
+        <button class="collapsible" style = "background-color : rgb(148, 103, 189); fill-opacity : 0.5;">Squamata</button>
+        <div class="content">
+        <p>Pig. Livestock, Goat, Fish</p>
+            </div>
+            <button class="collapsible" style = "background-color : rgb(140, 86, 75); fill-opacity : 0.5;">Artiodactlya</button>
+            <div class="content">
+            <p>Snake, Wildlife</p>
+            </div>
+    </div>
+  </div>
+</body>
+
+<!-- javascript -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="../js/index.js"></script>
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
+</script>
+<script>
+  d3.json("boxplot_data.json").then(data => {
+    var y0 = data[0]['values'];
+    var y1 = data[1]['values'];
+    var y2 = data[2]['values'];
+    var y3 = data[3]['values'];
+    var y4 = data[4]['values'];
+    var y5 = data[5]['values'];
+
+    var trace1 = {
+      y: y0,
+      type: 'box',
+      name: 'Carnivora'
+    };
+
+    var trace2 = {
+      y: y1,
+      type: 'box',
+      name: 'Lagomorpha'
+    };
+
+    var trace3 = {
+      y: y2,
+      type: 'box',
+      name: 'Rodentia'
+    };
+
+    var trace4 = {
+      y: y3,
+      type: 'box',
+      name: 'Galiformes'
+    };
+
+    var trace5 = {
+      y: y4,
+      type: 'box',
+      name: 'Squamata'
+    };
+
+    var trace6 = {
+      y: y4,
+      type: 'box',
+      name: 'Artiodactyla'
+    };
+
+    var data = [trace1, trace2, trace3, trace4, trace5, trace6];
+    var config = {responsive: true}
+    var layout = {
+    showlegend : false,
+    title: {
+      text:'Boxplot of Animal Age Distribution',
+      font: {
+        family: 'Merriweather',
+        size: 24
+      },
+      xref: 'paper',
+      y:0.9,
+      x:0.5,
+    },
+    xaxis: {
+      title: {
+        text: 'Animal Order',
+        font: {
+          family: 'Nanum Gothic, monospace',
+          size: 16,
+          color: '#7f7f7f'
+        },
+        tickfont : 'Nanum Gothic, monospace',
+        ticksize : 25
+      },
+    },
+    yaxis: {
+      title: {
+        text: 'Age Distribution (months)',
+        font: {
+          family: 'Nanum Gothic, monospace',
+          size: 16,
+          color: '#7f7f7f'
+        },
+        tickfont : 'Nanum Gothic, monospace',
+        ticksize : 20
+      }
+    }
+  };
+
+    Plotly.newPlot('boxplot', data, layout,config);
+  })
+
+</script>
