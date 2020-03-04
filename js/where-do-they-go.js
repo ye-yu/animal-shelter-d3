@@ -76,10 +76,7 @@ function whereDoTheyGo(directoryPrefix='') {
     .enter()
     .append('rect')
     .attr('class', 'heatmap-legend-box')
-    .attr('x', (d, i) => {
-      console.log(d, heatmapColour(d));
-      return `${i * legendHeatmapAttr.boxWidth}px`;
-    })
+    .attr('x', (d, i) => `${i * legendHeatmapAttr.boxWidth}px`)
     .attr('y', `10px`)
     .attr('width', `${legendHeatmapAttr.boxWidth + 1}px`)
     .attr('height', `${legendHeatmapAttr.boxHeight}px`)
