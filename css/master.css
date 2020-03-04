@@ -29,3 +29,6 @@ ul.list-preprend-right-arrow li::before{
   padding-right: 5px;
 }
 
+.bg-lightdark {
+  background-color: #DDD;
+}
