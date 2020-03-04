@@ -103,14 +103,14 @@ function animalAdoption(directoryPrefix="") {
     .range([0, radius]);
 
     let svgWidth=$(window).width(), svgHeight=$(window).width() * 0.4;
-    let svg_all = d3.select("#adoption_allani")
+    let svg_all = d3.select("div#wwa #adoption_allani")
     .attr('width', svgWidth)
     .attr('height', svgHeight)
     .attr('transform', `translate(${2 * smallCircleMargin}, 0)`);
     ////////////////////////////////////////////////////////////////////////////
     //All animal
     // insert data for inner sector
-    svg_all.selectAll('path.adoption-allani-inner-circle')
+    svg_all.selectAll('div#wwa path.adoption-allani-inner-circle')
     .data(totalAnimals)
     .enter()
     .append('path')
@@ -133,7 +133,7 @@ function animalAdoption(directoryPrefix="") {
 
 
     // insert data for outer sector
-    svg_all.selectAll('path.adoption-allani-outer-circle')
+    svg_all.selectAll('div#wwa path.adoption-allani-outer-circle')
     .data(totalAnimals)
     .enter()
     .append('path')
@@ -159,7 +159,7 @@ function animalAdoption(directoryPrefix="") {
       return describeArchedSector(cx, cy, sectorRadius, outerRadius, startAngle, endAngle);
     });
 
-    svg_all.selectAll('text.adoption-allani-text')
+    svg_all.selectAll('div#wwa text.adoption-allani-text')
     .data(totalAnimals)
     .enter()
     .append('text')
@@ -211,7 +211,7 @@ function animalAdoption(directoryPrefix="") {
     sectorAngle = 360 / cats.length;
 
     // insert data for inner sector
-    svg_all.selectAll('path.adoption-cat-inner-circle')
+    svg_all.selectAll('div#wwa path.adoption-cat-inner-circle')
     .data(cats)
     .enter()
     .append('path')
@@ -234,7 +234,7 @@ function animalAdoption(directoryPrefix="") {
 
 
     // insert data for outer sector
-    svg_all.selectAll('path.adoption-cat-outer-circle')
+    svg_all.selectAll('div#wwa path.adoption-cat-outer-circle')
     .data(cats)
     .enter()
     .append('path')
@@ -260,7 +260,7 @@ function animalAdoption(directoryPrefix="") {
       return describeArchedSector(cx, cy, sectorRadius, outerRadius, startAngle, endAngle);
     });
 
-    svg_all.selectAll('text.adoption-cat-text')
+    svg_all.selectAll('div#wwa text.adoption-cat-text')
     .data(cats)
     .enter()
     .append('text')
@@ -299,7 +299,7 @@ function animalAdoption(directoryPrefix="") {
     sectorAngle = 360 / Dog.length;
 
     // insert data for inner sector
-    svg_all.selectAll('path.adoption-Dog-inner-circle')
+    svg_all.selectAll('div#wwa path.adoption-Dog-inner-circle')
     .data(Dog)
     .enter()
     .append('path')
@@ -322,7 +322,7 @@ function animalAdoption(directoryPrefix="") {
 
 
     // insert data for outer sector
-    svg_all.selectAll('path.adoption-Dog-outer-circle')
+    svg_all.selectAll('div#wwa path.adoption-Dog-outer-circle')
     .data(Dog)
     .enter()
     .append('path')
@@ -348,7 +348,7 @@ function animalAdoption(directoryPrefix="") {
       return describeArchedSector(cx, cy, sectorRadius, outerRadius, startAngle, endAngle);
     });
 
-    svg_all.selectAll('text.adoption-Dog-text')
+    svg_all.selectAll('div#wwa text.adoption-Dog-text')
     .data(Dog)
     .enter()
     .append('text')
@@ -387,7 +387,7 @@ function animalAdoption(directoryPrefix="") {
     sectorAngle = 360 / House_Rabbit.length;
 
     // insert data for inner sector
-    svg_all.selectAll('path.adoption-House-Rabbit-inner-circle')
+    svg_all.selectAll('div#wwa path.adoption-House-Rabbit-inner-circle')
     .data(House_Rabbit)
     .enter()
     .append('path')
@@ -410,7 +410,7 @@ function animalAdoption(directoryPrefix="") {
 
 
     // insert data for outer sector
-    svg_all.selectAll('path.adoption-House-Rabbit-outer-circle')
+    svg_all.selectAll('div#wwa path.adoption-House-Rabbit-outer-circle')
     .data(House_Rabbit)
     .enter()
     .append('path')
@@ -436,7 +436,7 @@ function animalAdoption(directoryPrefix="") {
       return describeArchedSector(cx, cy, sectorRadius, outerRadius, startAngle, endAngle);
     });
 
-    svg_all.selectAll('text.adoption-House-Rabbit-text')
+    svg_all.selectAll('div#wwa text.adoption-House-Rabbit-text')
     .data(House_Rabbit)
     .enter()
     .append('text')
@@ -475,7 +475,7 @@ function animalAdoption(directoryPrefix="") {
     sectorAngle = 360 / Guinea_Pig.length;
 
     // insert data for inner sector
-    svg_all.selectAll('path.adoption-Guinea_Pig-inner-circle')
+    svg_all.selectAll('div#wwa path.adoption-Guinea_Pig-inner-circle')
     .data(Guinea_Pig)
     .enter()
     .append('path')
@@ -498,7 +498,7 @@ function animalAdoption(directoryPrefix="") {
 
 
     // insert data for outer sector
-    svg_all.selectAll('path.adoption-Guinea_Pig-outer-circle')
+    svg_all.selectAll('div#wwa path.adoption-Guinea_Pig-outer-circle')
     .data(Guinea_Pig)
     .enter()
     .append('path')
@@ -524,7 +524,7 @@ function animalAdoption(directoryPrefix="") {
       return describeArchedSector(cx, cy, sectorRadius, outerRadius, startAngle, endAngle);
     });
 
-    svg_all.selectAll('text.adoption-Guinea_Pig-text')
+    svg_all.selectAll('div#wwa text.adoption-Guinea_Pig-text')
     .data(Guinea_Pig)
     .enter()
     .append('text')
@@ -563,7 +563,7 @@ function animalAdoption(directoryPrefix="") {
     sectorAngle = 360 / Rat.length;
 
     // insert data for inner sector
-    svg_all.selectAll('path.adoption-Rat-inner-circle')
+    svg_all.selectAll('div#wwa path.adoption-Rat-inner-circle')
     .data(Rat)
     .enter()
     .append('path')
@@ -586,7 +586,7 @@ function animalAdoption(directoryPrefix="") {
 
 
     // insert data for outer sector
-    svg_all.selectAll('path.adoption-Rat-outer-circle')
+    svg_all.selectAll('div#wwa path.adoption-Rat-outer-circle')
     .data(Rat)
     .enter()
     .append('path')
@@ -612,7 +612,7 @@ function animalAdoption(directoryPrefix="") {
       return describeArchedSector(cx, cy, sectorRadius, outerRadius, startAngle, endAngle);
     });
 
-    svg_all.selectAll('text.adoption-Rat-text')
+    svg_all.selectAll('div#wwa text.adoption-Rat-text')
     .data(Rat)
     .enter()
     .append('text')
@@ -651,7 +651,7 @@ function animalAdoption(directoryPrefix="") {
     sectorAngle = 360 / Others.length;
 
     // insert data for inner sector
-    svg_all.selectAll('path.adoption-Others-inner-circle')
+    svg_all.selectAll('div#wwa path.adoption-Others-inner-circle')
     .data(Others)
     .enter()
     .append('path')
@@ -674,7 +674,7 @@ function animalAdoption(directoryPrefix="") {
 
 
     // insert data for outer sector
-    svg_all.selectAll('path.adoption-Others-outer-circle')
+    svg_all.selectAll('div#wwa path.adoption-Others-outer-circle')
     .data(Others)
     .enter()
     .append('path')
@@ -700,7 +700,7 @@ function animalAdoption(directoryPrefix="") {
       return describeArchedSector(cx, cy, sectorRadius, outerRadius, startAngle, endAngle);
     });
 
-    svg_all.selectAll('text.adoption-Others-text')
+    svg_all.selectAll('div#wwa text.adoption-Others-text')
     .data(Others)
     .enter()
     .append('text')
@@ -736,7 +736,7 @@ let circleLegend = [
   {year: 2018, color: '#cd8'},
   {year: 2019, color: '#cb6'},
 ];
-svg_all.selectAll('text.circle-legend')
+svg_all.selectAll('div#wwa text.circle-legend')
 .data(circleLegend)
 .enter()
 .append('text')
@@ -745,7 +745,7 @@ svg_all.selectAll('text.circle-legend')
 .attr("y", 2 * radius + 3.5 * smallCircleMargin)
 .text(d => d.year);
 
-svg_all.selectAll('circle.circle-legend')
+svg_all.selectAll('div#wwa circle.circle-legend')
 .data(circleLegend)
 .enter()
 .append('circle')

@@ -5,7 +5,7 @@ function durationStay(directoryPrefix="") {
   height = $(window).height() * heightRatio;
 
   // append the svg object to the body of the page
-  var svg = d3.select("#my_dataviz")
+  var svg = d3.select("div#hldts #my_dataviz")
   .append("svg")
   .attr("width", $(window).width())
   .attr("height", height)
@@ -51,7 +51,7 @@ function durationStay(directoryPrefix="") {
     .range([1, 0.7])
     // use this information to add rectangles:
     svg
-    .selectAll("rect")
+    .selectAll("div#hldts rect")
     .data(root.leaves())
     .enter()
     .append("rect")
@@ -90,7 +90,7 @@ function durationStay(directoryPrefix="") {
     }
     // and to add the text labels
     svg
-    .selectAll("text")
+    .selectAll("div#hldts text")
     .data(root.leaves())
     .enter()
     .append("text")
@@ -104,7 +104,7 @@ function durationStay(directoryPrefix="") {
 
     // and to add the text labels
     svg
-    .selectAll("vals")
+    .selectAll("div#hldts vals")
     .data(root.leaves())
     .enter()
     .append("text")
@@ -117,7 +117,7 @@ function durationStay(directoryPrefix="") {
 
     // Add title for the 3 groups
     svg
-    .selectAll("titles")
+    .selectAll("div#hldts titles")
     .data(root.descendants().filter(function(d){return d.depth==1}))
     .enter()
     .append("text")
