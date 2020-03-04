@@ -3,7 +3,7 @@ Data visualization using `d3.js: version 5`.
 
 ## Dataset Source
 
-This repo is using data set from [outside resource](#).
+This repo is using data set from [outside resource](https://bloomington.in.gov/animal-shelter).
 
 ## Visualization Info
 
