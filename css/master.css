@@ -24,7 +24,7 @@ html {
   background-position: center center;
 }
 
-ul.list-preprend-right-arrow li::before{
+ul.list-preprend-right-arrow li::before, .preprend-right-arrow::before{
   content: ">";
   padding-right: 5px;
 }
