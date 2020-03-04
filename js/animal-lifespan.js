@@ -1,5 +1,5 @@
 function animalLifespan(directoryPrefix="") {
-  d3.json(directoryPrefix = "boxplot_data.json").then(data => {
+  d3.json(directoryPrefix + "boxplot_data.json").then(data => {
     var y0 = data[0]['values'];
     var y1 = data[1]['values'];
     var y2 = data[2]['values'];
