@@ -3,49 +3,49 @@
 
 <!-- stylesheet -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous">
+rel="stylesheet"
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+crossorigin="anonymous">
 <link rel="stylesheet"
-      href="../css/master.css">
+href="../css/master.css">
 
 <style media="screen">
 .border-top-thick {
-   border-top: solid gray 2px;
- }
+  border-top: solid gray 2px;
+}
 
 .border-bottom-thick {
-   border-bottom: solid gray 2px;
- }
+  border-bottom: solid gray 2px;
+}
 </style>
 
 <!-- body -->
 <body "my-5 vis-body">
   <div class="container-fluid" id="where-do-they-come-from" style = "margin-top : 30px">
     <div class="mx-auto px-2 py-2 h2 vis-title text-center text-capitalize text-dark title-border"
-         style="width:60%">
-        How do They Die
-         <div class="h6 mt-3 vis-body">
-           Linechart that depicts the trend of 4 primary causes of Animal death from 2017-2019 at
-           <br>
-           <a href="https://bloomington.in.gov/animal-shelter"
-           target="_blank">
-           Animal Care & Control, Bloomington, Indiana
-           </a>
-         </div>
-    </div>
+    style="width:60%">
+    How do They Die
+    <div class="h6 mt-3 vis-body">
+      Linechart that depicts the trend of 4 primary causes of Animal death from 2017-2019 at
+      <br>
+      <a href="https://bloomington.in.gov/animal-shelter"
+      target="_blank">
+      Animal Care & Control, Bloomington, Indiana
+    </a>
   </div>
 </div>
-  <div class="container-fluid" id = "bubble_chart" class = 'col-lg-12' style = "width : 80%; height:600px;" >
+</div>
+</div>
+<div class="container-fluid" id = "bubble_chart" class = 'col-lg-12' style = "width : 80%; height:600px;" >
 </body>
 
 <!-- javascript -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-			  crossorigin="anonymous"></script>
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+crossorigin="anonymous"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="js/index.js"></script>
@@ -53,8 +53,8 @@
 Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function(err, rows){
 
   function unpack(rows, key) {
-  return rows.map(function(row) { return row[key]; });
-}
+    return rows.map(function(row) { return row[key]; });
+  }
 
   var frames = []
   var x = ["March 17", "April 17", "May 17", "June 17", "July 17", "August 17", "September 17", "October 17", "November 17", "December 17", "January 18", "February 18", "March 18", "April 18", "May 18", "June 18",
@@ -130,19 +130,19 @@ Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-
     y:1.0,
     x:0.5,
     annotations: [{
-    text: "Click 'Play' to view animation",
+      text: "Click 'Play' to view animation",
       font: {
-      family : "Merriweather",
-      size: 12,
-      color: 'rgb(116, 101, 130)',
-    },
-    showarrow: false,
-    align: 'center',
-    x: 0.5,
-    y: 1.13,
-    xref: 'paper',
-    yref: 'paper',
-  }],
+        family : "Merriweather",
+        size: 12,
+        color: 'rgb(116, 101, 130)',
+      },
+      showarrow: false,
+      align: 'center',
+      x: 0.5,
+      y: 1.13,
+      xref: 'paper',
+      yref: 'paper',
+    }],
     xaxis: {
       range: [frames[29].data[0].x[0], frames[29].data[0].x[29]],
 
@@ -156,82 +156,82 @@ Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-
       },
       tickmode: "array",
       tickangle: 35,
-    tickvals: ["March 17",  "June 17",  "September 17",  "December 17",  "March 18",  "June 18",
-     "September 18",  "December 18", "March 19",  "June 19"
-     ],
+      tickvals: ["March 17",  "June 17",  "September 17",  "December 17",  "March 18",  "June 18",
+      "September 18",  "December 18", "March 19",  "June 19"
+    ],
     ticktext: ["March 17",  "June 17",  "September 17",  "December 17",  "March 18",  "June 18",
-     "September 18",  "December 18", "March 19",  "June 19"
-   ],
-   tickfont : 'Nanum Gothic, monospace',
-   ticksize : 25,
-    zerolinecolor:'#000000'
+    "September 18",  "December 18", "March 19",  "June 19"
+  ],
+  tickfont : 'Nanum Gothic, monospace',
+  ticksize : 25,
+  zerolinecolor:'#000000'
+},
+yaxis: {
+  range: [0, 300],
+
+
+  title: {
+    text: 'Num. of Animals',
+    font: {
+      family: 'Nanum Gothic, monospace',
+      size: 18,
+      color: '#7f7f7f'
     },
-    yaxis: {
-      range: [0, 300],
-
-
-      title: {
-        text: 'Num. of Animals',
-        font: {
-          family: 'Nanum Gothic, monospace',
-          size: 18,
-          color: '#7f7f7f'
-        },
+  },
+  tickfont : 'Nanum Gothic, monospace',
+  ticksize : 25,
+},
+legend: {
+  orientation: 'h',
+  x: 0.5,
+  y: 1.08  ,
+  xanchor: 'center',
+  font : "Nanum Gothic"
+},
+updatemenus: [{
+  x: 0.5,
+  y: 0,
+  yanchor: "top",
+  xanchor: "center",
+  showactive: false,
+  direction: "left",
+  type: "buttons",
+  pad: {"t": 87, "r": 10},
+  buttons: [{
+    method: "animate",
+    args: [null, {
+      fromcurrent: true,
+      transition: {
+        duration: 0,
       },
-      tickfont : 'Nanum Gothic, monospace',
-      ticksize : 25,
-    },
-    legend: {
-      orientation: 'h',
-      x: 0.5,
-      y: 1.08  ,
-      xanchor: 'center',
-      font : "Nanum Gothic"
-    },
-    updatemenus: [{
-      x: 0.5,
-      y: 0,
-      yanchor: "top",
-      xanchor: "center",
-      showactive: false,
-      direction: "left",
-      type: "buttons",
-      pad: {"t": 87, "r": 10},
-      buttons: [{
-        method: "animate",
-        args: [null, {
-          fromcurrent: true,
-          transition: {
-            duration: 0,
-          },
-          frame: {
-            duration: 250,
-            redraw: false
-          }
-        }],
-        label: "Play"
-      }, {
-        method: "animate",
-        args: [
-          [null],
-          {
-            mode: "immediate",
-            transition: {
-              duration: 0
-            },
-            frame: {
-              duration: 0,
-              redraw: false
-            }
-          }
-        ],
-        label: "Pause"
-      }]
-    }]
-  };
+      frame: {
+        duration: 250,
+        redraw: false
+      }
+    }],
+    label: "Play"
+  }, {
+    method: "animate",
+    args: [
+      [null],
+      {
+        mode: "immediate",
+        transition: {
+          duration: 0
+        },
+        frame: {
+          duration: 0,
+          redraw: false
+        }
+      }
+    ],
+    label: "Pause"
+  }]
+}]
+};
 
-  Plotly.newPlot('bubble_chart', data, layout).then(function() {
-    Plotly.addFrames('bubble_chart', frames);
-  });
+Plotly.newPlot('bubble_chart', data, layout).then(function() {
+  Plotly.addFrames('bubble_chart', frames);
+});
 })
 </script>
